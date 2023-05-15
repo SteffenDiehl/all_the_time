@@ -9,14 +9,14 @@ void display_Anzeige(int *i){
     display.setTextColor(WHITE);
     display.setFont();
 
-    switch (*i)
-    {
+    switch (*i){
+
     case 1:
         /* code */
         break;
     
     default:
-        
+        display.
 
         break;
     }
