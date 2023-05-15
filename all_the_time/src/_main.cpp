@@ -1,11 +1,13 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <web_server.cpp>
-#include <Day_Time.cpp>
-#include <display_anzeige.cpp>
+#include <web_server.h>
+#include <Day_Time.h>
+#include <display_anzeige.h>
 
-int menue = 999,
+int menue = 0,
+int position = 1
 int previous_Millis = 0;
+int last_action;
 
 const char* ssid = "Techniker_RDF";
 const char* password = "TEchniker_Schule";
@@ -35,5 +37,8 @@ void setup() {
 void loop() {
   serve();
   display_Anzeige(menue);
+  if(last_action+60000<=){
+    menue=0;
+  }
 
 }
