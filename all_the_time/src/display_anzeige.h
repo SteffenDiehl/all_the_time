@@ -39,6 +39,8 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
 
@@ -82,6 +84,8 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
         
@@ -141,6 +145,8 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
 
@@ -218,6 +224,8 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
 
@@ -315,6 +323,8 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
 
@@ -412,6 +422,8 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
 
@@ -419,10 +431,22 @@ void display_Anzeige(int *m, int *p){
             switch (*p)
             {
             case 1:
-                /* code */
+                display.setTextsize(2);
+                display.println("WiFi I/0");
+                display.setTextsize(1);
+                display.println("Web Server I/0");
+
                 break;
+
+            case 2:
+                display.setTextsize(1);
+                display.println("WiFi I/0");
+                display.setTextsize(2);
+                display.println("Web Server I/0");
             
             default:
+                display.setTextsize(3);
+                display.println("Error");
                 break;
             }
 
