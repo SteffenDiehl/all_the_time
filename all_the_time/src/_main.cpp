@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <web_server.h>
+//#include <web_server.h>
 #include <Day_Time.h>
 #include <display_anzeige.h>
 #include <RotaryEncoder.h>
@@ -44,10 +44,11 @@ void setup() {
   pinMode(Button_15min, INPUT);
   pinMode(Rotary_IN3, INPUT);
   Serial.begin(115200);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+//  Serial.println(ssid);
 //  WiFi.begin(ssid, password);
 //  while (WiFi.status() != WL_CONNECTED) {
 //    delay(500);
@@ -67,21 +68,17 @@ void setup() {
     for(;;); // Don't proceed, loop forever
   }
 
-  get_time();
+//  get_time();
 }
 
 void loop() {
   int actual_Millis = millis();
 //  serve();
   display_Anzeige(&menue, &position);
-  if(last_action+60000 <= actual_Millis){
-    last_menue = menue;
-    menue=0;
-  }
   encoder.tick();
   int newposition = encoder.getPosition();
 
-  if(position != newposition && menue <= 50){
+  if(position != newposition and menue <= 50){
     last_action = actual_Millis;
     if(menue != 0){
       position = newposition;
@@ -90,10 +87,15 @@ void loop() {
       menue = last_menue;
     }
   }
-  if(digitalRead(Rotary_IN3) == HIGH && menue <= 50){
+  if(digitalRead(Rotary_IN3) == HIGH and menue <= 50){
     Rotary_Click(&menue, &position);
 
   }
 
 
+  if((last_action+60000) <= actual_Millis){
+    last_menue = menue;
+    menue = 0;
+  }
+  
 }
