@@ -8,12 +8,6 @@ const char* ntpServer = "de.pool.ntp.org";
 const long  gmtOffset_sec = 0;
 const int   daylightOffset_sec = 3600;
 
-void get_time(){
-    // Init and get the time
-  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-  printLocalTime();
-}
-
 void printLocalTime(){
   struct tm timeinfo;
   if(!getLocalTime(&timeinfo)){
@@ -46,4 +40,10 @@ void printLocalTime(){
   strftime(timeWeekDay,10, "%A", &timeinfo);
   Serial.println(timeWeekDay);
   Serial.println();
+}
+
+void get_time(){
+    // Init and get the time
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  printLocalTime();
 }
