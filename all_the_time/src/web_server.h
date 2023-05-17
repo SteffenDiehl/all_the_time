@@ -27,16 +27,7 @@ unsigned long previousTime = 0;
 // Define timeout time in milliseconds (example: 2000ms = 2s)
 const long timeoutTime = 2000;
 
-void setup() {
-  Serial.begin(115200);
-  // Initialize the output variables as outputs
-  pinMode(output26, OUTPUT);
-  pinMode(output27, OUTPUT);
-  // Set outputs to LOW
-  digitalWrite(output26, LOW);
-  digitalWrite(output27, LOW);
 
-}
 
 void serve(){
   WiFiClient client = server.available();   // Listen for incoming clients

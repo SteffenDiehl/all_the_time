@@ -10,7 +10,7 @@ void display_Anzeige(int *m, int *p){
     display.clearDisplay();
     display.setTextColor(WHITE);
     display.setFont();
-    display.setTextsize(1);
+    display.setTextSize(1);
 
     switch(*m){
         case 1://kein Timer aktiv
@@ -20,9 +20,9 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("new Timer");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi");
 
                 break;
@@ -31,15 +31,15 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("new Timer");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi");
 
                 break;
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
@@ -51,9 +51,9 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 1");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("new Timer");
                 display.println("WiFi");
 
@@ -64,9 +64,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("new Timer");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi");
 
                 break;
@@ -75,16 +75,16 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("new Timer");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi");
 
                 break;
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
@@ -96,9 +96,9 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 1");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 2");
                 display.println("new Timer");
                 display.println("WiFi");
@@ -110,9 +110,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 2");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("new Timer");
                 display.println("WiFi");
 
@@ -124,9 +124,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
                 display.println("Timer 2");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("new Timer");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi");
 
                 break;
@@ -135,17 +135,17 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("new Timer");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi");
 
                 break;
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
@@ -157,9 +157,9 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 1");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("new Timer");
@@ -172,9 +172,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 2");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 3");
                 display.println("new Timer");
                 display.println("WiFi");
@@ -187,9 +187,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
                 display.println("Timer 2");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 3");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("new Timer");
                 display.println("WiFi");
 
@@ -202,9 +202,9 @@ void display_Anzeige(int *m, int *p){
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("new Timer");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi");
 
                 break;
@@ -213,18 +213,18 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("new Timer");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi");
 
                 break;
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
@@ -236,9 +236,9 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 1");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
@@ -252,9 +252,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 2");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 3");
                 display.println("Timer 4");
                 display.println("new Timer");
@@ -268,9 +268,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
                 display.println("Timer 2");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 3");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 4");
                 display.println("new Timer");
                 display.println("WiFi");
@@ -284,9 +284,9 @@ void display_Anzeige(int *m, int *p){
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 4");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("new Timer");
                 display.println("WiFi");
 
@@ -300,9 +300,9 @@ void display_Anzeige(int *m, int *p){
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("new Timer");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi");
 
                 break;
@@ -311,19 +311,19 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
                 display.println("new Timer");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi");
 
                 break;
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
@@ -335,9 +335,9 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 1");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
@@ -351,9 +351,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 2");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 3");
                 display.println("Timer 4");
                 display.println("Timer 5");
@@ -367,9 +367,9 @@ void display_Anzeige(int *m, int *p){
                 display.println(&timeinfo, "Time: %H:%M:%S");
                 display.println("Timer 1");
                 display.println("Timer 2");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 3");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 4");
                 display.println("Timer 5");
                 display.println("WiFi");
@@ -383,9 +383,9 @@ void display_Anzeige(int *m, int *p){
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 4");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 5");
                 display.println("WiFi");
 
@@ -399,9 +399,9 @@ void display_Anzeige(int *m, int *p){
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Timer 5");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi");
 
                 break;
@@ -410,19 +410,19 @@ void display_Anzeige(int *m, int *p){
                 display.setCursor(0,10);
                 display.println(&timeinfo, "Date: %B.%d.%Y");
                 display.println(&timeinfo, "Time: %H:%M:%S");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
                 display.println("Timer 5");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi");
 
                 break;
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
@@ -431,30 +431,34 @@ void display_Anzeige(int *m, int *p){
             switch (*p)
             {
             case 1:
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("WiFi I/0");
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("Web Server I/0");
 
                 break;
 
             case 2:
-                display.setTextsize(1);
+                display.setTextSize(1);
                 display.println("WiFi I/0");
-                display.setTextsize(2);
+                display.setTextSize(2);
                 display.println("Web Server I/0");
             
             default:
-                display.setTextsize(3);
+                display.setTextSize(3);
                 display.println("Error");
                 break;
             }
 
         default://Start und Standby Bildschirm
             display.setCursor(1, 10);
-            display.setTextsize(2);
+            display.setTextSize(2);
+            display.setCursor(0, 30);
             display.printf("Fuchur \n");
-            display.printf("von\nDie unendliche Geschichte");
+            display.setCursor(10, 45);
+            display.printf("von\n");
+            display.setCursor(20, 10);
+            display.printf("Die unendliche Geschichte");
 
             break;
         }

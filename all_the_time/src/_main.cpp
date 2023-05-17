@@ -1,11 +1,14 @@
 #include <Arduino.h>
 #include <WiFi.h>
-//#include <web_server.h>
+#include <web_server.h>
 #include <Day_Time.h>
 #include <display_anzeige.h>
+#include <RotaryEncoder.h>
+#include <Menue_Steuerung.h>
 
-int menue = 0,
-int position = 1
+int menue = 0;
+int last_menue = 0;
+int position = 1;
 int previous_Millis = 0;
 int last_action;
 
@@ -35,32 +38,62 @@ const char* ssid = "Techniker_RDF";
 const char* password = "TEchniker_Schule";
 
 void setup() {
+  pinMode(Button_30s, INPUT);
+  pinMode(Button_1min, INPUT);
+  pinMode(Button_5min, INPUT);
+  pinMode(Button_15min, INPUT);
+  pinMode(Rotary_IN3, INPUT);
   Serial.begin(115200);
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
   Serial.println(ssid);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
+//  WiFi.begin(ssid, password);
+//  while (WiFi.status() != WL_CONNECTED) {
+//    delay(500);
+//    Serial.print(".");
+//  }
+
   // Print local IP address and start web server
   Serial.println("");
   Serial.println("WiFi connected.");
   Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+//  Serial.println(WiFi.localIP());
 
-  server.begin();
+//  server.begin();
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); // Don't proceed, loop forever
+  }
 
   get_time();
 }
 
 void loop() {
-  serve();
-  display_Anzeige(menue);
-  if(last_action+60000<=){
+  int actual_Millis = millis();
+//  serve();
+  display_Anzeige(&menue, &position);
+  if(last_action+60000 <= actual_Millis){
+    last_menue = menue;
     menue=0;
   }
+  encoder.tick();
+  int newposition = encoder.getPosition();
+
+  if(position != newposition && menue <= 50){
+    last_action = actual_Millis;
+    if(menue != 0){
+      position = newposition;
+    }
+    else{
+      menue = last_menue;
+    }
+  }
+  if(digitalRead(Rotary_IN3) == HIGH && menue <= 50){
+    Rotary_Click(&menue, &position);
+
+  }
+
 
 }
