@@ -24,7 +24,7 @@ void display_Anzeige(int *m, int *p){
         case 1://kein Timer aktiv
             switch (*p)
             {
-            case 1:
+            case 1: 
                 display.setCursor(0,10);
                 //display.println(&timeinfo, "Date: %B.%d.%Y");
                 //display.println(&timeinfo, "Time: %H:%M:%S");
@@ -468,12 +468,13 @@ void display_Anzeige(int *m, int *p){
         default://Start und Standby Bildschirm
             display.setCursor(1, 10);
             display.setTextSize(2);
-            display.setCursor(0, 30);
+            display.setCursor(30, 5);
             display.printf("Fuchur \n");
-            display.setCursor(10, 45);
+            display.setTextSize(1);
+            display.setCursor(55, 25);
             display.printf("von\n");
-            display.setCursor(20, 10);
-            display.printf("Die unendliche Geschichte");
+            display.setCursor(22, 35);
+            display.printf("Die unendliche\n      Geschichte");
 
             break;
         }

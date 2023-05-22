@@ -2,12 +2,13 @@
 #include <WiFi.h>
 //#include <web_server.h>
 #include <Day_Time.h>
-#include <display_anzeige.cpp>
+#include <display_anzeige.h>
 #include <RotaryEncoder.h>
 #include <Menue_Steuerung.h>
+#include <Wire.h>
 
 int menue = 0;
-int last_menue = 0;
+int last_menue = 1;
 int position = 1;
 int previous_Millis = 0;
 int last_action;
@@ -27,8 +28,8 @@ int last_action;
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
 
-const char* ssid = "Techniker_RDF";
-const char* password = "TEchniker_Schule";
+//const char* ssid = "Techniker_RDF";
+//const char* password = "TEchniker_Schule";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -37,8 +38,6 @@ void setup() {
   pinMode(Button_15min, INPUT);
   pinMode(Rotary_IN3, INPUT);
   Serial.begin(115200);
-  display.display();
-
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
 //  Serial.println(ssid);
@@ -60,6 +59,8 @@ void setup() {
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
   }
+
+  display.display();
 
 //  get_time();
 }
@@ -86,7 +87,7 @@ void loop() {
   }
 
 
-  if((last_action+60000) <= actual_Millis){
+  if((last_action+6000) <= actual_Millis && menue != 0){
     last_menue = menue;
     menue = 0;
   }
