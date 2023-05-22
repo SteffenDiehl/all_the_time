@@ -10,9 +10,9 @@
 
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+    Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void display_Anzeige(int *m, int *p){
-    Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -26,8 +26,8 @@ void display_Anzeige(int *m, int *p){
             {
             case 1:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                //display.println(&timeinfo, "Date: %B.%d.%Y");
+                //display.println(&timeinfo, "Time: %H:%M:%S");
                 display.setTextSize(2);
                 display.println("new Timer");
                 display.setTextSize(1);
@@ -37,8 +37,8 @@ void display_Anzeige(int *m, int *p){
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                //display.println(&timeinfo, "Date: %B.%d.%Y");
+                //display.println(&timeinfo, "Time: %H:%M:%S");
                 display.setTextSize(1);
                 display.println("new Timer");
                 display.setTextSize(2);
@@ -477,6 +477,7 @@ void display_Anzeige(int *m, int *p){
 
             break;
         }
+  display.display();
 
 
 }
