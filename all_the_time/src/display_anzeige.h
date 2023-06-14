@@ -12,7 +12,16 @@
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
     Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-void display_Anzeige(int *m, int *p){
+void timer_output(unsigned long time){
+    int hours = time / 3600000;
+    int minutes = (time - hours*3600000)/60000;
+    int seconds = (time - hours*3600000 - minutes*60000)/1000;
+
+    display.setTextSize(3);
+    display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
+}
+
+void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -22,12 +31,13 @@ void display_Anzeige(int *m, int *p){
 
     switch(*m){
         case 1://kein Timer aktiv
+            *p_max = 2;
             switch (*p)
             {
             case 1: 
                 display.setCursor(0,10);
-                //display.println(&timeinfo, "Date: %B.%d.%Y");
-                //display.println(&timeinfo, "Time: %H:%M:%S");
+                display.println(&timeinfo, "Date: %B.%d.%Y");
+                display.println(&timeinfo, "Time: %H:%M:%S");
                 display.setTextSize(2);
                 display.println("new Timer");
                 display.setTextSize(1);
@@ -37,8 +47,8 @@ void display_Anzeige(int *m, int *p){
 
             case 2:
                 display.setCursor(0,10);
-                //display.println(&timeinfo, "Date: %B.%d.%Y");
-                //display.println(&timeinfo, "Time: %H:%M:%S");
+                display.println(&timeinfo, "Date: %B.%d.%Y");
+                display.println(&timeinfo, "Time: %H:%M:%S");
                 display.setTextSize(1);
                 display.println("new Timer");
                 display.setTextSize(2);
@@ -54,6 +64,7 @@ void display_Anzeige(int *m, int *p){
             break;
 
         case 2://ein Timer aktiv
+            *p_max = 3;
             switch (*p)
             {
             case 1:
@@ -100,6 +111,7 @@ void display_Anzeige(int *m, int *p){
             break;
         
         case 3://zwei Timer aktiv
+            *p_max = 4;
             switch (*p)
             {
             case 1:
@@ -155,6 +167,7 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setCursor(0,10);
                 display.setTextSize(3);
                 display.println("Error");
                 break;
@@ -162,6 +175,7 @@ void display_Anzeige(int *m, int *p){
             break;
 
         case 4://drei Timer aktiv
+            *p_max = 5;
             switch (*p)
             {
             case 1:
@@ -235,6 +249,7 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setCursor(0,10);
                 display.setTextSize(3);
                 display.println("Error");
                 break;
@@ -242,6 +257,7 @@ void display_Anzeige(int *m, int *p){
             break;
 
         case 5://vier Timer aktiv
+            *p_max = 6;
             switch (*p)
             {
             case 1:
@@ -335,13 +351,15 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setCursor(0,10);
                 display.setTextSize(3);
                 display.println("Error");
                 break;
             }
             break;
 
-            case 6://fünf Timer aktiv
+        case 6://fünf Timer aktiv
+            *p_max = 6;
             switch (*p)
             {
             case 1:
@@ -435,6 +453,37 @@ void display_Anzeige(int *m, int *p){
                 break;
             
             default:
+                display.setCursor(0,10);
+                display.setTextSize(3);
+                display.println("Error");
+                break;
+            }
+            break;
+    	
+        case 7://new Timer
+            *p_max = 2;
+            switch(*p)
+            {
+            case 1:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("variabler Timer");
+                display.setTextSize(1);
+                display.println("feste\nTimer");
+
+                break;
+
+            case 2:
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                display.println("variabler Timer");
+                display.setTextSize(2);
+                display.println("feste Timer");
+
+                break;
+            
+            default:
+                display.setCursor(0,10);
                 display.setTextSize(3);
                 display.println("Error");
                 break;
@@ -442,26 +491,145 @@ void display_Anzeige(int *m, int *p){
             break;
 
         case 10://Wifi Setup
+            *p_max = 3;
             switch (*p)
             {
             case 1:
+                display.setCursor(0,10);
                 display.setTextSize(2);
                 display.println("WiFi I/0");
                 display.setTextSize(1);
                 display.println("Web Server I/0");
+                display.println("back");
 
                 break;
 
             case 2:
+                display.setCursor(0,10);
                 display.setTextSize(1);
                 display.println("WiFi I/0");
                 display.setTextSize(2);
                 display.println("Web Server I/0");
+                display.setTextSize(1);
+                display.println("back");
+
+                break;
             
+            case 3:
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                display.println("WiFi I/0");
+                display.println("Web Server I/0");
+                display.setTextSize(2);
+                display.println("back");
+
+                break;
+
             default:
+                display.setCursor(0,10);
                 display.setTextSize(3);
                 display.println("Error");
                 break;
+            }
+            break;
+
+        case 11://Timer 1
+            switch(*p)
+            {
+            case 1:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("Timer 1:");
+                timer_output(*t1);
+
+                break;
+            
+            default:
+                display.setCursor(0,10);
+                display.setTextSize(3);
+                display.println("Error");
+                break;
+
+            }
+            break;
+
+        case 12://Timer 2
+            switch(*p)
+            {
+            case 1:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("Timer 2:");
+                timer_output(*t2);
+
+                break;
+            
+            default:
+                display.setCursor(0,10);
+                display.setTextSize(3);
+                display.println("Error");
+                break;
+
+            }
+            break;
+        
+        case 13://Timer 3
+            switch(*p)
+            {
+            case 1:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("Timer 3:");
+                timer_output(*t3);
+
+                break;
+            
+            default:
+                display.setCursor(0,10);
+                display.setTextSize(3);
+                display.println("Error");
+                break;
+
+            }
+            break;
+        
+        case 14://Timer 4
+            switch(*p)
+            {
+            case 1:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("Timer 4:");
+                timer_output(*t4);
+
+                break;
+            
+            default:
+                display.setCursor(0,10);
+                display.setTextSize(3);
+                display.println("Error");
+                break;
+
+            }
+            break;
+
+        case 15://Timer 5
+            switch(*p)
+            {
+            case 1:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("Timer 5:");
+                timer_output(*t5);
+
+                break;
+            
+            default:
+                display.setCursor(0,10);
+                display.setTextSize(3);
+                display.println("Error");
+                break;
+
             }
             break;
 

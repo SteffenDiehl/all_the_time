@@ -9,9 +9,18 @@
 
 int menue = 0;
 int last_menue = 1;
+int back_menue = 1;
+int rotary = 1;
 int position = 1;
-int previous_Millis = 0;
-int last_action;
+int position_max = 0;
+unsigned long previous_Millis = 0;
+unsigned long last_action;
+int act_timer = 0;
+unsigned long timer_1 = 0;
+unsigned long timer_2 = 0;
+unsigned long timer_3 = 0;
+unsigned long timer_4 = 0;
+unsigned long timer_5 = 0;
 
 #define Button_30s 15
 #define Button_1min 16
@@ -66,28 +75,48 @@ void setup() {
 }
 
 void loop() {
-  int actual_Millis = millis();
+  unsigned long actual_Millis = millis();
 //  serve();
-  display_Anzeige(&menue, &position);
+  display_Anzeige(&menue, &position, &position_max, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5);
   encoder.tick();
-  int newposition = encoder.getPosition();
+  unsigned int newposition = encoder.getPosition();
 
-  if(position != newposition and menue <= 50){
+  if(rotary != newposition){
     last_action = actual_Millis;
     if(menue != 0){
-      position = newposition;
+      if(newposition < rotary && position > 1){
+        position--;
+      }
+      else if (newposition > rotary && position < position_max){
+        position++;
+      }
+      rotary = newposition;
     }
     else{
       menue = last_menue;
+      position = 1;
     }
   }
-  if(digitalRead(Rotary_IN3) == HIGH and menue <= 50){
-    Rotary_Click(&menue, &position);
 
+  if(digitalRead(Rotary_IN3) == LOW && menue != 0){
+    while (digitalRead(Rotary_IN3) == LOW)
+    {
+      delay(1);
+    }
+    Rotary_Click(&menue, &position, &back_menue);
   }
 
+  if(digitalRead(Rotary_IN3) == LOW && menue == 0){
+    while (digitalRead(Rotary_IN3) == LOW)
+    {
+      delay(1);
+    }
+    menue = last_menue;
+    position = 1;
+  }  
 
-  if((last_action+6000) <= actual_Millis && menue != 0){
+
+  if((last_action+60000) <= actual_Millis && menue != 0){
     last_menue = menue;
     menue = 0;
   }
