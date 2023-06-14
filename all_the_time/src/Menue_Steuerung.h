@@ -1,4 +1,4 @@
-void Rotary_Click(int *m, int *p, int *b){
+void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
     switch(*m){
         case 1://kein Timer aktiv
             switch (*p)
@@ -18,8 +18,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -53,8 +51,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -100,8 +96,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -161,8 +155,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -238,8 +230,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -321,8 +311,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -344,8 +332,6 @@ void Rotary_Click(int *m, int *p, int *b){
                 break;
             
             default:
-                display.setTextSize(3);
-                display.println("Error");
                 break;
             }
             break;
@@ -355,18 +341,24 @@ void Rotary_Click(int *m, int *p, int *b){
             switch (*p)
             {
             case 1:
-                display.setTextSize(2);
-                display.println("WiFi I/0");
-                display.setTextSize(1);
-                display.println("Web Server I/0");
+                if(*Wi_Fi == 0){
+                    *Wi_Fi = 1;
+                }
+
+                else{
+                    *Wi_Fi = 0;
+                }
 
                 break;
 
             case 2:
-                display.setTextSize(1);
-                display.println("WiFi I/0");
-                display.setTextSize(2);
-                display.println("Web Server I/0");
+                if(*Web_Server == 0){
+                    *Web_Server = 1;
+                }
+
+                else{
+                    *Web_Server = 0;
+                }
 
                 break;
             

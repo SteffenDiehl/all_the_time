@@ -21,6 +21,8 @@ unsigned long timer_2 = 0;
 unsigned long timer_3 = 0;
 unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
+int WiFi = 0;
+int WebServer = 0;
 
 #define Button_30s 15
 #define Button_1min 16
@@ -37,8 +39,8 @@ unsigned long timer_5 = 0;
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
 
-//const char* ssid = "Techniker_RDF";
-//const char* password = "TEchniker_Schule";
+const char* ssid = "Techniker_RDF";
+const char* password = "TEchniker_Schule";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -103,7 +105,7 @@ void loop() {
     {
       delay(1);
     }
-    Rotary_Click(&menue, &position, &back_menue);
+    Rotary_Click(&menue, &position, &back_menue, &WiFi, &WebServer);
   }
 
   if(digitalRead(Rotary_IN3) == LOW && menue == 0){
