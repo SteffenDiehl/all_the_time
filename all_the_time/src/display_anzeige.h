@@ -21,7 +21,7 @@ void timer_output(unsigned long time){
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5){
+void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -36,8 +36,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             {
             case 1: 
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(2);
                 display.println("new Timer");
                 display.setTextSize(1);
@@ -47,8 +47,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
                 display.println("new Timer");
                 display.setTextSize(2);
@@ -69,8 +69,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             {
             case 1:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(2);
                 display.println("Timer 1");
                 display.setTextSize(1);
@@ -81,8 +81,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.setTextSize(2);
                 display.println("new Timer");
@@ -93,8 +93,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 3:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("new Timer");
@@ -116,8 +116,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             {
             case 1:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(2);
                 display.println("Timer 1");
                 display.setTextSize(1);
@@ -129,8 +129,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.setTextSize(2);
                 display.println("Timer 2");
@@ -142,8 +142,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 3:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.setTextSize(2);
@@ -155,8 +155,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 4:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
@@ -180,8 +180,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             {
             case 1:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(2);
                 display.println("Timer 1");
                 display.setTextSize(1);
@@ -194,8 +194,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.setTextSize(2);
                 display.println("Timer 2");
@@ -208,8 +208,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             
             case 3:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.setTextSize(2);
@@ -222,8 +222,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 4:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
@@ -236,8 +236,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 5:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
@@ -262,8 +262,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             {
             case 1:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(2);
                 display.println("Timer 1");
                 display.setTextSize(1);
@@ -277,8 +277,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.setTextSize(2);
                 display.println("Timer 2");
@@ -292,8 +292,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             
             case 3:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.setTextSize(2);
@@ -307,8 +307,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 4:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
@@ -322,8 +322,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 5:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
@@ -337,8 +337,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 6:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
@@ -364,8 +364,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             {
             case 1:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(2);
                 display.println("Timer 1");
                 display.setTextSize(1);
@@ -379,8 +379,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 2:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.setTextSize(2);
                 display.println("Timer 2");
@@ -394,8 +394,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             
             case 3:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.setTextSize(2);
@@ -409,8 +409,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 4:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
@@ -424,8 +424,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 5:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
@@ -439,8 +439,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
 
             case 6:
                 display.setCursor(0,10);
-                display.println(&timeinfo, "Date: %B.%d.%Y");
-                display.println(&timeinfo, "Time: %H:%M:%S");
+                display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
+                display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
                 display.println("Timer 1");
                 display.println("Timer 2");
@@ -568,6 +568,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 11://Timer 1
+        *p_max = 2; 
             switch(*p)
             {
             case 1:
@@ -595,6 +596,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 12://Timer 2
+        *p_max = 2;
             switch(*p)
             {
             case 1:
@@ -622,6 +624,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
         
         case 13://Timer 3
+        *p_max = 2;
             switch(*p)
             {
             case 1:
@@ -649,6 +652,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
         
         case 14://Timer 4
+        *p_max = 2;
             switch(*p)
             {
             case 1:
@@ -676,6 +680,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 15://Timer 5
+        *p_max = 2;
             switch(*p)
             {
             case 1:

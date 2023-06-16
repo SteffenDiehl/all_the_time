@@ -6,6 +6,7 @@
 #include <RotaryEncoder.h>
 #include <Menue_Steuerung.h>
 #include <Wire.h>
+#include "RTClib.h"
 
 int menue = 0;
 int last_menue = 1;
@@ -60,7 +61,7 @@ void setup() {
   pinMode(Rotary_IN3, INPUT);
   Serial.begin(115200);
 
-// RTC_lib
+//RTC_lib
   start_RTC();
 
 // Connect to Wi-Fi network with SSID and password
@@ -91,10 +92,12 @@ void setup() {
 
 void loop() {
   unsigned long actual_Millis = millis();
-    //Actual Time
+
+  //Actual Time
   ac_time(&year, &month, &day, &hour, &minute, &second);
-//  serve();
-  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5);
+
+  //serve();
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year);
   encoder.tick();
   unsigned int newposition = encoder.getPosition();
 
