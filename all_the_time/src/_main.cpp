@@ -24,6 +24,13 @@ unsigned long timer_5 = 0;
 int WiFi = 0;
 int WebServer = 0;
 int feste_Timer[];
+int year;
+int month;
+int day;
+int hour;
+int minute;
+int second;
+
 
 #define Button_30s 15
 #define Button_1min 16
@@ -33,6 +40,8 @@ int feste_Timer[];
 #define Rotary_IN1 14
 #define Rotary_IN2 27
 #define Rotary_IN3 26 //Button Rotary
+
+RTC_ATT rtc; //RTC-Instanz
 
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
@@ -82,6 +91,8 @@ void setup() {
 
 void loop() {
   unsigned long actual_Millis = millis();
+    //Actual Time
+  ac_time(&year, &month, &day, &hour, &minute, &second);
 //  serve();
   display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5);
   encoder.tick();
