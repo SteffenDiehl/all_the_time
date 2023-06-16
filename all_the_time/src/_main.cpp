@@ -41,7 +41,7 @@ int second;
 #define Rotary_IN2 27
 #define Rotary_IN3 26 //Button Rotary
 
-RTC_ATT rtc; //RTC-Instanz
+RTC_DS3231 rtc; //RTC-Instanz
 
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
