@@ -7,6 +7,7 @@
 #include <Menue_Steuerung.h>
 #include <Wire.h>
 #include "RTClib.h"
+#include <stdio.h>
 
 int menue = 0;
 int last_menue = 1;
@@ -15,6 +16,7 @@ int rotary = 1;
 int position = 1;
 int position_max = 0;
 unsigned long previous_Millis = 0;
+unsigned long last_millis = 0;
 unsigned long last_action;
 int act_timer = 0;
 unsigned long timer_1 = 0;
@@ -24,7 +26,7 @@ unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
 int WiFi = 0;
 int WebServer = 0;
-int feste_Timer[];
+int feste_Timer[10];
 int year;
 int month;
 int day;
@@ -92,6 +94,7 @@ void setup() {
 
 void loop() {
   unsigned long actual_Millis = millis();
+  unsigned long timer[5] = {timer_1, timer_2, timer_3, timer_4, timer_5};
 
   //Actual Time
   ac_time(&year, &month, &day, &hour, &minute, &second);
@@ -303,9 +306,16 @@ if(digitalRead(Button_15min) && act_timer != 5){
       }
   }
 
+  for(int i = 0; i<5; i++){
+    if(timer[i] != 0){
+      timer[i] -= (actual_Millis - last_millis);
+    }
+  }
+
   if((last_action+60000) <= actual_Millis && menue != 0){
     last_menue = menue;
     menue = 0;
   }
-
+  
+  last_millis = actual_Millis;
 }
