@@ -27,12 +27,9 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
             switch (*p)
             {
             case 1:
-                display.setCursor(0,10);
-                display.setTextSize(2);
-                display.println("Timer 1");
-                display.setTextSize(1);
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 11;
+                *p = 1;
 
                 break;
 
@@ -60,24 +57,16 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
             switch (*p)
             {
             case 1:
-                display.setCursor(0,10);
-                display.setTextSize(2);
-                display.println("Timer 1");
-                display.setTextSize(1);
-                display.println("Timer 2");
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 11;
+                *p = 1;
 
                 break;
 
             case 2:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.setTextSize(2);
-                display.println("Timer 2");
-                display.setTextSize(1);
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 12;
+                *p = 1;
 
                 break;
 
@@ -105,38 +94,23 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
             switch (*p)
             {
             case 1:
-                display.setCursor(0,10);
-                display.setTextSize(2);
-                display.println("Timer 1");
-                display.setTextSize(1);
-                display.println("Timer 2");
-                display.println("Timer 3");
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 11;
+                *p = 1;
 
                 break;
 
             case 2:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.setTextSize(2);
-                display.println("Timer 2");
-                display.setTextSize(1);
-                display.println("Timer 3");
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 12;
+                *p = 1;
 
                 break;
             
             case 3:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.println("Timer 2");
-                display.setTextSize(2);
-                display.println("Timer 3");
-                display.setTextSize(1);
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 13;
+                *p = 1;
 
                 break;
 
@@ -164,54 +138,30 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
             switch (*p)
             {
             case 1:
-                display.setCursor(0,10);
-                display.setTextSize(2);
-                display.println("Timer 1");
-                display.setTextSize(1);
-                display.println("Timer 2");
-                display.println("Timer 3");
-                display.println("Timer 4");
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 11;
+                *p = 1;
 
                 break;
 
             case 2:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.setTextSize(2);
-                display.println("Timer 2");
-                display.setTextSize(1);
-                display.println("Timer 3");
-                display.println("Timer 4");
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 12;
+                *p = 1;
 
                 break;
             
             case 3:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.println("Timer 2");
-                display.setTextSize(2);
-                display.println("Timer 3");
-                display.setTextSize(1);
-                display.println("Timer 4");
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 13;
+                *p = 1;
 
                 break;
 
             case 4:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.println("Timer 2");
-                display.println("Timer 3");
-                display.setTextSize(2);
-                display.println("Timer 4");
-                display.setTextSize(1);
-                display.println("new Timer");
-                display.println("WiFi");
+                *b = *m;
+                *m = 14;
+                *p = 1;
 
                 break;
 
@@ -239,67 +189,37 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
             switch (*p)
             {
             case 1:
-                display.setCursor(0,10);
-                display.setTextSize(2);
-                display.println("Timer 1");
-                display.setTextSize(1);
-                display.println("Timer 2");
-                display.println("Timer 3");
-                display.println("Timer 4");
-                display.println("Timer 5");
-                display.println("WiFi");
+                *b = *m;
+                *m = 11;
+                *p = 1;
 
                 break;
 
             case 2:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.setTextSize(2);
-                display.println("Timer 2");
-                display.setTextSize(1);
-                display.println("Timer 3");
-                display.println("Timer 4");
-                display.println("Timer 5");
-                display.println("WiFi");
+                *b = *m;
+                *m = 12;
+                *p = 1;
 
                 break;
             
             case 3:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.println("Timer 2");
-                display.setTextSize(2);
-                display.println("Timer 3");
-                display.setTextSize(1);
-                display.println("Timer 4");
-                display.println("Timer 5");
-                display.println("WiFi");
+                *b = *m;
+                *m = 13;
+                *p = 1;
 
                 break;
 
             case 4:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.println("Timer 2");
-                display.println("Timer 3");
-                display.setTextSize(2);
-                display.println("Timer 4");
-                display.setTextSize(1);
-                display.println("Timer 5");
-                display.println("WiFi");
+                *b = *m;
+                *m = 14;
+                *p = 1;
 
                 break;
 
             case 5:
-                display.setCursor(0,10);
-                display.println("Timer 1");
-                display.println("Timer 2");
-                display.println("Timer 3");
-                display.println("Timer 4");
-                display.setTextSize(2);
-                display.println("Timer 5");
-                display.setTextSize(1);
-                display.println("WiFi");
+                *b = *m;
+                *m = 15;
+                *p = 1;
 
                 break;
 
@@ -372,6 +292,71 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
                 break;
             }
             break;
+        
+        case 11://Timer 1
+            switch (*p)
+            {
+            case 2:
+                *m = *b;
+                *p = 1;
+
+                break;
+            
+            default:
+                break;
+            }
+        
+        case 12://Timer 2
+            switch (*p)
+            {
+            case 2:
+                *m = *b;
+                *p = 1;
+                
+                break;
+            
+            default:
+                break;
+            }
+        
+        case 13://Timer 3
+            switch (*p)
+            {
+            case 2:
+                *m = *b;
+                *p = 1;
+                
+                break;
+            
+            default:
+                break;
+            }
+        
+        case 14://Timer 4
+            switch (*p)
+            {
+            case 2:
+                *m = *b;
+                *p = 1;
+                
+                break;
+            
+            default:
+                break;
+            }
+        
+        case 15://Timer 5
+            switch (*p)
+            {
+            case 2:
+                *m = *b;
+                *p = 1;
+                
+                break;
+            
+            default:
+                break;
+            }
 
         default:
 

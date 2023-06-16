@@ -564,6 +564,13 @@ void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned lon
 
                 break;
             
+            case 2:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("back");
+
+                break;
+            
             default:
                 display.setCursor(0,10);
                 display.setTextSize(3);
@@ -581,6 +588,13 @@ void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned lon
                 display.setTextSize(2);
                 display.println("Timer 3:");
                 timer_output(*t3);
+
+                break;
+            
+            case 2:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("back");
 
                 break;
             
@@ -604,6 +618,13 @@ void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned lon
 
                 break;
             
+            case 2:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("back");
+
+                break;
+            
             default:
                 display.setCursor(0,10);
                 display.setTextSize(3);
@@ -621,6 +642,13 @@ void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned lon
                 display.setTextSize(2);
                 display.println("Timer 5:");
                 timer_output(*t5);
+
+                break;
+            
+            case 2:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("back");
 
                 break;
             
