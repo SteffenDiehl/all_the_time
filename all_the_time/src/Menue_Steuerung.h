@@ -1,4 +1,4 @@
-void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
+void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer){
     switch(*m){
         case 1://kein Timer aktiv
             switch (*p)
@@ -254,6 +254,446 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server){
             default:
                 break;
             }
+            break;
+
+        case 8:
+            act_t++;
+            switch (*act_t)
+            {
+            case 1:
+                *m = 2;
+                *p = 1;
+                break;
+
+            case 2:
+                *m = 3;
+                *p = 1;
+                break;
+
+            case 3:
+                *m = 4;
+                *p = 1;
+                break;
+
+            case 4:
+                *m = 5;
+                *p = 1;
+                break;
+
+            case 5:
+                *m = 6;
+                *p = 1;
+                break;
+            
+            default:
+                break;
+            }
+
+            break;
+
+        case 9://feste Timer
+            act_t++;
+            switch (*act_t)
+            {
+            case 1:
+                switch (*p)
+                {
+                case 1:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 2:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 3:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 4:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 5:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 6:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 7:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 8:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 9:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+
+                case 10:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 2;
+                    *p = 1;
+                    
+                    break;
+                
+                default:
+                    break;
+                }
+                
+                break;
+
+            case 2:
+                switch (*p)
+                {
+                case 1:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 2:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 3:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 4:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 5:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 6:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 7:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 8:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 9:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+
+                case 10:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 3;
+                    *p = 1;
+                    
+                    break;
+                
+                default:
+                    break;
+                }
+                
+                break;
+
+            case 3:
+                switch (*p)
+                {
+                case 1:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 2:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 3:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 4:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 5:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 6:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 7:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 8:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 9:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+
+                case 10:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 4;
+                    *p = 1;
+                    
+                    break;
+                
+                default:
+                    break;
+                }
+                
+                break;
+
+            case 4:
+                switch (*p)
+                {
+                case 1:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 2:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 3:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 4:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 5:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 6:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 7:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 8:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 9:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+
+                case 10:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 5;
+                    *p = 1;
+                    
+                    break;
+                
+                default:
+                    break;
+                }
+                
+                break;
+
+            case 5:
+                switch (*p)
+                {
+                case 1:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 2:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 3:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 4:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 5:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 6:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 7:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 8:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 9:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+
+                case 10:
+                    *t1 = fix_timer[(*p-1)];
+                    *m = 6;
+                    *p = 1;
+                    
+                    break;
+                
+                default:
+                    break;
+                }
+                
+                break;
+            
+            default:
+                break;
+            }
+
             break;
 
         case 10://Wifi Setup

@@ -21,7 +21,7 @@ void timer_output(unsigned long time){
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y){
+void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -520,7 +520,182 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             }
             break;
         
-        case 9:
+        case 9://feste Timer
+            *p_max = 10;
+            display.setCursor(0,10);
+            switch (*p)
+            {
+            case 1:
+                display.setTextSize(2);
+                display.println(fix_timer_name[0]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 2:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[1]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 3:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[2]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 4:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[3]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 5:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[4]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 6:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[5]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 7:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[6]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 8:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[7]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 9:
+                display.setTextSize(1);
+                display.println(fix_timer_name[0]);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.setTextSize(2);
+                display.println(fix_timer_name[8]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[9]);
+                
+                break;
+
+            case 10:
+                display.setTextSize(2);
+                display.println(fix_timer_name[0]);
+                display.setTextSize(1);
+                display.println(fix_timer_name[1]);
+                display.println(fix_timer_name[2]);
+                display.println(fix_timer_name[3]);
+                display.println(fix_timer_name[4]);
+                display.println(fix_timer_name[5]);
+                display.println(fix_timer_name[6]);
+                display.println(fix_timer_name[7]);
+                display.println(fix_timer_name[8]);
+                display.println(fix_timer_name[9]);
+                
+                break;
+            
+            default:
+                break;
+            }
 
             break;
 

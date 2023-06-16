@@ -24,9 +24,10 @@ unsigned long timer_2 = 0;
 unsigned long timer_3 = 0;
 unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
-int WiFi = 0;
-int WebServer = 0;
-int feste_Timer[10];
+int Wi_Fi = 0;
+int Web_Server = 0;
+String feste_Timer_Name[10];
+unsigned long feste_Timer[10];
 int year;
 int month;
 int day;
@@ -100,7 +101,7 @@ void loop() {
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
   //serve();
-  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year);
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name);
   encoder.tick();
   unsigned int newposition = encoder.getPosition();
 
@@ -173,15 +174,31 @@ void loop() {
     }
   }
 
-  if(digitalRead(Rotary_IN3) == LOW && menue != 0){//Rotary Button
+  if(digitalRead(Rotary_IN3) == LOW && menue == 9){
+    last_action = actual_Millis;
     while (digitalRead(Rotary_IN3) == LOW)
     {
       delay(1);
     }
-    Rotary_Click(&menue, &position, &back_menue, &WiFi, &WebServer);
+    if(feste_Timer[position-1] == 0){
+      return;
+    }
+    else{
+      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer);
+    }
   }
 
-  if(digitalRead(Rotary_IN3) == LOW && menue == 0){
+  else if(digitalRead(Rotary_IN3) == LOW && menue != 0){//Rotary Button
+    last_action = actual_Millis;
+    while (digitalRead(Rotary_IN3) == LOW)
+    {
+      delay(1);
+    }
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer);
+  }
+
+  else if(digitalRead(Rotary_IN3) == LOW && menue == 0){
+    last_action = actual_Millis;
     while (digitalRead(Rotary_IN3) == LOW)
     {
       delay(1);
@@ -191,6 +208,7 @@ void loop() {
   }
 
   if(digitalRead(Button_30s) && act_timer != 5){
+    last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
       {
@@ -220,6 +238,7 @@ void loop() {
   }
 
   if(digitalRead(Button_1min) && act_timer != 5){
+    last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
       {
@@ -249,6 +268,7 @@ void loop() {
   }
 
   if(digitalRead(Button_5min) && act_timer != 5){
+    last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
       {
@@ -277,7 +297,8 @@ void loop() {
       }
   }
 
-if(digitalRead(Button_15min) && act_timer != 5){
+  if(digitalRead(Button_15min) && act_timer != 5){
+    last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
       {
@@ -307,9 +328,14 @@ if(digitalRead(Button_15min) && act_timer != 5){
   }
 
   for(int i = 0; i<5; i++){
-    if(timer[i] != 0){
+    if(timer[i] > 0 + (actual_Millis - last_millis)){
       timer[i] -= (actual_Millis - last_millis);
     }
+    else if (timer[i] > 0)
+    {
+      timer[i] = 0;
+    }
+    
   }
 
   if((last_action+60000) <= actual_Millis && menue != 0){
