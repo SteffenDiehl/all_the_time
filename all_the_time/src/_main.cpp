@@ -78,7 +78,6 @@ void setup() {
 
   display.display();
 
-//  get_time();
 }
 
 void loop() {
@@ -88,7 +87,7 @@ void loop() {
   encoder.tick();
   unsigned int newposition = encoder.getPosition();
 
-  if(rotary != newposition){
+  if(rotary != newposition){//Rotary bewegung
     last_action = actual_Millis;
     if(menue != 0){
       if(newposition < rotary && position > 1){
@@ -103,9 +102,61 @@ void loop() {
       menue = last_menue;
       position = 1;
     }
+    else if(menue == 8){//timer einstellen
+      switch (act_timer)
+      {
+      case 0:
+        if(newposition < rotary && timer_1 > 0){
+          timer_1 -= 1000;
+        }
+        else if (newposition > rotary && timer_1 < 86400000){
+          timer_1 += 10000;
+        }
+        break;
+        
+      case 1:
+        if(newposition < rotary && timer_2 > 0){
+          timer_2 -= 1000;
+        }
+        else if (newposition > rotary && timer_2 < 86400000){
+          timer_2 += 10000;
+        }
+        break;
+        
+      case 2:
+        if(newposition < rotary && timer_3 > 0){
+          timer_3 -= 1000;
+        }
+        else if (newposition > rotary && timer_3 < 86400000){
+          timer_3 += 10000;
+        }
+        break;
+        
+      case 3:
+        if(newposition < rotary && timer_4 > 0){
+          timer_4 -= 1000;
+        }
+        else if (newposition > rotary && timer_4 < 86400000){
+          timer_4 += 10000;
+        }
+        break;
+        
+      case 4:
+        if(newposition < rotary && timer_5 > 0){
+          timer_5 -= 1000;
+        }
+        else if (newposition > rotary && timer_5 < 86400000){
+          timer_5 += 10000;
+        }
+        break;
+      
+      default:
+        break;
+      }
+    }
   }
 
-  if(digitalRead(Rotary_IN3) == LOW && menue != 0){
+  if(digitalRead(Rotary_IN3) == LOW && menue != 0){//Rotary Button
     while (digitalRead(Rotary_IN3) == LOW)
     {
       delay(1);
@@ -120,8 +171,123 @@ void loop() {
     }
     menue = last_menue;
     position = 1;
-  }  
+  }
 
+  if(digitalRead(Button_30s) && act_timer != 5){
+    menue = 8;
+    switch (act_timer)
+      {
+      case 0:
+        timer_1 += 30000;
+        break;
+        
+      case 1:
+        timer_2 += 30000;
+        break;
+        
+      case 2:
+        timer_3 += 30000;
+        break;
+        
+      case 3:
+        timer_4 += 30000;
+        break;
+        
+      case 4:
+        timer_5 += 30000;
+        break;
+      
+      default:
+        break;
+      }
+  }
+
+  if(digitalRead(Button_1min) && act_timer != 5){
+    menue = 8;
+    switch (act_timer)
+      {
+      case 0:
+        timer_1 += 60000;
+        break;
+        
+      case 1:
+        timer_2 += 60000;
+        break;
+        
+      case 2:
+        timer_3 += 60000;
+        break;
+        
+      case 3:
+        timer_4 += 60000;
+        break;
+        
+      case 4:
+        timer_5 += 60000;
+        break;
+      
+      default:
+        break;
+      }
+  }
+
+  if(digitalRead(Button_5min) && act_timer != 5){
+    menue = 8;
+    switch (act_timer)
+      {
+      case 0:
+        timer_1 += 300000;
+        break;
+        
+      case 1:
+        timer_2 += 300000;
+        break;
+        
+      case 2:
+        timer_3 += 300000;
+        break;
+        
+      case 3:
+        timer_4 += 300000;
+        break;
+        
+      case 4:
+        timer_5 += 300000;
+        break;
+      
+      default:
+        break;
+      }
+  }
+
+if(digitalRead(Button_15min) && act_timer != 5){
+    menue = 8;
+    switch (act_timer)
+      {
+      case 0:
+        timer_1 += 900000;
+        break;
+        
+      case 1:
+        timer_2 += 900000;
+        break;
+        
+      case 2:
+        timer_3 += 900000;
+        break;
+        
+      case 3:
+        timer_4 += 900000;
+        break;
+        
+      case 4:
+        timer_5 += 900000;
+        break;
+      
+      default:
+        break;
+      }
+  }
 
   if((last_action+60000) <= actual_Millis && menue != 0){
     last_menue = menue;
