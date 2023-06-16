@@ -40,7 +40,7 @@ RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
 
 const char* ssid = "Techniker_RDF";
-const char* password = "TEchniker_Schule";
+const char* password = "Techniker_Schule";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -49,7 +49,11 @@ void setup() {
   pinMode(Button_15min, INPUT);
   pinMode(Rotary_IN3, INPUT);
   Serial.begin(115200);
-  // Connect to Wi-Fi network with SSID and password
+
+// RTC_lib
+start_RTC
+
+// Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
 //  Serial.println(ssid);
 //  WiFi.begin(ssid, password);
