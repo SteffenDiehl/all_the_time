@@ -17,11 +17,11 @@ void timer_output(unsigned long time){
     int minutes = (time - hours*3600000)/60000;
     int seconds = (time - hours*3600000 - minutes*60000)/1000;
 
-    display.setTextSize(3);
+    display.setTextSize(2);
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5){
+void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -489,6 +489,40 @@ void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned lon
                 break;
             }
             break;
+        
+        case 8://variabler Timer
+            display.setCursor(0,10);
+            display.println("Timer:");
+            switch (*t)
+            {
+            case 0:
+                timer_output(*t1);
+                break;
+            
+            case 1:
+                timer_output(*t2);
+                break;
+            
+            case 2:
+                timer_output(*t2);
+                break;
+            
+            case 3:
+                timer_output(*t3);
+                break;
+            
+            case 4:
+                timer_output(*t4);
+                break;
+            
+            default:
+                break;
+            }
+            break;
+        
+        case 9:
+
+            break;
 
         case 10://Wifi Setup
             *p_max = 3;
@@ -541,6 +575,13 @@ void display_Anzeige(int *m, int *p, int *p_max, unsigned long *t1, unsigned lon
                 display.setTextSize(2);
                 display.println("Timer 1:");
                 timer_output(*t1);
+
+                break;
+            
+            case 2:
+                display.setCursor(0,10);
+                display.setTextSize(2);
+                display.println("back");
 
                 break;
             

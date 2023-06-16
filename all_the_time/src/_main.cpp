@@ -23,6 +23,7 @@ unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
 int WiFi = 0;
 int WebServer = 0;
+int feste_Timer[];
 
 #define Button_30s 15
 #define Button_1min 16
@@ -51,7 +52,7 @@ void setup() {
   Serial.begin(115200);
 
 // RTC_lib
-start_RTC();
+  start_RTC();
 
 // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
@@ -83,7 +84,7 @@ start_RTC();
 void loop() {
   unsigned long actual_Millis = millis();
 //  serve();
-  display_Anzeige(&menue, &position, &position_max, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5);
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5);
   encoder.tick();
   unsigned int newposition = encoder.getPosition();
 
@@ -98,7 +99,7 @@ void loop() {
       }
       rotary = newposition;
     }
-    else{
+    else if(menue == 0){
       menue = last_menue;
       position = 1;
     }

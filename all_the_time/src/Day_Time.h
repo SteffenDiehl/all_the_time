@@ -8,6 +8,10 @@ const char* ntpServer = "de.pool.ntp.org";
 const long  gmtOffset_sec = 0;
 const int   daylightOffset_sec = 3600;
 
+void start_RTC(){
+  return;
+}
+
 void printLocalTime(){
   struct tm timeinfo;
   if(!getLocalTime(&timeinfo)){
