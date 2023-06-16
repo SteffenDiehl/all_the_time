@@ -51,7 +51,7 @@ void setup() {
   Serial.begin(115200);
 
 // RTC_lib
-start_RTC
+start_RTC();
 
 // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
