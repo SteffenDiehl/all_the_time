@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
-//#include <web_server.h>
+#include <web_server.h>
 #include <Day_Time.h>
 #include <display_anzeige.h>
 #include <RotaryEncoder.h>
