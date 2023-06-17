@@ -24,6 +24,7 @@ unsigned long timer_2 = 0;
 unsigned long timer_3 = 0;
 unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
+unsigned long timer[5];
 int Wi_Fi = 0;
 int Web_Server = 0;
 String feste_Timer_Name[10];
@@ -95,7 +96,6 @@ void setup() {
 
 void loop() {
   unsigned long actual_Millis = millis();
-  unsigned long timer[5] = {timer_1, timer_2, timer_3, timer_4, timer_5};
 
   //Actual Time
   ac_time(&year, &month, &day, &hour, &minute, &second);
@@ -184,7 +184,7 @@ void loop() {
       return;
     }
     else{
-      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer);
+      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer);
     }
   }
 
@@ -194,7 +194,7 @@ void loop() {
     {
       delay(1);
     }
-    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer);
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer);
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue == 0){
