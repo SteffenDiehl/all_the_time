@@ -1,14 +1,17 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiUdp.h>
-#include <web_server.h>
-#include <Day_Time.h>
-#include <display_anzeige.h>
+#include <Adafruit_NeoPixel.h>
 #include <RotaryEncoder.h>
-#include <Menue_Steuerung.h>
 #include <Wire.h>
 #include "RTClib.h"
 #include <stdio.h>
+
+#include <web_server.h>
+#include <Day_Time.h>
+#include <display_anzeige.h>
+#include <Menue_Steuerung.h>
+#include <neo_pixel.h>
 
 //Variablen
 int menue = 0;
@@ -28,7 +31,7 @@ unsigned long timer_3 = 0;
 unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
 unsigned long timer[5];
-int timer_anz = 1;
+int timer_anz = 0;
 int timer_out = 0;
 int Wi_Fi = 0;
 int Wi_Fi_act = 0;
@@ -43,16 +46,20 @@ int hour;
 int minute;
 int second;
 unsigned long rtc_last_sync = 0;
+int ledoff_click = 0;
 
-
+//buttons
 #define Button_30s 15
 #define Button_1min 16
 #define Button_5min 17
 #define Button_15min 18
-
+//rotary
 #define Rotary_IN1 14
 #define Rotary_IN2 27
 #define Rotary_IN3 26 //Button Rotary
+//neopixel
+#define neopixel_pin 6
+#define neopixel_anz 56
 
 RTC_DS3231 rtc;             // RTC-Instanz
 WiFiUDP udp;                // WiFiUDP-Instanz 
@@ -77,6 +84,9 @@ void setup() {
 //RTC_lib
   start_RTC();
 
+//neopixel
+  neopixel_start(neopixel_anz, neopixel_pin);
+
 // Connect to Wi-Fi network with SSID and password
   Serial.print("Connecting to ");
 //  Serial.println(ssid);
@@ -92,8 +102,6 @@ void setup() {
   Serial.println("IP address: ");
 //  Serial.println(WiFi.localIP());
 
-//  server.begin();
-
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
@@ -106,6 +114,8 @@ void setup() {
 void loop() {
   unsigned long actual_Millis = millis();
 
+  neopixel_leiste(Wi_Fi, Wi_Fi_act, Web_Server, Web_Server_act, timer_1, timer_2, timer_3, timer_4, timer_5, timer);
+
   //Actual Time
   if(actual_Millis > rtc_last_sync + 604800000 && Wi_Fi_act){
     synchronizeRTC();
@@ -113,12 +123,17 @@ void loop() {
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
   //Wifi
-  if(Wi_Fi){//wenn verbunden Wi_Fi_act = 1
+  if(Wi_Fi){//wenn verbunden Wi_Fi_act = 1 setzen
     return;
   }
 
   //Webserver
   if(Web_Server){
+    server.begin();
+    Web_Server_act = 1;
+  }
+
+  if(Web_Server_act){
     return;
   }
 
@@ -222,10 +237,16 @@ void loop() {
     position = 1;
   }
 
-  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1){
-    rotary_click = 0;
+  if(digitalRead(Button_30s) && digitalRead(Button_15min) && ledoff_click == 0){//neopixel on/off
+    ledoff();
   }
-
+  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness+
+    brighness_decrease();
+  }
+  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness-
+    brightness_increase();
+  }
+  else{
   if(digitalRead(Button_30s) && act_timer != 5){//new timer +30s
     last_action = actual_Millis;
     menue = 8;
@@ -345,6 +366,7 @@ void loop() {
         break;
       }
   }
+  }
 
   for(int i = 0; i<5; i++){//timer--
     if(timer[i] > 0 + (actual_Millis - last_millis)){
@@ -363,7 +385,7 @@ void loop() {
     rotary_click = 1;
     act_timer--;
     timer_out--;
-    timer_anz = 1;
+    timer_anz = 0;
     switch (act_timer)
     {
     case 0:
@@ -478,5 +500,15 @@ void loop() {
     menue = 0;
   }
   
+  neopixel_rotary_press(rotary_click);
+
+  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1){//reset rotary_click
+    rotary_click = 0;
+  }
+
+  if(!digitalRead(Button_30s) && !digitalRead(Button_15min) && ledoff_click){//reset ledoff_click
+    ledoff_click = 0;
+  }
+
   last_millis = actual_Millis;
 }
