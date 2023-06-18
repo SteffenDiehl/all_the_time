@@ -9,10 +9,12 @@
 #include "RTClib.h"
 #include <stdio.h>
 
+//Variablen
 int menue = 0;
 int last_menue = 1;
 int back_menue = 1;
 int rotary = 1;
+int rotary_click = 0;
 int position = 1;
 int position_max = 0;
 unsigned long previous_Millis = 0;
@@ -174,12 +176,9 @@ void loop() {
     }
   }
 
-  if(digitalRead(Rotary_IN3) == LOW && menue == 9){
+  if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0){
     last_action = actual_Millis;
-    while (digitalRead(Rotary_IN3) == LOW)
-    {
-      delay(1);
-    }
+    rotary_click = 1;
     if(feste_Timer[position-1] == 0){
       return;
     }
@@ -188,23 +187,21 @@ void loop() {
     }
   }
 
-  else if(digitalRead(Rotary_IN3) == LOW && menue != 0){//Rotary Button
+  else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0){//Rotary Button
     last_action = actual_Millis;
-    while (digitalRead(Rotary_IN3) == LOW)
-    {
-      delay(1);
-    }
+    rotary_click = 1;
     Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer);
   }
 
-  else if(digitalRead(Rotary_IN3) == LOW && menue == 0){
+  else if(digitalRead(Rotary_IN3) == LOW && menue == 0 && rotary_click == 0){
     last_action = actual_Millis;
-    while (digitalRead(Rotary_IN3) == LOW)
-    {
-      delay(1);
-    }
+    rotary_click = 1;
     menue = last_menue;
     position = 1;
+  }
+
+  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1){
+    rotary_click = 0;
   }
 
   if(digitalRead(Button_30s) && act_timer != 5){
