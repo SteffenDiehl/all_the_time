@@ -4,6 +4,7 @@
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_I2CDevice.h>
 #include <time.h>
+#include <WiFi.h>
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
@@ -21,7 +22,7 @@ void timer_output(unsigned long time){
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name){
+void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -708,6 +709,10 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
                 display.setTextSize(2);
                 display.println("WiFi I/0");
                 display.setTextSize(1);
+                if(*wi_fi == 1){
+                    display.printf("IP: ");
+                    display.println(WiFi.localIP());
+                }
                 display.println("Web Server I/0");
                 display.println("back");
 
@@ -717,6 +722,10 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
                 display.setCursor(0,10);
                 display.setTextSize(1);
                 display.println("WiFi I/0");
+                if(*wi_fi == 1){
+                    display.printf("IP: ");
+                    display.println(WiFi.localIP());
+                }
                 display.setTextSize(2);
                 display.println("Web Server I/0");
                 display.setTextSize(1);
@@ -743,7 +752,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 11://Timer 1
-        *p_max = 2; 
+            *p_max = 2; 
             switch(*p)
             {
             case 1:
@@ -771,7 +780,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 12://Timer 2
-        *p_max = 2;
+            *p_max = 2;
             switch(*p)
             {
             case 1:
@@ -799,7 +808,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
         
         case 13://Timer 3
-        *p_max = 2;
+            *p_max = 2;
             switch(*p)
             {
             case 1:
@@ -827,7 +836,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
         
         case 14://Timer 4
-        *p_max = 2;
+            *p_max = 2;
             switch(*p)
             {
             case 1:
@@ -855,7 +864,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 15://Timer 5
-        *p_max = 2;
+            *p_max = 2;
             switch(*p)
             {
             case 1:

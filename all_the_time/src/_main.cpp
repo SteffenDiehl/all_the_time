@@ -58,7 +58,6 @@ NTPClient timeClient(udp);  // NTPClient-Instanz
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-
 const char* ssid = "Techniker_RDF";
 const char* password = "Techniker_Schule";
 
@@ -106,7 +105,7 @@ void loop() {
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
   //serve();
-  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name);
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi);
   encoder.tick();
   unsigned int newposition = encoder.getPosition();
 
