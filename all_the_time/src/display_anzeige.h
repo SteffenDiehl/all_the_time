@@ -22,7 +22,7 @@ void timer_output(unsigned long time){
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi){
+void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi, int *t_out){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -889,6 +889,13 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
                 break;
 
             }
+            break;
+
+        case 21://Timer abgelaufen
+            display.setCursor(0,10);
+            display.setTextSize(2);
+            display.printf(" %i Timer\n", *t_out);
+            display.println("abgelaufen");
             break;
 
         default://Start und Standby Bildschirm

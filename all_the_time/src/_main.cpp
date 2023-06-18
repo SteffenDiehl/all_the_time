@@ -28,8 +28,12 @@ unsigned long timer_3 = 0;
 unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
 unsigned long timer[5];
+int timer_anz = 1;
+int timer_out = 0;
 int Wi_Fi = 0;
+int Wi_Fi_act = 0;
 int Web_Server = 0;
+int Web_Server_act = 0;
 String feste_Timer_Name[10];
 unsigned long feste_Timer[10];
 int year;
@@ -104,8 +108,20 @@ void loop() {
   //Actual Time
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
-  //serve();
-  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi);
+  //Wifi
+  if(Wi_Fi){
+    return;
+  }
+
+  //Webserver
+  if(Web_Server && Wi_Fi_act){
+    return;
+  }
+
+  //OLED Anzeige
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi_act, &timer_out);
+  
+  //rotary drehung
   encoder.tick();
   unsigned int newposition = encoder.getPosition();
 
@@ -178,7 +194,7 @@ void loop() {
     }
   }
 
-  if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0){
+  if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0 && menue < 20){//Rotary Button
     last_action = actual_Millis;
     rotary_click = 1;
     if(feste_Timer[position-1] == 0){
@@ -189,7 +205,7 @@ void loop() {
     }
   }
 
-  else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0){//Rotary Button
+  else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0 && menue < 20){
     last_action = actual_Millis;
     rotary_click = 1;
     Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer);
@@ -206,7 +222,7 @@ void loop() {
     rotary_click = 0;
   }
 
-  if(digitalRead(Button_30s) && act_timer != 5){
+  if(digitalRead(Button_30s) && act_timer != 5){//new timer +30s
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -236,7 +252,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_1min) && act_timer != 5){
+  if(digitalRead(Button_1min) && act_timer != 5){//new timer +1min
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -266,7 +282,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_5min) && act_timer != 5){
+  if(digitalRead(Button_5min) && act_timer != 5){//new timer +5min
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -296,7 +312,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_15min) && act_timer != 5){
+  if(digitalRead(Button_15min) && act_timer != 5){//new timer +15min
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -326,18 +342,134 @@ void loop() {
       }
   }
 
-  for(int i = 0; i<5; i++){
+  for(int i = 0; i<5; i++){//timer--
     if(timer[i] > 0 + (actual_Millis - last_millis)){
       timer[i] -= (actual_Millis - last_millis);
     }
     else if (timer[i] > 0)
     {
       timer[i] = 0;
+      timer_out++;
+      menue == 21;
     }
     
   }
+  
+  if(menue > 20 && timer_out > 0 && digitalRead(Rotary_IN3) == LOW && rotary_click == 0){//timer reset
+    rotary_click = 1;
+    act_timer--;
+    timer_out--;
+    timer_anz = 1;
+    switch (act_timer)
+    {
+    case 0:
+      timer_1 = 0;
+      menue = 1;
+      position = 1;
+      break;
+      
+    case 1:
+      if(timer[0] == 0){
+        timer_1 = timer_2;
+        timer[0] = timer[1];
+      }
+      timer_2 = 0;
+      timer[1] = 0;
+      if(timer_out == 0){
+        menue = 2; 
+      }
+      position = 1;
+      break;
+      
+    case 2:
+      if(timer[0] == 0){
+        timer_1 = timer_2;
+        timer_2 = timer_3;
+        timer[0] = timer[1];
+        timer[1] = timer[2];
+      }
+      else if(timer[1] == 0){
+        timer_2 = timer_3;
+        timer[1] = timer[2];
+      }
+      timer_3 = 0;
+      timer[2] = 0;
+      if(timer_out == 0){
+        menue = 3; 
+      }
+      position = 1;
+      break;
+      
+    case 3:
+      if(timer[0] == 0){
+        timer_1 = timer_2;
+        timer_2 = timer_3;
+        timer_3 = timer_4;
+        timer[0] = timer[1];
+        timer[1] = timer[2];
+        timer[2] = timer[3];
+      }
+      else if(timer[1] == 0){
+        timer_2 = timer_3;
+        timer_3 = timer_4;
+        timer[1] = timer[2];
+        timer[2] = timer[3];
+      }
+      else if(timer[2] == 0){
+        timer_3 = timer_4;
+        timer[2] = timer[3];
+      }
+      timer_4 = 0;
+      timer[3] = 0;
+      if(timer_out == 0){
+        menue = 4; 
+      }
+      position = 1;
+      break;
+      
+    case 4:
+      if(timer[0] == 0){
+        timer_1 = timer_2;
+        timer_2 = timer_3;
+        timer_3 = timer_4;
+        timer_4 = timer_5;
+        timer[0] = timer[1];
+        timer[1] = timer[2];
+        timer[2] = timer[3];
+        timer[3] = timer[4];
+      }
+      else if(timer[1] == 0){
+        timer_2 = timer_3;
+        timer_3 = timer_4;
+        timer_4 = timer_5;
+        timer[1] = timer[2];
+        timer[2] = timer[3];
+        timer[3] = timer[4];
+      }
+      else if(timer[2] == 0){
+        timer_3 = timer_4;
+        timer_4 = timer_5;
+        timer[2] = timer[3];
+        timer[3] = timer[4];
+      }
+      else if(timer[3] == 0){
+        timer_4 == timer_5;
+        timer[3] = timer[4];
+      }
+      timer_5 = 0;
+      timer[4] = 0;
+      if(timer_out == 0){
+        menue = 5; 
+      }
+      position = 1;
+      break;
+    
+    default:
+      break;
+    }
+  }
 
-  if((last_action+60000) <= actual_Millis && menue != 0){
+  if((last_action+60000) <= actual_Millis && menue != 0){//Bildschirmschoner
     last_menue = menue;
     menue = 0;
   }
