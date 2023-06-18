@@ -23,6 +23,14 @@ void start_RTC()
 void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
 {
   DateTime now = rtc.now();
+
+  *Y = now.year();
+  *M = now.month();
+  *D = now.day();
+  *h = now.hour();
+  *m = now.minute();
+  *s = now.second();
+  
 }
 
 void synchronizeRTC()
