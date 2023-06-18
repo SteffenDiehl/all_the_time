@@ -1,4 +1,4 @@
-void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer, unsigned long *t){
+void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer, unsigned long *t, int wi_fi){
     switch(*m){
         case 1://kein Timer aktiv
             switch (*p)
@@ -751,7 +751,6 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             break;
 
         case 10://Wifi Setup
-            
             switch (*p)
             {
             case 1:
@@ -766,7 +765,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
 
             case 2:
-                if(*Web_Server == 0){
+                if(*Web_Server == 0 && wi_fi){
                     *Web_Server = 1;
                 }
 

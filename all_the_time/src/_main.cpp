@@ -113,12 +113,12 @@ void loop() {
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
   //Wifi
-  if(Wi_Fi){
+  if(Wi_Fi){//wenn verbunden Wi_Fi_act = 1
     return;
   }
 
   //Webserver
-  if(Web_Server && Wi_Fi_act){
+  if(Web_Server){
     return;
   }
 
@@ -205,14 +205,14 @@ void loop() {
       return;
     }
     else{
-      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer);
+      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act);
     }
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0 && menue < 20){
     last_action = actual_Millis;
     rotary_click = 1;
-    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer);
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act);
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue == 0 && rotary_click == 0){
