@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
+#include <WiFiUdp.h>
 #include <web_server.h>
 #include <Day_Time.h>
 #include <display_anzeige.h>
@@ -49,6 +50,7 @@ int second;
 #define Rotary_IN3 26 //Button Rotary
 
 RTC_DS3231 rtc; //RTC-Instanz
+
 
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
