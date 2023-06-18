@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 
-Adafruit_NeoPixel neo = Adafruit_NeoPixel(56, 6, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel neo = Adafruit_NeoPixel(56, 5, NEO_GRB + NEO_KHZ800);
 
 uint32_t red = (255, 255, 255);
 uint32_t yellow = (255, 255, 0);

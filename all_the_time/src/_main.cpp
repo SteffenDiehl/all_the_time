@@ -58,7 +58,7 @@ int ledoff_click = 0;
 #define Rotary_IN2 27
 #define Rotary_IN3 26 //Button Rotary
 //neopixel
-#define neopixel_pin 6
+#define neopixel_pin 5
 #define neopixel_anz 56
 
 RTC_DS3231 rtc;             // RTC-Instanz
