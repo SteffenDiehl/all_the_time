@@ -37,7 +37,7 @@ int Wi_Fi = 0;
 int Wi_Fi_act = 0;
 int Web_Server = 0;
 int Web_Server_act = 0;
-String feste_Timer_Name[10] = {"Nudeln", "Kartoffeln", "Steak medium", "Mittag 1h", "Mittag 30min"};
+String feste_Timer_Name[10] = {"Nudeln 7min", "Kartoffeln 14min", "Steak medium", "Mittag 1h", "Mittag 30min"};
 unsigned long feste_Timer[10] = {420000, 840000, 90000, 3600000, 1800000};
 int year;
 int month;
