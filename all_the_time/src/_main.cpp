@@ -86,22 +86,7 @@ void setup() {
 
 //neopixel
   neopixel_start(neopixel_anz, neopixel_pin);
-
-// Connect to Wi-Fi network with SSID and password
-  Serial.print("Connecting to ");
-//  Serial.println(ssid);
-//  WiFi.begin(ssid, password);
-//  while (WiFi.status() != WL_CONNECTED) {
-//    delay(500);
-//    Serial.print(".");
-//  }
-
-  // Print local IP address and start web server
-  Serial.println("");
-  Serial.println("WiFi connected.");
-  Serial.println("IP address: ");
-//  Serial.println(WiFi.localIP());
-
+  
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
     Serial.println(F("SSD1306 allocation failed"));
     for(;;); // Don't proceed, loop forever
