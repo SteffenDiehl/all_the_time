@@ -149,9 +149,11 @@ void loop() {
     if(menue != 0){
       if(newposition < rotary && position > 1){
         position--;
+        neopixel_rotary_rotate(-1);
       }
       else if (newposition > rotary && position < position_max){
         position++;
+        neopixel_rotary_rotate(1);
       }
       rotary = newposition;
     }
@@ -220,14 +222,14 @@ void loop() {
       return;
     }
     else{
-      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act);
+      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz);
     }
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0 && menue < 20){
     last_action = actual_Millis;
     rotary_click = 1;
-    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act);
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz);
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue == 0 && rotary_click == 0){
@@ -501,6 +503,7 @@ void loop() {
   }
   
   neopixel_rotary_press(rotary_click);
+  neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz, actual_Millis);
 
   if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1){//reset rotary_click
     rotary_click = 0;

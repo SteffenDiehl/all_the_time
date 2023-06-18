@@ -1,4 +1,4 @@
-void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer, unsigned long *t, int wi_fi){
+void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer, unsigned long *t, int wi_fi, int *t_anz){
     switch(*m){
         case 1://kein Timer aktiv
             switch (*p)
@@ -30,6 +30,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 11;
                 *p = 1;
+                *t_anz = 1;
 
                 break;
 
@@ -60,6 +61,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 11;
                 *p = 1;
+                *t_anz = 1;
 
                 break;
 
@@ -67,6 +69,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 12;
                 *p = 1;
+                *t_anz = 2;
 
                 break;
 
@@ -97,6 +100,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 11;
                 *p = 1;
+                *t_anz = 1;
 
                 break;
 
@@ -104,6 +108,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 12;
                 *p = 1;
+                *t_anz = 2;
 
                 break;
             
@@ -111,6 +116,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 13;
                 *p = 1;
+                *t_anz = 3;
 
                 break;
 
@@ -141,6 +147,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 11;
                 *p = 1;
+                *t_anz = 1;
 
                 break;
 
@@ -148,6 +155,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 12;
                 *p = 1;
+                *t_anz = 2;
 
                 break;
             
@@ -155,6 +163,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 13;
                 *p = 1;
+                *t_anz = 3;
 
                 break;
 
@@ -162,6 +171,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 14;
                 *p = 1;
+                *t_anz = 4;
 
                 break;
 
@@ -192,6 +202,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 11;
                 *p = 1;
+                *t_anz = 1;
 
                 break;
 
@@ -199,6 +210,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 12;
                 *p = 1;
+                *t_anz = 2;
 
                 break;
             
@@ -206,6 +218,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 13;
                 *p = 1;
+                *t_anz = 3;
 
                 break;
 
@@ -213,6 +226,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 14;
                 *p = 1;
+                *t_anz = 4;
 
                 break;
 
@@ -220,6 +234,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 *b = *m;
                 *m = 15;
                 *p = 1;
+                *t_anz = 5;
 
                 break;
 
