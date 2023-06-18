@@ -748,7 +748,6 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             default:
                 break;
             }
-
             break;
 
         case 10://Wifi Setup
@@ -800,7 +799,8 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             default:
                 break;
             }
-        
+            break;
+
         case 12://Timer 2
             switch (*p)
             {
@@ -813,7 +813,8 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             default:
                 break;
             }
-        
+            break;
+            
         case 13://Timer 3
             switch (*p)
             {
@@ -826,7 +827,8 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             default:
                 break;
             }
-        
+            break;
+            
         case 14://Timer 4
             switch (*p)
             {
@@ -839,7 +841,8 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             default:
                 break;
             }
-        
+            break;
+            
         case 15://Timer 5
             switch (*p)
             {
@@ -852,7 +855,8 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             default:
                 break;
             }
-
+            break;
+            
         default:
 
             break;

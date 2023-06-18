@@ -42,6 +42,7 @@ int day;
 int hour;
 int minute;
 int second;
+unsigned long rtc_last_sync = 0;
 
 
 #define Button_30s 15
@@ -106,6 +107,9 @@ void loop() {
   unsigned long actual_Millis = millis();
 
   //Actual Time
+  if(actual_Millis > rtc_last_sync + 604800000 && Wi_Fi_act){
+    synchronizeRTC();
+  }
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
   //Wifi
