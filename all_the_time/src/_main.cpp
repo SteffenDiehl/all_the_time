@@ -31,6 +31,7 @@ unsigned long timer_3 = 0;
 unsigned long timer_4 = 0;
 unsigned long timer_5 = 0;
 unsigned long timer[5];
+int timer_pause[5] = {0, 0, 0, 0, 0};
 int timer_anz = 0;
 int timer_out = 0;
 int Wi_Fi = 0;
@@ -123,7 +124,7 @@ void loop() {
   }
 
   //OLED Anzeige
-  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi_act, &timer_out);
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi_act, &timer_out, timer, timer_pause);
   
   //rotary drehung
   encoder.tick();
@@ -207,14 +208,14 @@ void loop() {
       return;
     }
     else{
-      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz);
+      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause);
     }
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0 && menue < 20){
     last_action = actual_Millis;
     rotary_click = 1;
-    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz);
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause);
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue == 0 && rotary_click == 0){
@@ -357,6 +358,9 @@ void loop() {
 
   for(int i = 0; i<5; i++){//timer--
     if(timer[i] > 0 + (actual_Millis - last_millis)){
+      if(timer_pause[i]){
+        continue;
+      }
       timer[i] -= (actual_Millis - last_millis);
     }
     else if (timer[i] > 0)
@@ -482,7 +486,7 @@ void loop() {
     }
   }
 
-  if((last_action+60000) <= actual_Millis && menue != 0){//Bildschirmschoner
+  if((last_action+60000) <= actual_Millis && menue != 0 && timer_out == 0){//Bildschirmschoner
     last_menue = menue;
     menue = 0;
   }

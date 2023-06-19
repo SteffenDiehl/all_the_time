@@ -22,7 +22,7 @@ void timer_output(unsigned long time){
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi, int *t_out){
+void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi, int *t_out, unsigned long *ti, int *t_pause){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -752,19 +752,58 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 11://Timer 1
-            *p_max = 2; 
+            *p_max = 4; 
             switch(*p)
             {
             case 1:
                 display.setCursor(0,10);
                 display.setTextSize(2);
                 display.println("Timer 1:");
-                timer_output(*t1);
+                timer_output(ti[0]);
 
                 break;
             
-            case 2:
+            case 2://pause-continue
                 display.setCursor(0,10);
+                display.setTextSize(2);
+                if(t_pause[0]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(1);
+                display.println("cancel");
+                display.println("back");
+
+                break;
+            
+            case 3://end timer
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[0]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(2);
+                display.println("cancel");
+                display.setTextSize(1);
+                display.println("back");
+                
+                break;
+
+            case 4://back
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[0]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.println("cancel");
                 display.setTextSize(2);
                 display.println("back");
 
@@ -780,19 +819,58 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 12://Timer 2
-            *p_max = 2;
+            *p_max = 4;
             switch(*p)
             {
             case 1:
                 display.setCursor(0,10);
                 display.setTextSize(2);
                 display.println("Timer 2:");
-                timer_output(*t2);
+                timer_output(ti[1]);
 
                 break;
             
-            case 2:
+            case 2://pause-continue
                 display.setCursor(0,10);
+                display.setTextSize(2);
+                if(t_pause[1]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(1);
+                display.println("cancel");
+                display.println("back");
+
+                break;
+            
+            case 3://end timer
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[1]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(2);
+                display.println("cancel");
+                display.setTextSize(1);
+                display.println("back");
+                
+                break;
+
+            case 4://back
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[1]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.println("cancel");
                 display.setTextSize(2);
                 display.println("back");
 
@@ -808,19 +886,58 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
         
         case 13://Timer 3
-            *p_max = 2;
+            *p_max = 4;
             switch(*p)
             {
             case 1:
                 display.setCursor(0,10);
                 display.setTextSize(2);
                 display.println("Timer 3:");
-                timer_output(*t3);
+                timer_output(ti[2]);
 
                 break;
             
-            case 2:
+            case 2://pause-continue
                 display.setCursor(0,10);
+                display.setTextSize(2);
+                if(t_pause[2]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(1);
+                display.println("cancel");
+                display.println("back");
+
+                break;
+            
+            case 3://end timer
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[2]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(2);
+                display.println("cancel");
+                display.setTextSize(1);
+                display.println("back");
+                
+                break;
+
+            case 4://back
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[2]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.println("cancel");
                 display.setTextSize(2);
                 display.println("back");
 
@@ -836,19 +953,58 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
         
         case 14://Timer 4
-            *p_max = 2;
+            *p_max = 4;
             switch(*p)
             {
             case 1:
                 display.setCursor(0,10);
                 display.setTextSize(2);
                 display.println("Timer 4:");
-                timer_output(*t4);
+                timer_output(ti[3]);
 
                 break;
             
-            case 2:
+            case 2://pause-continue
                 display.setCursor(0,10);
+                display.setTextSize(2);
+                if(t_pause[3]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(1);
+                display.println("cancel");
+                display.println("back");
+
+                break;
+            
+            case 3://end timer
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[3]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(2);
+                display.println("cancel");
+                display.setTextSize(1);
+                display.println("back");
+                
+                break;
+
+            case 4://back
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[3]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.println("cancel");
                 display.setTextSize(2);
                 display.println("back");
 
@@ -864,19 +1020,58 @@ void display_Anzeige(int *m, int *p, int *p_max, int * t, unsigned long *t1, uns
             break;
 
         case 15://Timer 5
-            *p_max = 2;
+            *p_max = 4;
             switch(*p)
             {
             case 1:
                 display.setCursor(0,10);
                 display.setTextSize(2);
                 display.println("Timer 5:");
-                timer_output(*t5);
+                timer_output(ti[4]);
 
                 break;
             
-            case 2:
+            case 2://pause-continue
                 display.setCursor(0,10);
+                display.setTextSize(2);
+                if(t_pause[4]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(1);
+                display.println("cancel");
+                display.println("back");
+
+                break;
+            
+            case 3://end timer
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[4]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.setTextSize(2);
+                display.println("cancel");
+                display.setTextSize(1);
+                display.println("back");
+                
+                break;
+
+            case 4://back
+                display.setCursor(0,10);
+                display.setTextSize(1);
+                if(t_pause[4]){
+                display.println("continue");
+                }
+                else{
+                    display.println("pause");
+                }
+                display.println("cancel");
                 display.setTextSize(2);
                 display.println("back");
 
