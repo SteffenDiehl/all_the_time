@@ -109,14 +109,29 @@ void loop() {
   ac_time(&year, &month, &day, &hour, &minute, &second);
 
   //Wifi
-  if(Wi_Fi){//wenn verbunden Wi_Fi_act = 1 setzen
-    return;
+  if(Wi_Fi && !Wi_Fi_act){//wenn verbunden Wi_Fi_act = 1 setzen
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(10);
+    }
+    
+    Wi_Fi_act = 1;
+  }
+  else if(!Wi_Fi && Wi_Fi_act){
+    WiFi.disconnect();
+
+    Wi_Fi_act = 0;
   }
 
   //Webserver
-  if(Web_Server){
+  if(Web_Server && !Web_Server_act){
     server.begin();
     Web_Server_act = 1;
+  }
+  else if(!Web_Server && Web_Server_act){
+    server.close();
+    Web_Server_act = 0;
   }
 
   if(Web_Server_act){
