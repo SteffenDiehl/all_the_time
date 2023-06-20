@@ -176,8 +176,6 @@ void handleSet() {
 }
 
 void web_browser_begin() {
-  Serial.begin(115200);
-
   server.on("/", handleRoot);
   server.on("/time", handleTime);
   server.on("/start1", handleStartStop);
