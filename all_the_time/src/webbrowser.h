@@ -178,15 +178,6 @@ void handleSet() {
 void web_browser_begin() {
   Serial.begin(115200);
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-
-  Serial.println("Connected to WiFi");
-  Serial.print("ESP32 IP Address: ");
-  Serial.println(WiFi.localIP());
-
   timeClient.begin();
   timeClient.setTimeOffset(19800);  // Adjust the time offset based on your timezone (in seconds)
 
