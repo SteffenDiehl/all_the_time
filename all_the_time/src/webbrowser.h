@@ -175,9 +175,8 @@ void handleSet() {
   server.send(302, "text/plain", "");
 }
 
-void setup() {
+void web_browser_begin() {
   Serial.begin(115200);
-  WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
