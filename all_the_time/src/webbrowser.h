@@ -178,9 +178,6 @@ void handleSet() {
 void web_browser_begin() {
   Serial.begin(115200);
 
-  timeClient.begin();
-  timeClient.setTimeOffset(19800);  // Adjust the time offset based on your timezone (in seconds)
-
   server.on("/", handleRoot);
   server.on("/time", handleTime);
   server.on("/start1", handleStartStop);
@@ -198,6 +195,10 @@ void web_browser_begin() {
   server.on("/set", handleSet);
 
   server.begin();
+}
+
+void web_browser_end(){
+  server.close();
 }
 
 void loop() {
