@@ -199,6 +199,6 @@ void web_browser_end(){
   server.close();
 }
 
-void loop() {
+void web_browser() {
   server.handleClient();
 }

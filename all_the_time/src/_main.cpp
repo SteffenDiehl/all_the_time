@@ -24,7 +24,7 @@ int position_max = 0;
 unsigned long previous_Millis = 0;
 unsigned long last_millis = 0;
 unsigned long last_action;
-int act_timer = 0;
+int act_timer = 0;//active timer
 unsigned long timer_1 = 0;
 unsigned long timer_2 = 0;
 unsigned long timer_3 = 0;
@@ -33,7 +33,7 @@ unsigned long timer_5 = 0;
 unsigned long timer[5];
 int timer_pause[5] = {0, 0, 0, 0, 0};
 int timer_anz = 0;
-int timer_out = 0;
+int timer_out = 0;//abgelaufene timer
 int Wi_Fi = 0;
 int Wi_Fi_act = 0;
 int Web_Server = 0;
@@ -117,6 +117,7 @@ void loop() {
     }
     
     Wi_Fi_act = 1;
+    synchronizeRTC();
   }
   else if(!Wi_Fi && Wi_Fi_act){
     WiFi.disconnect();
@@ -130,12 +131,12 @@ void loop() {
     Web_Server_act = 1;
   }
   else if(!Web_Server && Web_Server_act){
-    server.close();
+    web_browser_end();
     Web_Server_act = 0;
   }
 
   if(Web_Server_act){
-    return;
+    web_browser();
   }
 
   //OLED Anzeige
