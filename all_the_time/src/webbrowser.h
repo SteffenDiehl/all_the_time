@@ -201,5 +201,4 @@ void web_browser_end(){
 
 void loop() {
   server.handleClient();
-  timeClient.update();
 }
