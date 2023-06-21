@@ -415,7 +415,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*p)
                 {
                 case 1:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -423,7 +423,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 2:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -431,7 +431,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 3:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -439,7 +439,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 4:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -447,7 +447,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 5:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -455,7 +455,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 6:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -463,7 +463,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 7:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -471,7 +471,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 8:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -479,7 +479,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 9:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -487,7 +487,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 10:
-                    *t1 = fix_timer[(*p-1)];
+                    *t2 = fix_timer[(*p-1)];
                     t[1] = *t2;
                     *m = 3;
                     *p = 1;
@@ -504,7 +504,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*p)
                 {
                 case 1:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -512,7 +512,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 2:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -520,7 +520,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 3:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -528,7 +528,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 4:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -536,7 +536,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 5:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -544,7 +544,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 6:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -552,7 +552,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 7:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -560,7 +560,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 8:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -568,7 +568,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 9:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -576,7 +576,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 10:
-                    *t1 = fix_timer[(*p-1)];
+                    *t3 = fix_timer[(*p-1)];
                     t[2] = *t3;
                     *m = 4;
                     *p = 1;
@@ -593,7 +593,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*p)
                 {
                 case 1:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -601,7 +601,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 2:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -609,7 +609,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 3:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -617,7 +617,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 4:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -625,7 +625,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 5:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -633,7 +633,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 6:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -641,7 +641,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 7:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -649,7 +649,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 8:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -657,7 +657,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 9:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -665,7 +665,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 10:
-                    *t1 = fix_timer[(*p-1)];
+                    *t4 = fix_timer[(*p-1)];
                     t[3] = *t4;
                     *m = 5;
                     *p = 1;
@@ -682,7 +682,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*p)
                 {
                 case 1:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -690,7 +690,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 2:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -698,7 +698,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 3:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -706,7 +706,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 4:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -714,7 +714,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 5:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -722,7 +722,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 6:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -730,7 +730,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 7:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -738,7 +738,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 8:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -746,7 +746,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 9:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
@@ -754,7 +754,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                     break;
 
                 case 10:
-                    *t1 = fix_timer[(*p-1)];
+                    *t5 = fix_timer[(*p-1)];
                     t[4] = *t5;
                     *m = 6;
                     *p = 1;
