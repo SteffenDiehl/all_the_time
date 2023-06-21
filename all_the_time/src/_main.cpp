@@ -142,6 +142,7 @@ void loop() {
   if(rotary != newposition){//Rotary bewegung
     last_action = actual_Millis;
     if(menue == 8){//timer einstellen
+      position = 1;
       switch (act_timer)
       {
       case 0:
@@ -211,7 +212,7 @@ void loop() {
     
   }
 
-  if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0 && menue < 20){//Rotary Button
+  if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0){//Rotary Button
     last_action = actual_Millis;
     rotary_click = 1;
     if(feste_Timer[position-1] == 0){
@@ -221,6 +222,11 @@ void loop() {
     }
   }
 
+  else if (digitalRead(Rotary_IN3) == LOW && menue == 8 && rotary_click == 0){
+    last_action = actual_Millis;
+    rotary_click = 1;
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause, &timer_out);
+  }
   else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0 && menue < 20){
     last_action = actual_Millis;
     rotary_click = 1;

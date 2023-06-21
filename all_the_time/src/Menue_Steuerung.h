@@ -313,6 +313,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
             
             default:
+                *m =0;
                 break;
             }
 
@@ -768,6 +769,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
             
             default:
+                *m = 0;
                 break;
             }
             
