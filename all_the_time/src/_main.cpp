@@ -62,10 +62,6 @@ int ledoff_click = 0;
 #define neopixel_pin 5
 #define neopixel_anz 56
 
-RTC_DS3231 rtc;             // RTC-Instanz
-WiFiUDP udp;                // WiFiUDP-Instanz 
-NTPClient timeClient(udp);  // NTPClient-Instanz
-
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
@@ -224,14 +220,14 @@ void loop() {
       return;
     }
     else{
-      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause);
+      Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause, &timer_out);
     }
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue != 0 && rotary_click == 0 && menue < 20){
     last_action = actual_Millis;
     rotary_click = 1;
-    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause);
+    Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause, &timer_out);
   }
 
   else if(digitalRead(Rotary_IN3) == LOW && menue == 0 && rotary_click == 0){

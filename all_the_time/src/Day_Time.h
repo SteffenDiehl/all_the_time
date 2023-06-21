@@ -5,6 +5,25 @@
 #include <time.h>
 #include <NTPClient.h>
 
+RTC_DS3231 rtc;             // RTC-Instanz
+WiFiUDP udp;                // WiFiUDP-Instanz 
+NTPClient timeClient(udp);  // NTPClient-Instanz
+
+void synchronizeRTC()
+{
+  // Mit NTP-Server verbinden
+  timeClient.begin();
+
+  // RTC-Zeit mit NTP_Server synchronisieren
+  if (timeClient.update())
+  {
+    rtc.adjust(timeClient.getEpochTime());
+  }
+
+  // Verbindung schließen
+  timeClient.end();
+}
+
 void start_RTC()
 {
   Wire.begin();
@@ -26,19 +45,4 @@ void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
   *m = now.minute();
   *s = now.second();
   
-}
-
-void synchronizeRTC()
-{
-  // Mit NTP-Server verbinden
-  timeClient.begin();
-
-  // RTC-Zeit mit NTP_Server synchronisieren
-  if (timeClient.update())
-  {
-    rtc.adjust(timeClient.getEpochTime());
-  }
-
-  // Verbindung schließen
-  timeClient.end();
 }

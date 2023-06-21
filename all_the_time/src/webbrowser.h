@@ -4,11 +4,11 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 
-const char* ssid = "JustDiehlWithIt";
-const char* password = "DiehlWithIt09";
+//const char* ssid = "JustDiehlWithIt";
+//const char* password = "DiehlWithIt09";
 
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP);
+//WiFiUDP ntpUDP;
+//NTPClient timeClient(ntpUDP);
 
 WebServer server(80);
 
@@ -118,10 +118,10 @@ void handleRoot() {
 
 
 void handleTime() {
-  String currentTime = timeClient.getFormattedTime();
+  //String currentTime = timeClient.getFormattedTime();
 
   String json = "{";
-  json += "\"currentTime\":\"" + currentTime + "\",";
+  //json += "\"currentTime\":\"" + currentTime + "\",";
   json += "\"timers\": {";
 
   for (int i = 0; i < NUM_TIMERS; i++) {

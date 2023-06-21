@@ -1,4 +1,4 @@
-void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer, unsigned long *t, int wi_fi, int *t_anz, int *t_pause){
+void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5,unsigned long *fix_timer, unsigned long *t, int wi_fi, int *t_anz, int *t_pause, int *t_out){
     switch(*m){
         case 1://kein Timer aktiv
             switch (*p)
@@ -828,105 +828,105 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*act_t)
                 {
                 case 0:
-                    timer_1 = 0;
-                    menue = 1;
-                    position = 1;
+                    *t1 = 0;
+                    *m = 1;
+                    *p = 1;
                     break;
                     
                 case 1:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer[0] = timer[1];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        t[0] = t[1];
                     }
-                    timer_2 = 0;
-                    timer[1] = 0;
-                    if(timer_out == 0){
-                        menue = 2; 
+                    *t2 = 0;
+                    t[1] = 0;
+                    if(*t_out == 0){
+                        *m = 2; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 2:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        t[0] = t[1];
+                        t[1] = t[2];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer[1] = timer[2];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        t[1] = t[2];
                     }
-                    timer_3 = 0;
-                    timer[2] = 0;
-                    if(timer_out == 0){
-                        menue = 3; 
+                    *t3 = 0;
+                    t[2] = 0;
+                    if(*t_out == 0){
+                        *m = 3; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 3:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer[2] = timer[3];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        t[2] = t[3];
                     }
-                    timer_4 = 0;
-                    timer[3] = 0;
-                    if(timer_out == 0){
-                        menue = 4; 
+                    *t4 = 0;
+                    t[3] = 0;
+                    if(*t_out == 0){
+                        *m = 4; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 4:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[3] == 0){
-                        timer_4 == timer_5;
-                        timer[3] = timer[4];
+                    else if(t[3] == 0){
+                        *t4 == *t5;
+                        t[3] = t[4];
                     }
-                    timer_5 = 0;
-                    timer[4] = 0;
-                    if(timer_out == 0){
-                        menue = 5; 
+                    *t5 = 0;
+                    t[4] = 0;
+                    if(*t_out == 0){
+                        *m = 5; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                     default:
@@ -962,108 +962,109 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
 
             case 3:
                 *act_t--;
+                
                 switch (*act_t)
                 {
                 case 0:
-                    timer_1 = 0;
-                    menue = 1;
-                    position = 1;
+                    *t1 = 0;
+                    *m = 1;
+                    *p = 1;
                     break;
                     
                 case 1:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer[0] = timer[1];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        t[0] = t[1];
                     }
-                    timer_2 = 0;
-                    timer[1] = 0;
-                    if(timer_out == 0){
-                        menue = 2; 
+                    *t2 = 0;
+                    t[1] = 0;
+                    if(*t_out == 0){
+                        *m = 2; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 2:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        t[0] = t[1];
+                        t[1] = t[2];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer[1] = timer[2];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        t[1] = t[2];
                     }
-                    timer_3 = 0;
-                    timer[2] = 0;
-                    if(timer_out == 0){
-                        menue = 3; 
+                    *t3 = 0;
+                    t[2] = 0;
+                    if(*t_out == 0){
+                        *m = 3; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 3:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer[2] = timer[3];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        t[2] = t[3];
                     }
-                    timer_4 = 0;
-                    timer[3] = 0;
-                    if(timer_out == 0){
-                        menue = 4; 
+                    *t4 = 0;
+                    t[3] = 0;
+                    if(*t_out == 0){
+                        *m = 4; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 4:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[3] == 0){
-                        timer_4 == timer_5;
-                        timer[3] = timer[4];
+                    else if(t[3] == 0){
+                        *t4 == *t5;
+                        t[3] = t[4];
                     }
-                    timer_5 = 0;
-                    timer[4] = 0;
-                    if(timer_out == 0){
-                        menue = 5; 
+                    *t5 = 0;
+                    t[4] = 0;
+                    if(*t_out == 0){
+                        *m = 5; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                     default:
@@ -1102,105 +1103,105 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*act_t)
                 {
                 case 0:
-                    timer_1 = 0;
-                    menue = 1;
-                    position = 1;
+                    *t1 = 0;
+                    *m = 1;
+                    *p = 1;
                     break;
                     
                 case 1:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer[0] = timer[1];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        t[0] = t[1];
                     }
-                    timer_2 = 0;
-                    timer[1] = 0;
-                    if(timer_out == 0){
-                        menue = 2; 
+                    *t2 = 0;
+                    t[1] = 0;
+                    if(*t_out == 0){
+                        *m = 2; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 2:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        t[0] = t[1];
+                        t[1] = t[2];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer[1] = timer[2];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        t[1] = t[2];
                     }
-                    timer_3 = 0;
-                    timer[2] = 0;
-                    if(timer_out == 0){
-                        menue = 3; 
+                    *t3 = 0;
+                    t[2] = 0;
+                    if(*t_out == 0){
+                        *m = 3; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 3:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer[2] = timer[3];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        t[2] = t[3];
                     }
-                    timer_4 = 0;
-                    timer[3] = 0;
-                    if(timer_out == 0){
-                        menue = 4; 
+                    *t4 = 0;
+                    t[3] = 0;
+                    if(*t_out == 0){
+                        *m = 4; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 4:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[3] == 0){
-                        timer_4 == timer_5;
-                        timer[3] = timer[4];
+                    else if(t[3] == 0){
+                        *t4 == *t5;
+                        t[3] = t[4];
                     }
-                    timer_5 = 0;
-                    timer[4] = 0;
-                    if(timer_out == 0){
-                        menue = 5; 
+                    *t5 = 0;
+                    t[4] = 0;
+                    if(*t_out == 0){
+                        *m = 5; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                     default:
@@ -1239,105 +1240,105 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*act_t)
                 {
                 case 0:
-                    timer_1 = 0;
-                    menue = 1;
-                    position = 1;
+                    *t1 = 0;
+                    *m = 1;
+                    *p = 1;
                     break;
                     
                 case 1:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer[0] = timer[1];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        t[0] = t[1];
                     }
-                    timer_2 = 0;
-                    timer[1] = 0;
-                    if(timer_out == 0){
-                        menue = 2; 
+                    *t2 = 0;
+                    t[1] = 0;
+                    if(*t_out == 0){
+                        *m = 2; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 2:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        t[0] = t[1];
+                        t[1] = t[2];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer[1] = timer[2];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        t[1] = t[2];
                     }
-                    timer_3 = 0;
-                    timer[2] = 0;
-                    if(timer_out == 0){
-                        menue = 3; 
+                    *t3 = 0;
+                    t[2] = 0;
+                    if(*t_out == 0){
+                        *m = 3; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 3:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer[2] = timer[3];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        t[2] = t[3];
                     }
-                    timer_4 = 0;
-                    timer[3] = 0;
-                    if(timer_out == 0){
-                        menue = 4; 
+                    *t4 = 0;
+                    t[3] = 0;
+                    if(*t_out == 0){
+                        *m = 4; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 4:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[3] == 0){
-                        timer_4 == timer_5;
-                        timer[3] = timer[4];
+                    else if(t[3] == 0){
+                        *t4 == *t5;
+                        t[3] = t[4];
                     }
-                    timer_5 = 0;
-                    timer[4] = 0;
-                    if(timer_out == 0){
-                        menue = 5; 
+                    *t5 = 0;
+                    t[4] = 0;
+                    if(*t_out == 0){
+                        *m = 5; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                     default:
@@ -1376,105 +1377,105 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 switch (*act_t)
                 {
                 case 0:
-                    timer_1 = 0;
-                    menue = 1;
-                    position = 1;
+                    *t1 = 0;
+                    *m = 1;
+                    *p = 1;
                     break;
                     
                 case 1:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer[0] = timer[1];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        t[0] = t[1];
                     }
-                    timer_2 = 0;
-                    timer[1] = 0;
-                    if(timer_out == 0){
-                        menue = 2; 
+                    *t2 = 0;
+                    t[1] = 0;
+                    if(*t_out == 0){
+                        *m = 2; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 2:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        t[0] = t[1];
+                        t[1] = t[2];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer[1] = timer[2];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        t[1] = t[2];
                     }
-                    timer_3 = 0;
-                    timer[2] = 0;
-                    if(timer_out == 0){
-                        menue = 3; 
+                    *t3 = 0;
+                    t[2] = 0;
+                    if(*t_out == 0){
+                        *m = 3; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 3:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        t[1] = t[2];
+                        t[2] = t[3];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer[2] = timer[3];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        t[2] = t[3];
                     }
-                    timer_4 = 0;
-                    timer[3] = 0;
-                    if(timer_out == 0){
-                        menue = 4; 
+                    *t4 = 0;
+                    t[3] = 0;
+                    if(*t_out == 0){
+                        *m = 4; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                 case 4:
-                    if(timer[0] == 0){
-                        timer_1 = timer_2;
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[0] = timer[1];
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    if(t[0] == 0){
+                        *t1 = *t2;
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[0] = t[1];
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[1] == 0){
-                        timer_2 = timer_3;
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[1] = timer[2];
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[1] == 0){
+                        *t2 = *t3;
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[1] = t[2];
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[2] == 0){
-                        timer_3 = timer_4;
-                        timer_4 = timer_5;
-                        timer[2] = timer[3];
-                        timer[3] = timer[4];
+                    else if(t[2] == 0){
+                        *t3 = *t4;
+                        *t4 = *t5;
+                        t[2] = t[3];
+                        t[3] = t[4];
                     }
-                    else if(timer[3] == 0){
-                        timer_4 == timer_5;
-                        timer[3] = timer[4];
+                    else if(t[3] == 0){
+                        *t4 == *t5;
+                        t[3] = t[4];
                     }
-                    timer_5 = 0;
-                    timer[4] = 0;
-                    if(timer_out == 0){
-                        menue = 5; 
+                    *t5 = 0;
+                    t[4] = 0;
+                    if(*t_out == 0){
+                        *m = 5; 
                     }
-                    position = 1;
+                    *p = 1;
                     break;
                     
                     default:
