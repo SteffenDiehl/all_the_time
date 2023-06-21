@@ -67,8 +67,8 @@ int ledoff_click = 0;
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "Techniker_RDF";
-const char* password = "Techniker_Schule";
+const char* ssid = "Seis";
+const char* password = "Grandgadfly265";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -103,7 +103,12 @@ void loop() {
   //Wifi
   if(Wi_Fi && !Wi_Fi_act){//wenn verbunden Wi_Fi_act = 1 setzen
     WiFi.begin(ssid, password);
+    display.clearDisplay();
+    display.setCursor(0, 10);
+    display.setTextSize(2);
+    display.println("connecting");
   while (WiFi.status() != WL_CONNECTED) {
+    display.printf(".");
     delay(1000);
   }
 

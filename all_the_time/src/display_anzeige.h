@@ -250,7 +250,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
                 display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
-                display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("new Timer");
@@ -335,7 +334,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 display.setCursor(0,10);
                 display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
                 display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
-                display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
@@ -351,8 +349,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
                 display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
-                display.println("Timer 1");
-                display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
                 display.println("new Timer");
@@ -437,7 +433,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 display.setCursor(0,10);
                 display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
                 display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
-                display.println("Timer 1");
                 display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
@@ -453,8 +448,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 display.printf("Date: %2i.%2i.%4i\n", *D, *M, *Y);
                 display.printf("Time: %2i:%2i:%2i\n", *h, *min, *s);
                 display.setTextSize(1);
-                display.println("Timer 1");
-                display.println("Timer 2");
                 display.println("Timer 3");
                 display.println("Timer 4");
                 display.println("Timer 5");
