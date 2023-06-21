@@ -605,7 +605,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
             case 5:
                 display.setTextSize(1);
-                display.println(fix_timer_name[0]);
                 display.println(fix_timer_name[1]);
                 display.println(fix_timer_name[2]);
                 display.println(fix_timer_name[3]);
@@ -622,8 +621,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
             case 6:
                 display.setTextSize(1);
-                display.println(fix_timer_name[0]);
-                display.println(fix_timer_name[1]);
                 display.println(fix_timer_name[2]);
                 display.println(fix_timer_name[3]);
                 display.println(fix_timer_name[4]);
@@ -639,9 +636,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
             case 7:
                 display.setTextSize(1);
-                display.println(fix_timer_name[0]);
-                display.println(fix_timer_name[1]);
-                display.println(fix_timer_name[2]);
                 display.println(fix_timer_name[3]);
                 display.println(fix_timer_name[4]);
                 display.println(fix_timer_name[5]);
@@ -656,10 +650,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
             case 8:
                 display.setTextSize(1);
-                display.println(fix_timer_name[0]);
-                display.println(fix_timer_name[1]);
-                display.println(fix_timer_name[2]);
-                display.println(fix_timer_name[3]);
                 display.println(fix_timer_name[4]);
                 display.println(fix_timer_name[5]);
                 display.println(fix_timer_name[6]);
@@ -673,11 +663,6 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
             case 9:
                 display.setTextSize(1);
-                display.println(fix_timer_name[0]);
-                display.println(fix_timer_name[1]);
-                display.println(fix_timer_name[2]);
-                display.println(fix_timer_name[3]);
-                display.println(fix_timer_name[4]);
                 display.println(fix_timer_name[5]);
                 display.println(fix_timer_name[6]);
                 display.println(fix_timer_name[7]);
@@ -689,17 +674,11 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 break;
 
             case 10:
-                display.setTextSize(2);
-                display.println(fix_timer_name[0]);
                 display.setTextSize(1);
-                display.println(fix_timer_name[1]);
-                display.println(fix_timer_name[2]);
-                display.println(fix_timer_name[3]);
-                display.println(fix_timer_name[4]);
-                display.println(fix_timer_name[5]);
                 display.println(fix_timer_name[6]);
                 display.println(fix_timer_name[7]);
                 display.println(fix_timer_name[8]);
+                display.setTextSize(2);
                 display.println(fix_timer_name[9]);
                 
                 break;

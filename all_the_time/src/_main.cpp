@@ -53,7 +53,7 @@ int ledoff_click = 0;
 #define Button_30s 15
 #define Button_1min 16
 #define Button_5min 17
-#define Button_15min 2
+#define Button_15min 18
 //rotary
 #define Rotary_IN1 14
 #define Rotary_IN2 27
@@ -82,7 +82,7 @@ void setup() {
   start_display();
 
 //RTC_lib
-  //start_RTC();
+  start_RTC();
 
 //neopixel
   neopixel_start(neopixel_anz, neopixel_pin);
@@ -104,17 +104,15 @@ void loop() {
   if(Wi_Fi && !Wi_Fi_act){//wenn verbunden Wi_Fi_act = 1 setzen
     WiFi.begin(ssid, password);
 
-    while (WiFi.status() != WL_CONNECTED) {
-      delay(10);
-    }
-    
     Wi_Fi_act = 1;
-    synchronizeRTC();
   }
   else if(!Wi_Fi && Wi_Fi_act){
     WiFi.disconnect();
 
     Wi_Fi_act = 0;
+  }
+  if(Wi_Fi_act){
+    synchronizeRTC();
   }
 
   //Webserver
@@ -140,22 +138,7 @@ void loop() {
 
   if(rotary != newposition){//Rotary bewegung
     last_action = actual_Millis;
-    if(menue != 0){
-      if(newposition < rotary && position > 1){
-        position--;
-        neopixel_rotary_rotate(-1);
-      }
-      else if (newposition > rotary && position < position_max){
-        position++;
-        neopixel_rotary_rotate(1);
-      }
-      rotary = newposition;
-    }
-    else if(menue == 0){
-      menue = last_menue;
-      position = 1;
-    }
-    else if(menue == 8){//timer einstellen
+    if(menue == 8){//timer einstellen
       switch (act_timer)
       {
       case 0:
@@ -163,7 +146,7 @@ void loop() {
           timer_1 -= 1000;
         }
         else if (newposition > rotary && timer_1 < 86400000){
-          timer_1 += 10000;
+          timer_1 += 1000;
         }
         break;
         
@@ -172,7 +155,7 @@ void loop() {
           timer_2 -= 1000;
         }
         else if (newposition > rotary && timer_2 < 86400000){
-          timer_2 += 10000;
+          timer_2 += 1000;
         }
         break;
         
@@ -181,7 +164,7 @@ void loop() {
           timer_3 -= 1000;
         }
         else if (newposition > rotary && timer_3 < 86400000){
-          timer_3 += 10000;
+          timer_3 += 1000;
         }
         break;
         
@@ -190,7 +173,7 @@ void loop() {
           timer_4 -= 1000;
         }
         else if (newposition > rotary && timer_4 < 86400000){
-          timer_4 += 10000;
+          timer_4 += 1000;
         }
         break;
         
@@ -199,7 +182,7 @@ void loop() {
           timer_5 -= 1000;
         }
         else if (newposition > rotary && timer_5 < 86400000){
-          timer_5 += 10000;
+          timer_5 += 1000;
         }
         break;
       
@@ -207,13 +190,28 @@ void loop() {
         break;
       }
     }
+    else if(menue != 0){
+      if(newposition < rotary && position > 1){
+        position--;
+        neopixel_rotary_rotate(-1);
+      }
+      else if (newposition > rotary && position < position_max){
+        position++;
+        neopixel_rotary_rotate(1);
+      }
+    }
+    else if(menue == 0){
+      menue = last_menue;
+      position = 1;
+    }
+    rotary = newposition;
+    
   }
 
   if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0 && menue < 20){//Rotary Button
     last_action = actual_Millis;
     rotary_click = 1;
     if(feste_Timer[position-1] == 0){
-      return;
     }
     else{
       Rotary_Click(&menue, &position, &back_menue, &Wi_Fi, &Web_Server, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, feste_Timer, timer, Wi_Fi_act, &timer_anz, timer_pause, &timer_out);
@@ -243,7 +241,8 @@ void loop() {
     brightness_increase();
   }
   else{
-  if(digitalRead(Button_30s) && act_timer != 5){//new timer +30s
+  if(digitalRead(Button_30s) && act_timer != 5 && ledoff_click == 0){//new timer +30s
+    ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -273,7 +272,8 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_1min) && act_timer != 5){//new timer +1min
+  if(digitalRead(Button_1min) && act_timer != 5 && ledoff_click == 0){//new timer +1min
+    ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -303,7 +303,8 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_5min) && act_timer != 5){//new timer +5min
+  if(digitalRead(Button_5min) && act_timer != 5 && ledoff_click == 0){//new timer +5min
+    ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -333,7 +334,8 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_15min) && act_timer != 5){//new timer +15min
+  if(digitalRead(Button_15min) && act_timer != 5 && ledoff_click == 0){//new timer +15min
+    ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -502,11 +504,11 @@ void loop() {
   neopixel_rotary_press(rotary_click);
   neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz, actual_Millis);
 
-  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1){//reset rotary_click
+  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 100){//reset rotary_click
     rotary_click = 0;
   }
 
-  if(!digitalRead(Button_30s) && !digitalRead(Button_15min) && ledoff_click){//reset ledoff_click
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 100){//reset ledoff_click
     ledoff_click = 0;
   }
 

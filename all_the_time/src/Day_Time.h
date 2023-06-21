@@ -31,7 +31,7 @@ void start_RTC()
 
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 
-  synchronizeRTC();
+  //synchronizeRTC();
 }
 
 void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
