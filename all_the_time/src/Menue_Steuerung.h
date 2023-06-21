@@ -826,7 +826,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
 
             case 3:
-                *act_t--;
+                *act_t-= 1;
                 switch (*act_t)
                 {
                 case 0:
@@ -963,7 +963,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
 
             case 3:
-                *act_t--;
+                *act_t -= 1;
                 
                 switch (*act_t)
                 {
@@ -1101,7 +1101,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
 
             case 3:
-                *act_t--;
+                *act_t -= 1;
                 switch (*act_t)
                 {
                 case 0:
@@ -1238,7 +1238,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
 
             case 3:
-                *act_t--;
+                *act_t -= 1;
                 switch (*act_t)
                 {
                 case 0:
@@ -1375,7 +1375,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 break;
 
             case 3:
-                *act_t--;
+                *act_t -= 2;
                 switch (*act_t)
                 {
                 case 0:
