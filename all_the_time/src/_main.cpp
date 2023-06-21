@@ -103,6 +103,9 @@ void loop() {
   //Wifi
   if(Wi_Fi && !Wi_Fi_act){//wenn verbunden Wi_Fi_act = 1 setzen
     WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+  }
 
     Wi_Fi_act = 1;
   }
