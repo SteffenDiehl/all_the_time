@@ -279,7 +279,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             break;
 
         case 8:
-            *act_t++;
+            *act_t += 1;
             switch (*act_t)
             {
             case 1:
@@ -320,7 +320,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
             break;
 
         case 9://feste Timer
-            *act_t++;
+            *act_t += 1;
             switch (*act_t)
             {
             case 1:
