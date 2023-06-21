@@ -382,7 +382,6 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
 
     if(neopixel_active){
         neo.setPixelColor(7, white);//power-led
-        neo.show();
         if(wi_fi){
             if(wi_fi_act){
                 neo.setPixelColor(6, green);
@@ -407,7 +406,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
             neo.setPixelColor(6, off);
         }
 
-        if(t5 == 0){
+        if(t[4] == 0){
             neo.setPixelColor(5, off);
         }
         else if(t5_ > 0.6){
@@ -420,7 +419,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
             neo.setPixelColor(5, red);
         }
 
-        if(t4 == 0){
+        if(t[3] == 0){
             neo.setPixelColor(5, off);
         }
         else if(t4_ > 0.6){
@@ -433,7 +432,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
             neo.setPixelColor(5, red);
         }
 
-        if(t3 == 0){
+        if(t[2] == 0){
             neo.setPixelColor(5, off);
         }
         else if(t3_ > 0.6){
@@ -446,7 +445,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
             neo.setPixelColor(5, red);
         }
 
-        if(t2 == 0){
+        if(t[1] == 0){
             neo.setPixelColor(5, off);
         }
         else if(t2_ > 0.6){
@@ -459,7 +458,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
             neo.setPixelColor(5, red);
         }
 
-        if(t1 == 0){
+        if(t[0] == 0){
             neo.setPixelColor(5, off);
         }
         else if(t1_ > 0.6){
