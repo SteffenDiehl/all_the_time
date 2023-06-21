@@ -13,6 +13,16 @@
 #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
     Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+void start_display(){
+    if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    for(;;); // Don't proceed, loop forever
+     }
+
+     // Show initial display buffer contents on the screen --
+     // the library initializes this with an Adafruit splash screen.
+    display.display();
+}
+
 void timer_output(unsigned long time){
     int hours = time / 3600000;
     int minutes = (time - hours*3600000)/60000;

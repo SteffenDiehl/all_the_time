@@ -78,19 +78,15 @@ void setup() {
   pinMode(Rotary_IN3, INPUT);
   Serial.begin(115200);
 
+  //display
+  start_display();
+
 //RTC_lib
-  start_RTC();
+  //start_RTC();
 
 //neopixel
   neopixel_start(neopixel_anz, neopixel_pin);
   
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
-  }
-
-  display.display();
-
 }
 
 void loop() {
