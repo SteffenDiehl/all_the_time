@@ -3,23 +3,19 @@
 #include <WebServer.h>
 #include <NTPClient.h>
 #include <WiFiUdp.h>
-
-//const char* ssid = "JustDiehlWithIt";
-//const char* password = "DiehlWithIt09";
-
-//WiFiUDP ntpUDP;
-//NTPClient timeClient(ntpUDP);
+#include <Day_Time.h>
+#include <_main.cpp>
 
 WebServer server(80);
-
-const int NUM_TIMERS = 6;
-int timerValues[NUM_TIMERS] = {60, 60, 60, 60, 60, 60};
-bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false};
-unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0};
-bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false};
+const int NUM_TIMERS = 10;
+extern String feste_Timer_Name[];
+extern unsinged long feste_Timer[];
+bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
+unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
 
 void handleRoot() {
-  String html = "<html><body>";
+  String html = "<html><body style=\"background-color: lightblue;\">";
   html += "<h1>Current Time: <span id=\"currentTime\"></span></h1>";
 
   html += "<table>";
@@ -33,12 +29,12 @@ void handleRoot() {
 
   for (int i = 0; i < NUM_TIMERS; i++) {
     html += "<tr>";
-    html += "<td>Timer " + String(i + 1) + "</td>";
-    html += "<td>" + String(timerValues[i]) + " seconds</td>";
+    html += "<td>" + String(feste_Timer_Name[i]) + "</td>";
+    html += "<td>" + String(feste_Timer[i]) + " seconds</td>";
 
     if (timerRunning[i]) {
       unsigned long elapsedTime = millis() - timerStartTimes[i];
-      unsigned long timeLeft = (timerValues[i] * 1000 > elapsedTime) ? (timerValues[i] * 1000 - elapsedTime) : 0;
+      unsigned long timeLeft = (feste_Timer[i] * 1000 > elapsedTime) ? (feste_Timer[i] * 1000 - elapsedTime) : 0;
       int secondsLeft = timeLeft / 1000;
       html += "<td><span id=\"timer" + String(i) + "\">" + String(secondsLeft) + "</span> seconds</td>";
 
@@ -84,10 +80,22 @@ void handleRoot() {
   html += "</table>";
 
   html += "<br><br><form method=\"get\" action=\"/set\">";
-  html += "Set Timer 5 Value: <input type=\"text\" name=\"timer5\">";
+  html += "Set Timer 5 Value:  <input type=\"text\" name=\"timer5\">";
   html += "<input type=\"submit\" value=\"Set\">";
   html += "<br><br>";
-  html += "Set Timer 6 Value: <input type=\"text\" name=\"timer6\">";
+  html += "Set Timer 6 Value:  <input type=\"text\" name=\"timer6\">";
+  html += "<input type=\"submit\" value=\"Set\">";
+  html += "<br><br>";
+  html += "Set Timer 7 Value:  <input type=\"text\" name=\"timer7\">";
+  html += "<input type=\"submit\" value=\"Set\">";
+  html += "<br><br>";
+  html += "Set Timer 8 Value:  <input type=\"text\" name=\"timer8\">";
+  html += "<input type=\"submit\" value=\"Set\">";
+  html += "<br><br>";
+  html += "Set Timer 9 Value:  <input type=\"text\" name=\"timer9\">";
+  html += "<input type=\"submit\" value=\"Set\">";
+  html += "<br><br>";
+  html += "Set Timer 10 Value: <input type=\"text\" name=\"timer10\">";
   html += "<input type=\"submit\" value=\"Set\">";
   html += "</form>";
 
@@ -99,6 +107,8 @@ void handleRoot() {
   html += "    if (xhr.readyState === 4 && xhr.status === 200) {";
   html += "      var timeData = JSON.parse(xhr.responseText);";
   html += "      document.getElementById('currentTime').textContent = timeData.currentTime;";
+  html += "      Date: " + String(D) + String(M) + String(Y);
+  html += "      Time: " + String(h) + String(m) + String(s);
 
   for (int i = 0; i < NUM_TIMERS; i++) {
     html += "      document.getElementById('timer" + String(i) + "').textContent = timeData.timers.timer" + String(i) + ";";
@@ -118,15 +128,14 @@ void handleRoot() {
 
 
 void handleTime() {
-  //String currentTime = timeClient.getFormattedTime();
 
   String json = "{";
-  //json += "\"currentTime\":\"" + currentTime + "\",";
+  json += "\"Time\":\"" + String(h) + String(m) + String(s)"\",";
   json += "\"timers\": {";
 
   for (int i = 0; i < NUM_TIMERS; i++) {
     unsigned long elapsedTime = millis() - timerStartTimes[i];
-    unsigned long timeLeft = (timerValues[i] * 1000 > elapsedTime) ? (timerValues[i] * 1000 - elapsedTime) : 0;
+    unsigned long timeLeft = (feste_Timer[i] * 1000 > elapsedTime) ? (feste_Timer[i] * 1000 - elapsedTime) : 0;
     int secondsLeft = timeLeft / 1000;
 
     json += "\"timer" + String(i) + "\": " + String(secondsLeft);
@@ -143,7 +152,7 @@ void handleTime() {
 
 void handleStartStop() {
   String action = server.uri();
-  int timerIndex = action.substring(6).toInt() - 1; // Extract timer index from URI
+  int timerIndex = action.substring(10).toInt() - 1; // Extract timer index from URI
 
   if (timerIndex >= 0 && timerIndex < NUM_TIMERS) {
     if (action.startsWith("/start")) {
@@ -162,13 +171,30 @@ void handleStartStop() {
 void handleSet() {
   String timer5Value = server.arg("timer5");
   String timer6Value = server.arg("timer6");
+  String timer7Value = server.arg("timer7");
+  String timer8Value = server.arg("timer8");
+  String timer9Value = server.arg("timer9");
+  String timer10Value = server.arg("timer10");
 
   if (timer5Value.length() > 0) {
-    timerValues[NUM_TIMERS - 2] = timer5Value.toInt();
+    feste_Timer[NUM_TIMERS - 6] = timer5Value.toInt();
   }
 
   if (timer6Value.length() > 0) {
-    timerValues[NUM_TIMERS - 1] = timer6Value.toInt();
+    feste_Timer[NUM_TIMERS - 5] = timer6Value.toInt();
+  }
+
+  if (timer7Value.length() > 0) {
+    feste_Timer[NUM_TIMERS - 4] = timer6Value.toInt();
+  }
+    if (timer8Value.length() > 0) {
+    feste_Timer[NUM_TIMERS - 3] = timer6Value.toInt();
+  }
+    if (timer9Value.length() > 0) {
+    feste_Timer[NUM_TIMERS - 2] = timer6Value.toInt();
+  }
+    if (timer10Value.length() > 0) {
+    feste_Timer[NUM_TIMERS - 1] = timer6Value.toInt();
   }
 
   server.sendHeader("Location", "/");
@@ -182,14 +208,23 @@ void web_browser_begin() {
   server.on("/start2", handleStartStop);
   server.on("/start3", handleStartStop);
   server.on("/start4", handleStartStop);
+  server.on("/start5", handleStartStop);
+  server.on("/start6", handleStartStop);
+  server.on("/start7", handleStartStop);
+  server.on("/start8", handleStartStop);
+  server.on("/start9", handleStartStop);
+  server.on("/start10", handleStartStop);
+
   server.on("/stop1", handleStartStop);
   server.on("/stop2", handleStartStop);
   server.on("/stop3", handleStartStop);
   server.on("/stop4", handleStartStop);
-  server.on("/start5", handleStartStop);
-  server.on("/start6", handleStartStop);
   server.on("/stop5", handleStartStop);
   server.on("/stop6", handleStartStop);
+  server.on("/stop7", handleStartStop);
+  server.on("/stop8", handleStartStop);
+  server.on("/stop9", handleStartStop);
+  server.on("/stop10", handleStartStop);
   server.on("/set", handleSet);
 
   server.begin();
