@@ -381,7 +381,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
     unsigned long t5_ = t[4]/t5;
 
     if(neopixel_active){
-        neo.setPixelColor(7, white);//power-led
+        neo.setPixelColor(7, green);//power-led
         if(wi_fi){
             if(wi_fi_act){
                 neo.setPixelColor(6, green);
