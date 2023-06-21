@@ -53,7 +53,7 @@ int ledoff_click = 0;
 #define Button_30s 15
 #define Button_1min 16
 #define Button_5min 17
-#define Button_15min 18
+#define Button_15min 2
 //rotary
 #define Rotary_IN1 14
 #define Rotary_IN2 27
