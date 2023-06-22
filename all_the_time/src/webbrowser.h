@@ -110,7 +110,7 @@ void handleRoot() {
   html += "}";
   html += "updateTime();";  // Call updateTime() when the page finishes loading
   html += "setInterval(updateTime, 1000);";  // Update time every second
-  html += "</script>";
+  html += "</script>setTimeout(function() { location.reload(); }, 5000);</script>";
   html += "</body></html>";
 
   server.send(200, "text/html", html);
