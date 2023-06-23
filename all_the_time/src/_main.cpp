@@ -48,6 +48,7 @@ int minute;
 int second;
 unsigned long rtc_last_sync = 0;
 int ledoff_click = 0;
+int rotary_move = 0;
 
 //buttons
 #define Button_30s 15
@@ -140,81 +141,83 @@ void loop() {
   //OLED Anzeige
   display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi_act, &timer_out, timer, timer_pause);
   
-  //rotary drehung
-  encoder.tick();
-  unsigned int newposition = encoder.getPosition();
+  if(!rotary_move){
+    //rotary drehung
+    encoder.tick();
+    unsigned int newposition = encoder.getPosition();
 
-  if(rotary != newposition){//Rotary bewegung
-    last_action = actual_Millis;
-    if(menue == 8){//timer einstellen
-      position = 1;
-      switch (act_timer)
-      {
-      case 0:
-        if(newposition < rotary && timer_1 > 0){
-          timer_1 -= 1000;
-        }
-        else if (newposition > rotary && timer_1 < 86400000){
-          timer_1 += 1000;
-        }
-        break;
+    if(rotary != newposition){//Rotary bewegung
+      last_action = actual_Millis;
+      if(menue == 8){//timer einstellen
+        position = 1;
+        switch (act_timer)
+        {
+        case 0:
+          if(newposition < rotary && timer_1 > 0){
+            timer_1 -= 1000;
+          }
+          else if (newposition > rotary && timer_1 < 86400000){
+            timer_1 += 1000;
+          }
+          break;
+          
+        case 1:
+          if(newposition < rotary && timer_2 > 0){
+            timer_2 -= 1000;
+          }
+          else if (newposition > rotary && timer_2 < 86400000){
+            timer_2 += 1000;
+          }
+          break;
+          
+        case 2:
+          if(newposition < rotary && timer_3 > 0){
+            timer_3 -= 1000;
+          }
+          else if (newposition > rotary && timer_3 < 86400000){
+            timer_3 += 1000;
+          }
+          break;
+          
+        case 3:
+          if(newposition < rotary && timer_4 > 0){
+            timer_4 -= 1000;
+          }
+          else if (newposition > rotary && timer_4 < 86400000){
+            timer_4 += 1000;
+          }
+          break;
+          
+        case 4:
+          if(newposition < rotary && timer_5 > 0){
+            timer_5 -= 1000;
+          }
+          else if (newposition > rotary && timer_5 < 86400000){
+            timer_5 += 1000;
+          }
+          break;
         
-      case 1:
-        if(newposition < rotary && timer_2 > 0){
-          timer_2 -= 1000;
+        default:
+          break;
         }
-        else if (newposition > rotary && timer_2 < 86400000){
-          timer_2 += 1000;
-        }
-        break;
-        
-      case 2:
-        if(newposition < rotary && timer_3 > 0){
-          timer_3 -= 1000;
-        }
-        else if (newposition > rotary && timer_3 < 86400000){
-          timer_3 += 1000;
-        }
-        break;
-        
-      case 3:
-        if(newposition < rotary && timer_4 > 0){
-          timer_4 -= 1000;
-        }
-        else if (newposition > rotary && timer_4 < 86400000){
-          timer_4 += 1000;
-        }
-        break;
-        
-      case 4:
-        if(newposition < rotary && timer_5 > 0){
-          timer_5 -= 1000;
-        }
-        else if (newposition > rotary && timer_5 < 86400000){
-          timer_5 += 1000;
-        }
-        break;
-      
-      default:
-        break;
       }
-    }
-    else if(menue != 0){
-      if(newposition < rotary && position > 1){
-        position--;
-        neopixel_rotary_rotate(-1);
+      else if(menue != 0){
+        if(newposition < rotary && position > 1){
+          position--;
+          neopixel_rotary_rotate(-1);
+        }
+        else if (newposition > rotary && position < position_max){
+          position++;
+          neopixel_rotary_rotate(1);
+        }
       }
-      else if (newposition > rotary && position < position_max){
-        position++;
-        neopixel_rotary_rotate(1);
+      else if(menue == 0){
+        menue = last_menue;
+        position = 1;
       }
+      rotary = newposition;
+      rotary_move++; 
     }
-    else if(menue == 0){
-      menue = last_menue;
-      position = 1;
-    }
-    rotary = newposition;
-    
   }
 
   if(digitalRead(Rotary_IN3) == LOW && menue == 9 && rotary_click == 0){//Rotary Button
@@ -524,6 +527,10 @@ void loop() {
 
   if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 500){//reset ledoff_click
     ledoff_click = 0;
+  }
+
+  if(rotary_move && actual_Millis >= last_action + 50){
+    rotary_move = 0;
   }
 
   last_millis = actual_Millis;

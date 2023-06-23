@@ -9,6 +9,12 @@ WebServer server(80);
 const int NUM_TIMERS = 10;
 extern String feste_Timer_Name[];
 extern unsigned long feste_Timer[];
+extern int Y;
+extern int M;
+extern int D;
+extern int h;
+extern int m;
+extern int s;
 bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
 unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
@@ -129,7 +135,7 @@ void handleRoot() {
 void handleTime() {
 
   String json = "{";
-  json += "\"Time\":\"" + String(h) + String(m) + String(s)"\",";
+  json += "\"Time\":\"" + String(h) + String(m) + String(s) + "\",";
   json += "\"timers\": {";
 
   for (int i = 0; i < NUM_TIMERS; i++) {
