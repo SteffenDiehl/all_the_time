@@ -124,7 +124,7 @@ void loop() {
 
   //Webserver
   if(Web_Server && !Web_Server_act){
-    web_browser_begin();
+    web_browser_begin(feste_Timer, feste_Timer_Name);
     Web_Server_act = 1;
   }
   else if(!Web_Server && Web_Server_act){
@@ -133,7 +133,7 @@ void loop() {
   }
 
   if(Web_Server_act){
-    web_browser();
+    web_browser(Y, M, D, h, m, s, feste_Timer, feste_Timer_Name);
   }
 
   //OLED Anzeige

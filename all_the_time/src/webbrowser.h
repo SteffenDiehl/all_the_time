@@ -6,14 +6,14 @@
 
 WebServer server(80);
 const int NUM_TIMERS = 10;
-extern String feste_Timer_Name[];
-extern unsigned long feste_Timer[];
-extern int Y;
-extern int M;
-extern int D;
-extern int h;
-extern int m;
-extern int s;
+String _feste_Timer_Name[10] = {};
+unsigned long _feste_Timer[10] = {};
+int Y;
+int M;
+int D;
+int h;
+int m;
+int s;
 bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
 unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
@@ -33,12 +33,12 @@ void handleRoot() {
 
   for (int i = 0; i < NUM_TIMERS; i++) {
     html += "<tr>";
-    html += "<td>" + String(feste_Timer_Name[i]) + "</td>";
-    html += "<td>" + String(feste_Timer[i]) + " seconds</td>";
+    html += "<td>" + String(_feste_Timer_Name[i]) + "</td>";
+    html += "<td>" + String(_feste_Timer[i]) + " seconds</td>";
 
     if (timerRunning[i]) {
       unsigned long elapsedTime = millis() - timerStartTimes[i];
-      unsigned long timeLeft = (feste_Timer[i] * 1000 > elapsedTime) ? (feste_Timer[i] * 1000 - elapsedTime) : 0;
+      unsigned long timeLeft = (_feste_Timer[i] * 1000 > elapsedTime) ? (_feste_Timer[i] * 1000 - elapsedTime) : 0;
       int secondsLeft = timeLeft / 1000;
       html += "<td><span id=\"timer" + String(i) + "\">" + String(secondsLeft) + "</span> seconds</td>";
 
@@ -139,7 +139,7 @@ void handleTime() {
 
   for (int i = 0; i < NUM_TIMERS; i++) {
     unsigned long elapsedTime = millis() - timerStartTimes[i];
-    unsigned long timeLeft = (feste_Timer[i] * 1000 > elapsedTime) ? (feste_Timer[i] * 1000 - elapsedTime) : 0;
+    unsigned long timeLeft = (_feste_Timer[i] * 1000 > elapsedTime) ? (_feste_Timer[i] * 1000 - elapsedTime) : 0;
     int secondsLeft = timeLeft / 1000;
 
     json += "\"timer" + String(i) + "\": " + String(secondsLeft);
@@ -181,31 +181,36 @@ void handleSet() {
   String timer10Value = server.arg("timer10");
 
   if (timer5Value.length() > 0) {
-    feste_Timer[NUM_TIMERS - 6] = timer5Value.toInt();
+    _feste_Timer[NUM_TIMERS - 6] = timer5Value.toInt();
   }
 
   if (timer6Value.length() > 0) {
-    feste_Timer[NUM_TIMERS - 5] = timer6Value.toInt();
+    _feste_Timer[NUM_TIMERS - 5] = timer6Value.toInt();
   }
 
   if (timer7Value.length() > 0) {
-    feste_Timer[NUM_TIMERS - 4] = timer6Value.toInt();
+    _feste_Timer[NUM_TIMERS - 4] = timer6Value.toInt();
   }
     if (timer8Value.length() > 0) {
-    feste_Timer[NUM_TIMERS - 3] = timer6Value.toInt();
+    _feste_Timer[NUM_TIMERS - 3] = timer6Value.toInt();
   }
     if (timer9Value.length() > 0) {
-    feste_Timer[NUM_TIMERS - 2] = timer6Value.toInt();
+    _feste_Timer[NUM_TIMERS - 2] = timer6Value.toInt();
   }
     if (timer10Value.length() > 0) {
-    feste_Timer[NUM_TIMERS - 1] = timer6Value.toInt();
+    _feste_Timer[NUM_TIMERS - 1] = timer6Value.toInt();
   }
 
   server.sendHeader("Location", "/");
   server.send(302, "text/plain", "");
 }
 
-void web_browser_begin() {
+void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}) {
+  for(int i = 0; i<10; i++){
+    _feste_Timer[i] = ft[i];
+    _feste_Timer_Name[i] = ftn[i];
+  }
+
   server.on("/", handleRoot);
   server.on("/time", handleTime);
   server.on("/start1", handleStartStop);
@@ -238,6 +243,17 @@ void web_browser_end(){
   server.close();
 }
 
-void web_browser() {
+void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s, unsigned long *ft, String *ftn) {
+  Y = _Y;
+  M = _M;
+  D = _D;
+  h = _h;
+  m = _m;
+  s = _s;
+  for(int i=0; i<10; i++){
+    ft[i] = _feste_Timer[i];
+    ftn[i] = _feste_Timer_Name[i];
+  }
+
   server.handleClient();
 }
