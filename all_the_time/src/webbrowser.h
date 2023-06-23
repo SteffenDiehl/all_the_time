@@ -3,7 +3,6 @@
 #include <WebServer.h>
 #include <NTPClient.h>
 #include <WiFiUdp.h>
-#include <Day_Time.h>
 
 WebServer server(80);
 const int NUM_TIMERS = 10;
