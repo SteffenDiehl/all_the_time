@@ -8,7 +8,7 @@
 WebServer server(80);
 const int NUM_TIMERS = 10;
 extern String feste_Timer_Name[];
-extern unsinged long feste_Timer[];
+extern unsigned long feste_Timer[];
 bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
 unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
