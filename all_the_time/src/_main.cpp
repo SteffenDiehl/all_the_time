@@ -114,14 +114,12 @@ void loop() {
   }
 
     Wi_Fi_act = 1;
+    synchronizeRTC();
   }
   else if(!Wi_Fi && Wi_Fi_act){
     WiFi.disconnect();
 
     Wi_Fi_act = 0;
-  }
-  if(Wi_Fi_act){
-    synchronizeRTC();
   }
 
   //Webserver

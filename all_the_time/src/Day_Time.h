@@ -5,9 +5,9 @@
 #include <time.h>
 #include <NTPClient.h>
 
-RTC_DS3231 Rtc;             // RTC-Instanz
-WiFiUDP Udp;                // WiFiUDP-Instanz 
-NTPClient timeClient(Udp);  // NTPClient-Instanz
+RTC_DS3231 rtc;             // RTC-Instanz
+WiFiUDP udp;                // WiFiUDP-Instanz 
+NTPClient timeClient(udp);  // NTPClient-Instanz
 
 void synchronizeRTC()
 {
@@ -17,7 +17,7 @@ void synchronizeRTC()
   // RTC-Zeit mit NTP_Server synchronisieren
   if (timeClient.update())
   {
-    Rtc.adjust(timeClient.getEpochTime());
+    rtc.adjust(timeClient.getEpochTime());
   }
 
   // Verbindung schließen
@@ -27,14 +27,14 @@ void synchronizeRTC()
 void start_RTC()
 {
   Wire.begin();
-  Rtc.begin();
+  rtc.begin();
 
-  Rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 }
 
 void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
 {
-  DateTime now = Rtc.now();
+  DateTime now = rtc.now();
 
   *Y = now.year();
   *M = now.month();
@@ -42,5 +42,4 @@ void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
   *h = now.hour();
   *m = now.minute();
   *s = now.second();
-  
 }
