@@ -6,8 +6,8 @@
 
 WebServer server(80);
 const int NUM_TIMERS = 10;
-String _feste_Timer_Name[10] = {};
-unsigned long _feste_Timer[10] = {};
+String _feste_Timer_Name[NUM_TIMERS] = {};
+unsigned long _feste_Timer[NUM_TIMERS] = {};
 int Y;
 int M;
 int D;
@@ -21,6 +21,8 @@ bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false
 void handleRoot() {
   String html = "<html><body style=\"background-color: lightblue;\">";
   html += "<h1>Current Time: <span id=\"currentTime\"></span></h1>";
+  html += "<h3>Date: " + String(D) + String(M) + String(Y) + "</h3>";
+  html += "<h3>Time: " + String(h) + String(m) + String(s) + "</h3>";
 
   html += "<table>";
   html += "<tr>";
@@ -44,11 +46,11 @@ void handleRoot() {
 
       if (timeLeft > 0) {
         html += "<td style=\"color: yellow;\">Running</td>";
-        html += "<td><a href=\"/stop" + String(i + 1) + "\">Stop</a></td>";
+        html += "<td><a href=\"/stop" + String(_feste_Timer_Name[i +1]) + "\">Stop</a></td>";
         if (!timerExpired[i]) {
           // Update the status dynamically
           html += "<script>";
-          html += "document.getElementById('status" + String(i) + "').textContent = 'Running';";
+          html += "document.getElementById('status" + String(_feste_Timer_Name[i]) + "').textContent = 'Running';";
           html += "</script>";
         }
       } else {
@@ -58,14 +60,14 @@ void handleRoot() {
           timerExpired[i] = true;
           // Update the status dynamically
           html += "<script>";
-          html += "document.getElementById('status" + String(i) + "').textContent = 'Expired';";
+          html += "document.getElementById('status" + String(_feste_Timer_Name[i]) + "').textContent = 'Expired';";
           html += "</script>";
         } else {
           html += "<td style=\"color: red;\">Expired</td>";
-          html += "<td><a href=\"/start" + String(i + 1) + "\">Restart</a></td>";
+          html += "<td><a href=\"/start" + String(_feste_Timer_Name[i +1]) + "\">Restart</a></td>";
           // Update the status dynamically
           html += "<script>";
-          html += "document.getElementById('status" + String(i) + "').textContent = 'Expired';";
+          html += "document.getElementById('status" + String(_feste_Timer_Name[i]) + "').textContent = 'Expired';";
           html += "</script>";
         }
       }
@@ -84,24 +86,17 @@ void handleRoot() {
   html += "</table>";
 
   html += "<br><br><form method=\"get\" action=\"/set\">";
-  html += "Set Timer 5 Value:  <input type=\"text\" name=\"timer5\">";
-  html += "<input type=\"submit\" value=\"Set\">";
-  html += "<br><br>";
-  html += "Set Timer 6 Value:  <input type=\"text\" name=\"timer6\">";
-  html += "<input type=\"submit\" value=\"Set\">";
-  html += "<br><br>";
-  html += "Set Timer 7 Value:  <input type=\"text\" name=\"timer7\">";
-  html += "<input type=\"submit\" value=\"Set\">";
-  html += "<br><br>";
-  html += "Set Timer 8 Value:  <input type=\"text\" name=\"timer8\">";
-  html += "<input type=\"submit\" value=\"Set\">";
-  html += "<br><br>";
-  html += "Set Timer 9 Value:  <input type=\"text\" name=\"timer9\">";
-  html += "<input type=\"submit\" value=\"Set\">";
-  html += "<br><br>";
-  html += "Set Timer 10 Value: <input type=\"text\" name=\"timer10\">";
-  html += "<input type=\"submit\" value=\"Set\">";
-  html += "</form>";
+  for(int i = 4; i < NUM_TIMERS; i++){
+      html += "Set " + String(_feste_Timer_Name[i]) + " Name:  <input type=\"text\" name=\"" + String(_feste_Timer_Name[i]) + "_name\">";
+      html += "Value:  <input type=\"text\" name=\"" + String(_feste_Timer_Name[i]) + "_value\">";
+      html += "<input type=\"submit\" value=\"Set\">";
+      if(i < (NUM_TIMERS - 1)){
+        html += "<br><br>";
+      }
+      else{
+        html += "</form>";
+      }
+  }
 
   html += "<script>";
   html += "function updateTime() {";
@@ -111,9 +106,9 @@ void handleRoot() {
   html += "    if (xhr.readyState === 4 && xhr.status === 200) {";
   html += "      var timeData = JSON.parse(xhr.responseText);";
   html += "      document.getElementById('currentTime').textContent = timeData.currentTime;";
-  html += "      Date: " + String(D) + String(M) + String(Y);
-  html += "      Time: " + String(h) + String(m) + String(s);
+  html += "      ";
 
+  // Update the timer values dynamically
   for (int i = 0; i < NUM_TIMERS; i++) {
     html += "      document.getElementById('timer" + String(i) + "').textContent = timeData.timers.timer" + String(i) + ";";
   }
@@ -173,32 +168,17 @@ void handleStartStop() {
 }
 
 void handleSet() {
-  String timer5Value = server.arg("timer5");
-  String timer6Value = server.arg("timer6");
-  String timer7Value = server.arg("timer7");
-  String timer8Value = server.arg("timer8");
-  String timer9Value = server.arg("timer9");
-  String timer10Value = server.arg("timer10");
-
-  if (timer5Value.length() > 0) {
-    _feste_Timer[NUM_TIMERS - 6] = timer5Value.toInt();
-  }
-
-  if (timer6Value.length() > 0) {
-    _feste_Timer[NUM_TIMERS - 5] = timer6Value.toInt();
-  }
-
-  if (timer7Value.length() > 0) {
-    _feste_Timer[NUM_TIMERS - 4] = timer6Value.toInt();
-  }
-    if (timer8Value.length() > 0) {
-    _feste_Timer[NUM_TIMERS - 3] = timer6Value.toInt();
-  }
-    if (timer9Value.length() > 0) {
-    _feste_Timer[NUM_TIMERS - 2] = timer6Value.toInt();
-  }
-    if (timer10Value.length() > 0) {
-    _feste_Timer[NUM_TIMERS - 1] = timer6Value.toInt();
+  for(int i = 4; i < NUM_TIMERS; i++){
+    String timerName = server.arg(_feste_Timer_Name[i] + "_name");
+    String timerValue = server.arg(_feste_Timer_Name[i] + "_value");
+    
+    if (timerName.length() > 0) {
+      _feste_Timer_Name[i] = timerName;
+    }
+    
+    if (timerValue.length() > 0) {
+      _feste_Timer[i] = timerValue.toInt();
+    }
   }
 
   server.sendHeader("Location", "/");
@@ -213,27 +193,14 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}) {
 
   server.on("/", handleRoot);
   server.on("/time", handleTime);
-  server.on("/start1", handleStartStop);
-  server.on("/start2", handleStartStop);
-  server.on("/start3", handleStartStop);
-  server.on("/start4", handleStartStop);
-  server.on("/start5", handleStartStop);
-  server.on("/start6", handleStartStop);
-  server.on("/start7", handleStartStop);
-  server.on("/start8", handleStartStop);
-  server.on("/start9", handleStartStop);
-  server.on("/start10", handleStartStop);
-
-  server.on("/stop1", handleStartStop);
-  server.on("/stop2", handleStartStop);
-  server.on("/stop3", handleStartStop);
-  server.on("/stop4", handleStartStop);
-  server.on("/stop5", handleStartStop);
-  server.on("/stop6", handleStartStop);
-  server.on("/stop7", handleStartStop);
-  server.on("/stop8", handleStartStop);
-  server.on("/stop9", handleStartStop);
-  server.on("/stop10", handleStartStop);
+  for (int i = 0; i < numTimers; i++) {
+    char start[50];
+    char stop[50];
+    sprintf(start, "/start %s", _feste_Timer_Name[i]);
+    server.on(start, handleStartStop);
+    sprintf(stop, "/stop %s", _feste_Timer_Name[i]);
+    server.on(stop, handleStartStop);
+  }
   server.on("/set", handleSet);
 
   server.begin();
