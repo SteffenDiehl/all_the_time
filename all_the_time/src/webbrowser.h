@@ -193,7 +193,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}) {
 
   server.on("/", handleRoot);
   server.on("/time", handleTime);
-  for (int i = 0; i < 9; i++) {
+  for (int i = 0; i < NUM_TIMERS; i++) {
     char start[50];
     char stop[50];
     sprintf(start, "/start %s", _feste_Timer_Name[i]);
