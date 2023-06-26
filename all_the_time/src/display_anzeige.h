@@ -1078,13 +1078,11 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
         default://Start und Standby Bildschirm
             display.setCursor(1, 10);
             display.setTextSize(2);
-            display.setCursor(22, 5);
-            display.printf("Event Horizon\n");
+            display.setCursor(35, 5);
+            display.printf("Event\n  Horizon\n");
             display.setTextSize(1);
-            display.setCursor(55, 25);
-            display.printf("von\n");
-            display.setCursor(22, 35);
-            display.printf("Team Buiskuit");
+            display.printf("         von\n");
+            display.printf("    Team Buiskuit");
 
             break;
         }
