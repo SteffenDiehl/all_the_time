@@ -508,15 +508,15 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
                 break;
             
             case 2:
-                timer_output(*t2);
-                break;
-            
-            case 3:
                 timer_output(*t3);
                 break;
             
-            case 4:
+            case 3:
                 timer_output(*t4);
+                break;
+            
+            case 4:
+                timer_output(*t5);
                 break;
             
             default:
