@@ -525,15 +525,15 @@ void loop() {
   neopixel_rotary_press(rotary_click);
   neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz, actual_Millis);
 
-  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 100){//reset rotary_click
+  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 50){//reset rotary_click
     rotary_click = 0;
   }
 
-  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 100){//reset ledoff_click
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 50){//reset ledoff_click
     ledoff_click = 0;
   }
 
-  if(rotary_move && actual_Millis >= last_action + 50){
+  if(rotary_move && actual_Millis >= last_action + 25){
     rotary_move = 0;
   }
 
