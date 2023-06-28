@@ -62,6 +62,7 @@ int rotary_move = 0;
 //neopixel
 #define neopixel_pin 5
 #define neopixel_anz 56
+#define summer 2
 
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
@@ -77,6 +78,7 @@ void setup() {
   pinMode(Button_5min, INPUT);
   pinMode(Button_15min, INPUT);
   pinMode(Rotary_IN3, INPUT);
+  pinMode(summer, OUTPUT);
   Serial.begin(115200);
 
   //display
@@ -509,6 +511,10 @@ void loop() {
     default:
       break;
     }
+  }
+
+  if(timer_out != 0){
+    digitalWrite(summer, HIGH);
   }
 
   if((last_action+60000) <= actual_Millis && menue != 0 && timer_out == 0){//Bildschirmschoner
