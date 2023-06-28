@@ -39,7 +39,7 @@ void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
   *Y = now.year();
   *M = now.month();
   *D = now.day();
-  *h = now.hour();
+  *h = now.hour() + 2;
   *m = now.minute();
   *s = now.second();
 }
