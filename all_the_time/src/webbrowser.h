@@ -18,12 +18,20 @@ bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false
 unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
 
+unsigned long timer_1 = 0;
+unsigned long timer_2 = 0;
+unsigned long timer_3 = 0;
+unsigned long timer_4 = 0;
+unsigned long timer_5 = 0;
+unsigned long timer[5];
+int timer_pause[5] = {0, 0, 0, 0, 0};
+
 void handleRoot() {
   String html = "<html><body style=\"background-color: lightblue;\">";
   html += "<h1>Current Time: <span id=\"currentTime\"></span></h1>";
   html += "<h3>Date: " + String(D) + String(M) + String(Y) + "</h3>";
   html += "<h3>Time: " + String(h) + String(m) + String(s) + "</h3>";
-
+  html += "<h4>Team Biscuit <h4>";
   html += "<table>";
   html += "<tr>";
   html += "<th>Timer</th>";
@@ -32,7 +40,14 @@ void handleRoot() {
   html += "<th>Status</th>";
   html += "<th>Actions</th>";
   html += "</tr>";
-
+  html += "<th>ESP-Timer</th>";
+  for (int i = 0; i < 5; i++){
+    html += "<td>Timer"+ String(i) + "</td>";
+    html += "<td>" + String(timer[i]) + " seconds</td>";
+    html += "</tr>";
+  }
+  html += "<th>Web-Timer</th>";
+  html += "<tr>";
   for (int i = 0; i < NUM_TIMERS; i++) {
     html += "<tr>";
     html += "<td>" + String(_feste_Timer_Name[i]) + "</td>";
@@ -177,7 +192,7 @@ void handleSet() {
     }
     
     if (timerValue.length() > 0) {
-      _feste_Timer[i] = timerValue.toInt();
+      _feste_Timer[i] = timerValue.toInt() * 1000;
     }
   }
 
