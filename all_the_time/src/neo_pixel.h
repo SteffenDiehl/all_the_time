@@ -2,9 +2,9 @@
 
 Adafruit_NeoPixel neo(56, 5, NEO_GRB + NEO_KHZ800);
 
-uint32_t red = (255, 255, 255);
+uint32_t red = (255, 0, 0);
 uint32_t yellow = (255, 255, 0);
-uint32_t green = (0, 204, 0);
+uint32_t green = (0, 255, 0);
 uint32_t white = (255, 255, 255);
 uint32_t off = (0, 0, 0);
 
@@ -382,6 +382,7 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
 
     if(neopixel_active){
         neo.setPixelColor(7, green);//power-led
+        neo.show();
         if(wi_fi){
             if(wi_fi_act){
                 neo.setPixelColor(6, green);
@@ -393,82 +394,88 @@ void neopixel_leiste(int wi_fi, int wi_fi_act, int web_server, int web_server_ac
         else{
             neo.setPixelColor(6, off);
         }
+        neo.show();
 
         if(web_server){
             if(web_server_act){
-                neo.setPixelColor(6, green);
+                neo.setPixelColor(5, green);
             }
             else{
-                neo.setPixelColor(6, red);
+                neo.setPixelColor(5, red);
             }
         }
         else{
-            neo.setPixelColor(6, off);
+            neo.setPixelColor(5, off);
         }
+        neo.show();
 
         if(t[4] == 0){
-            neo.setPixelColor(5, off);
+            neo.setPixelColor(4, off);
         }
         else if(t5_ > 0.6){
-            neo.setPixelColor(5, green);
+            neo.setPixelColor(4, green);
         }
         else if(t5_ > 0.3){
-            neo.setPixelColor(5, yellow);
+            neo.setPixelColor(4, yellow);
         }
         else{
-            neo.setPixelColor(5, red);
+            neo.setPixelColor(4, red);
         }
+        neo.show();
 
         if(t[3] == 0){
-            neo.setPixelColor(5, off);
+            neo.setPixelColor(3, off);
         }
         else if(t4_ > 0.6){
-            neo.setPixelColor(5, green);
+            neo.setPixelColor(3, green);
         }
         else if(t4_ > 0.3){
-            neo.setPixelColor(5, yellow);
+            neo.setPixelColor(3, yellow);
         }
         else{
-            neo.setPixelColor(5, red);
+            neo.setPixelColor(3, red);
         }
+        neo.show();
 
         if(t[2] == 0){
-            neo.setPixelColor(5, off);
+            neo.setPixelColor(2, off);
         }
         else if(t3_ > 0.6){
-            neo.setPixelColor(5, green);
+            neo.setPixelColor(2, green);
         }
         else if(t3_ > 0.3){
-            neo.setPixelColor(5, yellow);
+            neo.setPixelColor(2, yellow);
         }
         else{
-            neo.setPixelColor(5, red);
+            neo.setPixelColor(2, red);
         }
+        neo.show();
 
         if(t[1] == 0){
-            neo.setPixelColor(5, off);
+            neo.setPixelColor(1, off);
         }
         else if(t2_ > 0.6){
-            neo.setPixelColor(5, green);
+            neo.setPixelColor(1, green);
         }
         else if(t2_ > 0.3){
-            neo.setPixelColor(5, yellow);
+            neo.setPixelColor(1, yellow);
         }
         else{
-            neo.setPixelColor(5, red);
+            neo.setPixelColor(1, red);
         }
+        neo.show();
 
         if(t[0] == 0){
-            neo.setPixelColor(5, off);
+            neo.setPixelColor(0, off);
         }
         else if(t1_ > 0.6){
-            neo.setPixelColor(5, green);
+            neo.setPixelColor(0, green);
         }
         else if(t1_ > 0.3){
-            neo.setPixelColor(5, yellow);
+            neo.setPixelColor(0, yellow);
         }
         else{
-            neo.setPixelColor(5, red);
+            neo.setPixelColor(0, red);
         }
 
         neo.show();
