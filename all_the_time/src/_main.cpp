@@ -394,7 +394,7 @@ void loop() {
     {
       timer[i] = 0;
       timer_out++;
-      menue == 21;
+      menue = 21;
     }
     
   }
@@ -513,7 +513,7 @@ void loop() {
     }
   }
 
-  if(timer_out != 0){
+  if(!timer_out){
     digitalWrite(summer, HIGH);
   }
 
