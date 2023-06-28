@@ -62,14 +62,15 @@ int rotary_move = 0;
 //neopixel
 #define neopixel_pin 5
 #define neopixel_anz 56
+#define summer 2
 
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "Seis";
-const char* password = "Grandgadfly265";
+const char* ssid = "Divine";
+const char* password = "Asterius";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -77,6 +78,7 @@ void setup() {
   pinMode(Button_5min, INPUT);
   pinMode(Button_15min, INPUT);
   pinMode(Rotary_IN3, INPUT);
+  pinMode(summer, OUTPUT);
   Serial.begin(115200);
 
   //display
@@ -511,6 +513,10 @@ void loop() {
     }
   }
 
+  if(timer_out != 0){
+    digitalWrite(summer, HIGH);
+  }
+
   if((last_action+60000) <= actual_Millis && menue != 0 && timer_out == 0){//Bildschirmschoner
     last_menue = menue;
     menue = 0;
@@ -519,15 +525,15 @@ void loop() {
   neopixel_rotary_press(rotary_click);
   neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz, actual_Millis);
 
-  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 100){//reset rotary_click
+  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 50){//reset rotary_click
     rotary_click = 0;
   }
 
-  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 100){//reset ledoff_click
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 50){//reset ledoff_click
     ledoff_click = 0;
   }
 
-  if(rotary_move && actual_Millis >= last_action + 50){
+  if(rotary_move && actual_Millis >= last_action + 25){
     rotary_move = 0;
   }
 
