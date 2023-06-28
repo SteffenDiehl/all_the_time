@@ -18,13 +18,13 @@ bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false
 unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
 
-unsigned long timer_1 = 0;
-unsigned long timer_2 = 0;
-unsigned long timer_3 = 0;
-unsigned long timer_4 = 0;
-unsigned long timer_5 = 0;
-unsigned long timer[5];
-int timer_pause[5] = {0, 0, 0, 0, 0};
+unsigned long _timer_1 = 0;
+unsigned long _timer_2 = 0;
+unsigned long _timer_3 = 0;
+unsigned long _timer_4 = 0;
+unsigned long _timer_5 = 0;
+unsigned long _timer[5];
+int _timer_pause[5] = {0, 0, 0, 0, 0};
 
 void handleRoot() {
   String html = "<html><body style=\"background-color: lightblue;\">";
@@ -43,7 +43,7 @@ void handleRoot() {
   html += "<th>ESP-Timer</th>";
   for (int i = 0; i < 5; i++){
     html += "<td>Timer"+ String(i) + "</td>";
-    html += "<td>" + String(timer[i]) + " seconds</td>";
+    html += "<td>" + String(_timer[i]) + " seconds</td>";
     html += "</tr>";
   }
   html += "<th>Web-Timer</th>";
