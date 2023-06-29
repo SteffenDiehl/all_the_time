@@ -7,7 +7,7 @@
 
 RTC_DS3231 rtc;             // RTC-Instanz
 WiFiUDP udp;                // WiFiUDP-Instanz 
-NTPClient timeClient(udp);  // NTPClient-Instanz
+NTPClient timeClient(udp,"de.pool.ntp.org", 7200);  // NTPClient-Instanz
 
 void synchronizeRTC()
 {
@@ -39,7 +39,7 @@ void ac_time(int *Y, int *M, int *D, int *h, int *m, int *s)
   *Y = now.year();
   *M = now.month();
   *D = now.day();
-  *h = now.hour() + 2;
+  *h = now.hour();
   *m = now.minute();
   *s = now.second();
 }
