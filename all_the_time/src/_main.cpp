@@ -47,6 +47,7 @@ int hour;
 int minute;
 int second;
 unsigned long rtc_last_sync = 0;
+int button_click = 0;
 int ledoff_click = 0;
 int rotary_move = 0;
 
@@ -250,7 +251,7 @@ void loop() {
     position = 1;
   }
 
-  if(digitalRead(Button_30s) && digitalRead(Button_15min)){//neopixel on/off
+  if(digitalRead(Button_30s) && digitalRead(Button_15min) && ledoff_click == 0){//neopixel on/off
     ledoff();
     switch (act_timer)
     {
@@ -288,7 +289,7 @@ void loop() {
       break;
     }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_1min)){//brightness+
+  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness+
     brighness_decrease();
     switch (act_timer)
     {
@@ -326,7 +327,7 @@ void loop() {
       break;
     }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_5min)){//brightness-
+  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness-
     brightness_increase();
     switch (act_timer)
     {
@@ -365,7 +366,7 @@ void loop() {
     }
   }
   else{
-  if(digitalRead(Button_30s) && act_timer != 5 && ledoff_click == 0){//new timer +30s
+  if(digitalRead(Button_30s) && act_timer != 5 && !button_click){//new timer +30s
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -396,7 +397,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_1min) && act_timer != 5 && ledoff_click == 0){//new timer +1min
+  if(digitalRead(Button_1min) && act_timer != 5 && !button_click){//new timer +1min
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -427,7 +428,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_5min) && act_timer != 5 && ledoff_click == 0){//new timer +5min
+  if(digitalRead(Button_5min) && act_timer != 5 && !button_click){//new timer +5min
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -458,7 +459,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_15min) && act_timer != 5 && ledoff_click == 0){//new timer +15min
+  if(digitalRead(Button_15min) && act_timer != 5 && !button_click){//new timer +15min
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -637,6 +638,10 @@ void loop() {
   }
 
   if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 50){//reset ledoff_click
+    ledoff_click = 0;
+  }
+
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && button_click && actual_Millis >= last_action + 50){//reset ledoff_click
     ledoff_click = 0;
   }
 
