@@ -289,7 +289,7 @@ void loop() {
       break;
     }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness+
+  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness-
     brighness_decrease();
     switch (act_timer)
     {
@@ -327,7 +327,7 @@ void loop() {
       break;
     }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness-
+  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness+
     brightness_increase();
     switch (act_timer)
     {
