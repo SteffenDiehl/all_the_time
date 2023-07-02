@@ -102,7 +102,7 @@ void handleRoot() {
   html += "</table>";
 
   html += "<br><br><form method=\"get\" action=\"/set\">";
-  for(int i = 4; i < NUM_TIMERS; i++){
+  for(int i = 5; i < NUM_TIMERS; i++){
       html += "Set " + String(_feste_Timer_Name[i]) + " Name:  <input type=\"text\" name=\"" + String(_feste_Timer_Name[i]) + "_name\">";
       html += "Value:  <input type=\"text\" name=\"" + String(_feste_Timer_Name[i]) + "_value\">";
       html += "<input type=\"submit\" value=\"Set\">";
