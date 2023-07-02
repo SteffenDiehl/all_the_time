@@ -69,8 +69,8 @@ int rotary_move = 0;
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "Divine";
-const char* password = "Asterius";
+const char* ssid = "JustDiehlWithIt";
+const char* password = "DiehlWithIt";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -126,7 +126,7 @@ void loop() {
 
   //Webserver
   if(Web_Server && !Web_Server_act){
-    web_browser_begin(feste_Timer, feste_Timer_Name);
+    web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer);
     Web_Server_act = 1;
   }
   else if(!Web_Server && Web_Server_act){

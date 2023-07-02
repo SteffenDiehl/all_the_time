@@ -7,22 +7,31 @@
 WebServer server(80);
 const int NUM_TIMERS = 10;
 String _feste_Timer_Name[NUM_TIMERS] = {};
+unsigned long  *pointer_feste_Timer_Name;
 unsigned long _feste_Timer[NUM_TIMERS] = {};
+unsigned long  *pointer_feste_timer;
+String *pointer_feste_timer_name;
 int Y;
 int M;
 int D;
 int h;
 int m;
 int s;
-bool timerRunning[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
-unsigned long timerStartTimes[NUM_TIMERS] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-bool timerExpired[NUM_TIMERS] = {false, false, false, false, false, false, false, false, false, false};
+bool timerRunning[5] = {false, false, false, false, false};
+unsigned long timerStartTimes[5] = {0, 0, 0, 0, 0};
+bool timerExpired[5] = {false, false, false, false, false};
 
+unsigned long *pointer_timer_1;
 unsigned long _timer_1 = 0;
+unsigned long *pointer_timer_2;
 unsigned long _timer_2 = 0;
+unsigned long *pointer_timer_3;
 unsigned long _timer_3 = 0;
+unsigned long *pointer_timer_4;
 unsigned long _timer_4 = 0;
+unsigned long *pointer_timer_5;
 unsigned long _timer_5 = 0;
+unsigned long *pointer_timer;
 unsigned long _timer[5];
 int _timer_pause[5] = {0, 0, 0, 0, 0};
 
@@ -40,32 +49,24 @@ void handleRoot() {
   html += "<th>Status</th>";
   html += "<th>Actions</th>";
   html += "</tr>";
-  html += "<th>ESP-Timer</th>";
   for (int i = 0; i < 5; i++){
     html += "<td>Timer"+ String(i) + "</td>";
     html += "<td>" + String(_timer[i]) + " seconds</td>";
     html += "</tr>";
-  }
-  html += "<th>Web-Timer</th>";
-  html += "<tr>";
-  for (int i = 0; i < NUM_TIMERS; i++) {
-    html += "<tr>";
-    html += "<td>" + String(_feste_Timer_Name[i]) + "</td>";
-    html += "<td>" + String(_feste_Timer[i]) + " seconds</td>";
 
     if (timerRunning[i]) {
       unsigned long elapsedTime = millis() - timerStartTimes[i];
-      unsigned long timeLeft = (_feste_Timer[i] * 1000 > elapsedTime) ? (_feste_Timer[i] * 1000 - elapsedTime) : 0;
+      unsigned long timeLeft = (_timer[i] * 1000 > elapsedTime) ? (_timer[i] * 1000 - elapsedTime) : 0;
       int secondsLeft = timeLeft / 1000;
-      html += "<td><span id=\"timer" + String(i) + "\">" + String(secondsLeft) + "</span> seconds</td>";
+      html += "<td><span id=\"timer" + String(i+1) + "\">" + String(secondsLeft) + "</span> seconds</td>";
 
       if (timeLeft > 0) {
         html += "<td style=\"color: yellow;\">Running</td>";
-        html += "<td><a href=\"/stop" + String(_feste_Timer_Name[i +1]) + "\">Stop</a></td>";
+        html += "<td><a href=\"/stop Timer" + String(i+1) + "\">Stop</a></td>";
         if (!timerExpired[i]) {
           // Update the status dynamically
           html += "<script>";
-          html += "document.getElementById('status" + String(_feste_Timer_Name[i]) + "').textContent = 'Running';";
+          html += "document.getElementById('status Timer" + String(i+1) + "').textContent = 'Running';";
           html += "</script>";
         }
       } else {
@@ -75,23 +76,23 @@ void handleRoot() {
           timerExpired[i] = true;
           // Update the status dynamically
           html += "<script>";
-          html += "document.getElementById('status" + String(_feste_Timer_Name[i]) + "').textContent = 'Expired';";
+          html += "document.getElementById('status Timer" + String(i+1) + "').textContent = 'Expired';";
           html += "</script>";
         } else {
           html += "<td style=\"color: red;\">Expired</td>";
-          html += "<td><a href=\"/start" + String(_feste_Timer_Name[i +1]) + "\">Restart</a></td>";
+          html += "<td><a href=\"/start Timer" + String(i+1) + "\">Restart</a></td>";
           // Update the status dynamically
           html += "<script>";
-          html += "document.getElementById('status" + String(_feste_Timer_Name[i]) + "').textContent = 'Expired';";
+          html += "document.getElementById('status Timer" + String(i+1) + "').textContent = 'Expired';";
           html += "</script>";
         }
       }
     } else {
       html += "<td>---</td>";
-      html += "<td style=\"color: green;\"><a href=\"/start" + String(i + 1) + "\">Start</a></td>";
+      html += "<td style=\"color: green;\"><a href=\"/start Timer" + String(i + 1) + "\">Start</a></td>";
       // Update the status dynamically
       html += "<script>";
-      html += "document.getElementById('status" + String(i) + "').textContent = '---';";
+      html += "document.getElementById('status Timer" + String(i) + "').textContent = '---';";
       html += "</script>";
     }
 
@@ -135,7 +136,64 @@ void handleRoot() {
   html += "updateTime();";  // Call updateTime() when the page finishes loading
   html += "setInterval(updateTime, 1000);";  // Update time every second
   html += "</script>setTimeout(function() { location.reload(); }, 5000);</script>";
+  html += "<script>";
+  html += "function saveSelectedNumber() {";
+  html += "  var dropdown = document.getElementById(\"timerSelect\");";
+  html += "  var selectedNumber = dropdown.value;";
+  html += "  // You can now use the selectedNumber variable to perform further actions or save the value.";
+  html += "  console.log(\"Selected number: \" + selectedNumber);";
+  html += "  // You can send the selectedNumber to the server using AJAX or perform any other desired action.";
+  html += "}";
+  html += "</script>";
   html += "</body></html>";
+
+  html += "<select id=\"timerSelect\">";
+  html += "<option value=\"_timer_1\">Timer 1</option>";
+  html += "<option value=\"_timer_2\">Timer 2</option>";
+  html += "<option value=\"_timer_3\">Timer 3</option>";
+  html += "<option value=\"_timer_4\">Timer 4</option>";
+  html += "<option value=\"_timer_5\">Timer 5</option>";
+  html += "</select>";
+
+  html += "<select id=\"festeTimerSelect\">";
+  for (int i = 0; i < NUM_TIMERS; i++) {
+    html += "<option value=\"_feste_Timer[" + String(i) + "]\">Feste Timer " + String(i) + "</option>";
+  }
+  html += "</select>";
+
+  html += "<button onclick=\"addSelectedValues()\">Add Selected Values</button>";
+  html += "<script>";
+  html += "function addSelectedValues() {";
+  html += "  var timerDropdown = document.getElementById(\"timerSelect\");";
+  html += "  var festeTimerDropdown = document.getElementById(\"festeTimerSelect\");";
+  html += "  var selectedTimer = timerDropdown.value;";
+  html += "  var selectedFesteTimer = festeTimerDropdown.value;";
+  html += "  // Send the selected values to the server using AJAX or perform any other desired action.";
+  html += "  var xhr = new XMLHttpRequest();";
+  html += "  xhr.open('GET', '/addValues?timer=' + selectedTimer + '&festeTimer=' + selectedFesteTimer, true);";
+  html += "  xhr.onreadystatechange = function() {";
+  html += "    if (xhr.readyState === 4 && xhr.status === 200) {";
+  html += "      console.log('Values added successfully!');";
+  html += "    }";
+  html += "  };";
+  html += "  xhr.send();";
+  html += "}";
+  html += "</script>";
+
+  html += "<button id=\"addButton\" onclick=\"addValues()\">Add Values</button>";
+  html += "<script>";
+  html += "function addValues() {";
+  html += "  var xhr = new XMLHttpRequest();";
+  html += "  xhr.open('GET', '/addValues', true);";
+  html += "  xhr.onreadystatechange = function() {";
+  html += "    if (xhr.readyState === 4 && xhr.status === 200) {";
+  html += "      console.log('Values added successfully!');";
+  html += "    }";
+  html += "  };";
+  html += "  xhr.send();";
+  html += "}";
+  html += "</script>";
+
 
   server.send(200, "text/html", html);
 }
@@ -149,7 +207,7 @@ void handleTime() {
 
   for (int i = 0; i < NUM_TIMERS; i++) {
     unsigned long elapsedTime = millis() - timerStartTimes[i];
-    unsigned long timeLeft = (_feste_Timer[i] * 1000 > elapsedTime) ? (_feste_Timer[i] * 1000 - elapsedTime) : 0;
+    unsigned long timeLeft = (_timer[i] * 1000 > elapsedTime) ? (_timer[i] * 1000 - elapsedTime) : 0;
     int secondsLeft = timeLeft / 1000;
 
     json += "\"timer" + String(i) + "\": " + String(secondsLeft);
@@ -185,38 +243,97 @@ void handleStartStop() {
 void handleSet() {
   for(int i = 4; i < NUM_TIMERS; i++){
     String timerName = server.arg(_feste_Timer_Name[i] + "_name");
-    String timerValue = server.arg(_feste_Timer_Name[i] + "_value");
+    String timerValue = server.arg(pointer_feste_Timer_Name[i] + "_value");
     
     if (timerName.length() > 0) {
       _feste_Timer_Name[i] = timerName;
+      pointer_feste_timer_name[i] = _feste_Timer_Name[i];
     }
     
     if (timerValue.length() > 0) {
       _feste_Timer[i] = timerValue.toInt() * 1000;
+      pointer_feste_timer[i] = _feste_Timer[i];
     }
   }
 
   server.sendHeader("Location", "/");
   server.send(302, "text/plain", "");
 }
+void handleAddValues() {
+  String selectedTimer = server.arg("timer");
+  String selectedFesteTimer = server.arg("festeTimer");
 
-void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}) {
+  unsigned long* timerPointer = nullptr;
+  unsigned long* festeTimerPointer = nullptr;
+
+  if (selectedTimer == "_timer_1") {
+    timerPointer = pointer_timer_1;
+  } else if (selectedTimer == "_timer_2") {
+    timerPointer = pointer_timer_2;
+  } else if (selectedTimer == "_timer_3") {
+    timerPointer = pointer_timer_3;
+  } else if (selectedTimer == "_timer_4") {
+    timerPointer = pointer_timer_4;
+  } else if (selectedTimer == "_timer_5") {
+    timerPointer = pointer_timer_5;
+  }
+
+  if (selectedFesteTimer.startsWith("_feste_Timer[")) {
+    int startIndex = selectedFesteTimer.indexOf('[') + 1;
+    int endIndex = selectedFesteTimer.indexOf(']');
+    if (startIndex >= 0 && endIndex > startIndex) {
+      String indexStr = selectedFesteTimer.substring(startIndex, endIndex);
+      int index = indexStr.toInt();
+      if (index >= 0 && index < NUM_TIMERS) {
+        festeTimerPointer = &(_feste_Timer[index]);
+      }
+    }
+  }
+
+  if (timerPointer != nullptr && festeTimerPointer != nullptr) {
+    *timerPointer += *festeTimerPointer;
+  }
+  *pointer_timer_1 = _timer_1;
+  *pointer_timer_2 = _timer_2;
+  *pointer_timer_3 = _timer_3;
+  *pointer_timer_4 = _timer_4;
+  *pointer_timer_5 = _timer_5;
+
+  server.send(200, "text/plain", "Values added successfully!");
+}
+
+
+void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *t1 = nullptr, unsigned long *t2 = nullptr, unsigned long *t3 = nullptr, unsigned long *t4 = nullptr, unsigned long *t5 = nullptr, unsigned long *ts = nullptr) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
   }
-
+    _timer_1 = *t1;
+  pointer_timer_1 = t1;
+  _timer_2 = *t2;
+  pointer_timer_2 = t2;
+  _timer_3 = *t3;
+  pointer_timer_3 = t3;
+  _timer_4 = *t4;
+  pointer_timer_4 = t4;
+  _timer_5 = *t5;
+  pointer_timer_5 = t5;
+  pointer_timer = ts;
+  for(int i=0; i<5; i++){
+    _timer[i] = ts[i];
+  }
   server.on("/", handleRoot);
   server.on("/time", handleTime);
-  for (int i = 0; i < NUM_TIMERS; i++) {
+  for (int i = 0; i < 5; i++) {
     char start[50];
     char stop[50];
-    sprintf(start, "/start %s", _feste_Timer_Name[i]);
+    sprintf(start, "/start Timer%i",i);
     server.on(start, handleStartStop);
-    sprintf(stop, "/stop %s", _feste_Timer_Name[i]);
+    sprintf(stop, "/stop Timer%i",i);
     server.on(stop, handleStartStop);
   }
   server.on("/set", handleSet);
+  server.on("/addValues", handleAddValues);
 
   server.begin();
 }
@@ -236,6 +353,7 @@ void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s, unsigned long *
     ft[i] = _feste_Timer[i];
     ftn[i] = _feste_Timer_Name[i];
   }
+
 
   server.handleClient();
 }
