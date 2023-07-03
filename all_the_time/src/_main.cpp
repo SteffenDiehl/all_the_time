@@ -47,6 +47,7 @@ int hour;
 int minute;
 int second;
 unsigned long rtc_last_sync = 0;
+int button_click = 0;
 int ledoff_click = 0;
 int rotary_move = 0;
 
@@ -69,8 +70,8 @@ int rotary_move = 0;
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "JustDiehlWithIt";
-const char* password = "DiehlWithIt";
+const char* ssid = "Seis";
+const char* password = "Grandgadfly265";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -120,8 +121,10 @@ void loop() {
   }
   else if(!Wi_Fi && Wi_Fi_act){
     WiFi.disconnect();
-
     Wi_Fi_act = 0;
+
+    web_browser_end();
+    Web_Server_act = 0;
   }
 
   //Webserver
@@ -250,15 +253,120 @@ void loop() {
 
   if(digitalRead(Button_30s) && digitalRead(Button_15min) && ledoff_click == 0){//neopixel on/off
     ledoff();
+    switch (act_timer)
+    {
+    case 0:
+      menue = 1;
+      position = 1;
+      timer_1 = 0;
+      break;
+      
+    case 1:
+      menue = 2;
+      position = 1;
+      timer_2 = 0;
+      break;
+      
+    case 2:
+      menue = 3;
+      position = 1;
+      timer_3 = 0;
+      break;
+      
+    case 3:
+      menue = 4;
+      position = 1;
+      timer_4 = 0;
+      break;
+      
+    case 4:
+      menue = 5;
+      position = 1;
+      timer_5 = 0;
+      break;
+    
+    default:
+      break;
+    }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness+
+  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness-
     brighness_decrease();
+    switch (act_timer)
+    {
+    case 0:
+      menue = 1;
+      position = 1;
+      timer_1 = 0;
+      break;
+      
+    case 1:
+      menue = 2;
+      position = 1;
+      timer_2 = 0;
+      break;
+      
+    case 2:
+      menue = 3;
+      position = 1;
+      timer_3 = 0;
+      break;
+      
+    case 3:
+      menue = 4;
+      position = 1;
+      timer_4 = 0;
+      break;
+      
+    case 4:
+      menue = 5;
+      position = 1;
+      timer_5 = 0;
+      break;
+    
+    default:
+      break;
+    }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness-
+  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness+
     brightness_increase();
+    switch (act_timer)
+    {
+    case 0:
+      menue = 1;
+      position = 1;
+      timer_1 = 0;
+      break;
+      
+    case 1:
+      menue = 2;
+      position = 1;
+      timer_2 = 0;
+      break;
+      
+    case 2:
+      menue = 3;
+      position = 1;
+      timer_3 = 0;
+      break;
+      
+    case 3:
+      menue = 4;
+      position = 1;
+      timer_4 = 0;
+      break;
+      
+    case 4:
+      menue = 5;
+      position = 1;
+      timer_5 = 0;
+      break;
+    
+    default:
+      break;
+    }
   }
   else{
-  if(digitalRead(Button_30s) && act_timer != 5 && ledoff_click == 0){//new timer +30s
+  if(digitalRead(Button_30s) && act_timer != 5 && !button_click){//new timer +30s
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -289,7 +397,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_1min) && act_timer != 5 && ledoff_click == 0){//new timer +1min
+  if(digitalRead(Button_1min) && act_timer != 5 && !button_click){//new timer +1min
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -320,7 +428,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_5min) && act_timer != 5 && ledoff_click == 0){//new timer +5min
+  if(digitalRead(Button_5min) && act_timer != 5 && !button_click){//new timer +5min
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -351,7 +459,7 @@ void loop() {
       }
   }
 
-  if(digitalRead(Button_15min) && act_timer != 5 && ledoff_click == 0){//new timer +15min
+  if(digitalRead(Button_15min) && act_timer != 5 && !button_click){//new timer +15min
     ledoff_click = 1;
     last_action = actual_Millis;
     menue = 8;
@@ -530,6 +638,10 @@ void loop() {
   }
 
   if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 50){//reset ledoff_click
+    ledoff_click = 0;
+  }
+
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && button_click && actual_Millis >= last_action + 50){//reset ledoff_click
     ledoff_click = 0;
   }
 
