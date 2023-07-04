@@ -70,8 +70,8 @@ int rotary_move = 0;
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "Seis";
-const char* password = "Grandgadfly265";
+const char* ssid = "HUAWEI P20 Pro";
+const char* password = "AndreasSeisAurach";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -367,7 +367,7 @@ void loop() {
   }
   else{
   if(digitalRead(Button_30s) && act_timer != 5 && !button_click){//new timer +30s
-    ledoff_click = 1;
+    button_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -398,7 +398,7 @@ void loop() {
   }
 
   if(digitalRead(Button_1min) && act_timer != 5 && !button_click){//new timer +1min
-    ledoff_click = 1;
+    button_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -429,7 +429,7 @@ void loop() {
   }
 
   if(digitalRead(Button_5min) && act_timer != 5 && !button_click){//new timer +5min
-    ledoff_click = 1;
+    button_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -460,7 +460,7 @@ void loop() {
   }
 
   if(digitalRead(Button_15min) && act_timer != 5 && !button_click){//new timer +15min
-    ledoff_click = 1;
+    button_click = 1;
     last_action = actual_Millis;
     menue = 8;
     switch (act_timer)
@@ -637,12 +637,12 @@ void loop() {
     rotary_click = 0;
   }
 
-  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 50){//reset ledoff_click
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && ledoff_click && actual_Millis >= last_action + 100){//reset ledoff_click
     ledoff_click = 0;
   }
 
-  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && button_click && actual_Millis >= last_action + 50){//reset ledoff_click
-    ledoff_click = 0;
+  if(!digitalRead(Button_30s) && !digitalRead(Button_1min) && !digitalRead(Button_5min) && !digitalRead(Button_15min) && button_click && actual_Millis >= last_action + 100){//reset ledoff_click
+    button_click = 0;
   }
 
   if(rotary_move && actual_Millis >= last_action + 25){
