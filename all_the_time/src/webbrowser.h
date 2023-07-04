@@ -157,7 +157,10 @@ void handleRoot() {
 
   html += "<select id=\"festeTimerSelect\">";
   for (int i = 0; i < NUM_TIMERS; i++) {
-    html += "<option value=\"_feste_Timer[" + String(i) + "]\">Feste Timer " + String(i) + "</option>";
+    html += "<option value=\"_feste_Timer[" + String(i) + "]\">";
+    html.concat(String(_feste_Timer_Name[i]));
+    html += "</option>";
+
   }
   html += "</select>";
 
