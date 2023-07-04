@@ -293,7 +293,7 @@ void handleAddValues() {
     }
   }
 
-  if (timerPointer != nullptr && festeTimerPointer != nullptr) {
+  if (timerPointer != nullptr && festeTimerPointer != nullptr) {on
     *timerPointer += *festeTimerPointer;
   }
   *pointer_timer_1 = _timer_1;
@@ -306,21 +306,21 @@ void handleAddValues() {
 }
 
 
-void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *t1 = nullptr, unsigned long *t2 = nullptr, unsigned long *t3 = nullptr, unsigned long *t4 = nullptr, unsigned long *t5 = nullptr, unsigned long *ts = nullptr) {
+void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long *ts = nullptr) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
   }
-    _timer_1 = *t1;
-  pointer_timer_1 = t1;
-  _timer_2 = *t2;
-  pointer_timer_2 = t2;
-  _timer_3 = *t3;
-  pointer_timer_3 = t3;
-  _timer_4 = *t4;
-  pointer_timer_4 = t4;
-  _timer_5 = *t5;
-  pointer_timer_5 = t5;
+    _timer_1 = *tmr1;
+  pointer_timer_1 = tmr1;
+  _timer_2 = *tmr2;
+  pointer_timer_2 = tmr2;
+  _timer_3 = *tmr3;
+  pointer_timer_3 = tmr3;
+  _timer_4 = *tmr4;
+  pointer_timer_4 = tmr4;
+  _timer_5 = *tmr5;
+  pointer_timer_5 = tmr5;
   pointer_timer = ts;
   for(int i=0; i<5; i++){
     _timer[i] = ts[i];
