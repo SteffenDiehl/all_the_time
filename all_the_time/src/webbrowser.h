@@ -135,7 +135,7 @@ void handleRoot() {
   html += "}";
   html += "updateTime();";  // Call updateTime() when the page finishes loading
   html += "setInterval(updateTime, 1000);";  // Update time every second
-  html += "</script>setTimeout(function() { location.reload(); }, 5000);</script>";
+  html += "</script>";
   html += "<script>";
   html += "function saveSelectedNumber() {";
   html += "  var dropdown = document.getElementById(\"timerSelect\");";
@@ -290,7 +290,7 @@ void handleAddValues() {
     }
   }
 
-  if (timerPointer != nullptr && festeTimerPointer != nullptr) {on
+  if (timerPointer != nullptr && festeTimerPointer != nullptr) {
     *timerPointer += *festeTimerPointer;
   }
   *pointer_timer_1 = _timer_1;
