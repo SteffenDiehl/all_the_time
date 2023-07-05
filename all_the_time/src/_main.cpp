@@ -638,6 +638,7 @@ void loop() {
   }
 
   if(timer_out != 0){
+    menue = 21;
     digitalWrite(summer, HIGH);
     neopixel_time_blink(actual_Millis);
   }
@@ -652,7 +653,7 @@ void loop() {
   neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz);
   neopixel_rotary_rotate();
 
-  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 500){//reset rotary_click
+  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= (last_action + 1000)){//reset rotary_click
     rotary_click = 0;
   }
 
