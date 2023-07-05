@@ -29,6 +29,13 @@ unsigned long *pointer_timer = nullptr;
 unsigned long _timer[5];
 int _timer_pause[5] = {0, 0, 0, 0, 0};
 
+int Y = 2023;
+int M = 07;
+int D = 05;
+int h = 22;
+int m = 20;
+int s = 33;
+
 void handleRoot() {
   String html = "<html><body style=\"background-color: lightblue;\">";
   html += "<h1>Current Time: <span id=\"currentTime\"></span></h1>";
