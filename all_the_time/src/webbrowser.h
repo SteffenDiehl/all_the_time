@@ -7,31 +7,25 @@
 WebServer server(80);
 const int NUM_TIMERS = 10;
 String _feste_Timer_Name[NUM_TIMERS] = {};
-unsigned long  *pointer_feste_Timer_Name;
 unsigned long _feste_Timer[NUM_TIMERS] = {};
-unsigned long  *pointer_feste_timer;
-String *pointer_feste_timer_name;
-int Y;
-int M;
-int D;
-int h;
-int m;
-int s;
+unsigned long  *pointer_feste_timer = nullptr;
+String *pointer_feste_timer_name = nullptr;
+
 bool timerRunning[5] = {false, false, false, false, false};
 unsigned long timerStartTimes[5] = {0, 0, 0, 0, 0};
 bool timerExpired[5] = {false, false, false, false, false};
 
-unsigned long *pointer_timer_1;
+unsigned long *pointer_timer_1 = nullptr;
 unsigned long _timer_1 = 0;
-unsigned long *pointer_timer_2;
+unsigned long *pointer_timer_2 = nullptr;
 unsigned long _timer_2 = 0;
-unsigned long *pointer_timer_3;
+unsigned long *pointer_timer_3 = nullptr;
 unsigned long _timer_3 = 0;
-unsigned long *pointer_timer_4;
+unsigned long *pointer_timer_4 = nullptr;
 unsigned long _timer_4 = 0;
-unsigned long *pointer_timer_5;
+unsigned long *pointer_timer_5 = nullptr;
 unsigned long _timer_5 = 0;
-unsigned long *pointer_timer;
+unsigned long *pointer_timer = nullptr;
 unsigned long _timer[5];
 int _timer_pause[5] = {0, 0, 0, 0, 0};
 
@@ -136,15 +130,6 @@ void handleRoot() {
   html += "updateTime();";  // Call updateTime() when the page finishes loading
   html += "setInterval(updateTime, 1000);";  // Update time every second
   html += "</script>";
-  html += "<script>";
-  html += "function saveSelectedNumber() {";
-  html += "  var dropdown = document.getElementById(\"timerSelect\");";
-  html += "  var selectedNumber = dropdown.value;";
-  html += "  // You can now use the selectedNumber variable to perform further actions or save the value.";
-  html += "  console.log(\"Selected number: \" + selectedNumber);";
-  html += "  // You can send the selectedNumber to the server using AJAX or perform any other desired action.";
-  html += "}";
-  html += "</script>";
   html += "</body></html>";
 
   html += "<select id=\"timerSelect\">";
@@ -163,25 +148,6 @@ void handleRoot() {
 
   }
   html += "</select>";
-
-  html += "<button onclick=\"addSelectedValues()\">Add Selected Values</button>";
-  html += "<script>";
-  html += "function addSelectedValues() {";
-  html += "  var timerDropdown = document.getElementById(\"timerSelect\");";
-  html += "  var festeTimerDropdown = document.getElementById(\"festeTimerSelect\");";
-  html += "  var selectedTimer = timerDropdown.value;";
-  html += "  var selectedFesteTimer = festeTimerDropdown.value;";
-  html += "  // Send the selected values to the server using AJAX or perform any other desired action.";
-  html += "  var xhr = new XMLHttpRequest();";
-  html += "  xhr.open('GET', '/addValues?timer=' + selectedTimer + '&festeTimer=' + selectedFesteTimer, true);";
-  html += "  xhr.onreadystatechange = function() {";
-  html += "    if (xhr.readyState === 4 && xhr.status === 200) {";
-  html += "      console.log('Values added successfully!');";
-  html += "    }";
-  html += "  };";
-  html += "  xhr.send();";
-  html += "}";
-  html += "</script>";
 
   html += "<button id=\"addButton\" onclick=\"addValues()\">Add Values</button>";
   html += "<script>";
@@ -246,7 +212,7 @@ void handleStartStop() {
 void handleSet() {
   for(int i = 4; i < NUM_TIMERS; i++){
     String timerName = server.arg(_feste_Timer_Name[i] + "_name");
-    String timerValue = server.arg(pointer_feste_Timer_Name[i] + "_value");
+    String timerValue = server.arg(pointer_feste_timer_name[i] + "_value");
     
     if (timerName.length() > 0) {
       _feste_Timer_Name[i] = timerName;
