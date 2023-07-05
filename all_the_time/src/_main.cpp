@@ -71,7 +71,7 @@ int rotary_move = 0;
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
 const char* ssid = "HUAWEI P20 Pro";
-const char* password = "AndreasSeisAurach";
+const char* password = "AndreasSeisAurach ";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -91,12 +91,11 @@ void setup() {
 //neopixel
   neopixel_start(neopixel_anz, neopixel_pin);
   
+  encoder.setPosition(10000);
 }
 
 void loop() {
   unsigned long actual_Millis = millis();
-
-  neopixel_leiste(Wi_Fi, Wi_Fi_act, Web_Server, Web_Server_act, timer_1, timer_2, timer_3, timer_4, timer_5, timer);
 
   //Actual Time
   if(actual_Millis > rtc_last_sync + 604800000 && Wi_Fi_act){
@@ -141,8 +140,11 @@ void loop() {
     web_browser(Y, M, D, h, m, s, feste_Timer, feste_Timer_Name);
   }
 
+  
+  neo.clear();
+
   //OLED Anzeige
-  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi_act, &timer_out, timer, timer_pause);
+  display_Anzeige(&menue, &position, &position_max, &act_timer, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, &hour, &minute, &second, &day, &month, &year, feste_Timer_Name, &Wi_Fi_act, &timer_out, timer, timer_pause, &timer_anz);
   
   if(!rotary_move){
     //rotary drehung
@@ -158,45 +160,55 @@ void loop() {
         case 0:
           if(newposition < rotary && timer_1 > 0){
             timer_1 -= 1000;
+            neopixel_rotary_rotate_(-1);
           }
           else if (newposition > rotary && timer_1 < 86400000){
             timer_1 += 1000;
+            neopixel_rotary_rotate_(1);
           }
           break;
           
         case 1:
           if(newposition < rotary && timer_2 > 0){
             timer_2 -= 1000;
+            neopixel_rotary_rotate_(-1);
           }
           else if (newposition > rotary && timer_2 < 86400000){
             timer_2 += 1000;
+            neopixel_rotary_rotate_(1);
           }
           break;
           
         case 2:
           if(newposition < rotary && timer_3 > 0){
             timer_3 -= 1000;
+            neopixel_rotary_rotate_(-1);
           }
           else if (newposition > rotary && timer_3 < 86400000){
             timer_3 += 1000;
+            neopixel_rotary_rotate_(1);
           }
           break;
           
         case 3:
           if(newposition < rotary && timer_4 > 0){
             timer_4 -= 1000;
+            neopixel_rotary_rotate_(-1);
           }
           else if (newposition > rotary && timer_4 < 86400000){
             timer_4 += 1000;
+            neopixel_rotary_rotate_(1);
           }
           break;
           
         case 4:
           if(newposition < rotary && timer_5 > 0){
             timer_5 -= 1000;
+            neopixel_rotary_rotate_(-1);
           }
           else if (newposition > rotary && timer_5 < 86400000){
             timer_5 += 1000;
+            neopixel_rotary_rotate_(1);
           }
           break;
         
@@ -207,11 +219,15 @@ void loop() {
       else if(menue != 0){
         if(newposition < rotary && position > 1){
           position--;
-          neopixel_rotary_rotate(-1);
         }
         else if (newposition > rotary && position < position_max){
           position++;
-          neopixel_rotary_rotate(1);
+        }
+        if(newposition < rotary){
+          neopixel_rotary_rotate_(-1);
+        }
+        else if (newposition > rotary){
+          neopixel_rotary_rotate_(1);
         }
       }
       else if(menue == 0){
@@ -621,8 +637,9 @@ void loop() {
     }
   }
 
-  if(!timer_out){
+  if(timer_out != 0){
     digitalWrite(summer, HIGH);
+    neopixel_time_blink(actual_Millis);
   }
 
   if((last_action+60000) <= actual_Millis && menue != 0 && timer_out == 0){//Bildschirmschoner
@@ -630,8 +647,10 @@ void loop() {
     menue = 0;
   }
   
+  neopixel_leiste(Wi_Fi, Wi_Fi_act, Web_Server, Web_Server_act, timer_1, timer_2, timer_3, timer_4, timer_5, timer);
   neopixel_rotary_press(rotary_click);
-  neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz, actual_Millis);
+  neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz);
+  neopixel_rotary_rotate();
 
   if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= last_action + 200){//reset rotary_click
     rotary_click = 0;
@@ -650,4 +669,5 @@ void loop() {
   }
 
   last_millis = actual_Millis;
+  neo.show();
 }

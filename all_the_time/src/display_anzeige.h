@@ -32,7 +32,7 @@ void timer_output(unsigned long time){
     display.printf("%2i:%2i:%2i\n", hours, minutes, seconds);
 }
 
-void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi, int *t_out, unsigned long *ti, int *t_pause){
+void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsigned long *t2, unsigned long *t3, unsigned long *t4, unsigned long *t5, int *h, int *min, int *s, int *D, int *M, int *Y, String *fix_timer_name, int *wi_fi, int *t_out, unsigned long *ti, int *t_pause, int *t_anz){
 
     struct tm timeinfo;
     display.clearDisplay();
@@ -501,22 +501,27 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
             {
             case 0:
                 timer_output(*t1);
+                *t_anz = 1;
                 break;
             
             case 1:
                 timer_output(*t2);
+                *t_anz = 2;
                 break;
             
             case 2:
                 timer_output(*t3);
+                *t_anz = 3;
                 break;
             
             case 3:
                 timer_output(*t4);
+                *t_anz = 4;
                 break;
             
             case 4:
                 timer_output(*t5);
+                *t_anz = 5;
                 break;
             
             default:
@@ -734,7 +739,8 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
             break;
 
         case 11://Timer 1
-            *p_max = 4; 
+            *p_max = 4;
+            *t_anz = 1;
             switch(*p)
             {
             case 1:
@@ -802,6 +808,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
         case 12://Timer 2
             *p_max = 4;
+            *t_anz = 2;
             switch(*p)
             {
             case 1:
@@ -869,6 +876,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
         
         case 13://Timer 3
             *p_max = 4;
+            *t_anz = 3;
             switch(*p)
             {
             case 1:
@@ -936,6 +944,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
         
         case 14://Timer 4
             *p_max = 4;
+            *t_anz = 4;
             switch(*p)
             {
             case 1:
@@ -1003,6 +1012,7 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
 
         case 15://Timer 5
             *p_max = 4;
+            *t_anz = 5;
             switch(*p)
             {
             case 1:
