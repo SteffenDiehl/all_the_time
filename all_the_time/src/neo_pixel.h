@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 
-Adafruit_NeoPixel neo(58, 5, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel neo(56, 5, NEO_GRB + NEO_KHZ800);
 
 uint32_t red = neo.Color(255, 0, 0);
 uint32_t yellow = neo.Color(255, 255, 0);
@@ -73,143 +73,138 @@ void neopixel_time(unsigned long t1, unsigned long t2, unsigned long t3, unsigne
         switch (t_anz)
         {
         case 1:
-            if(t1_ > 0,96){neo.setPixelColor(56, green);}
-            if(t1_ > 0,92){neo.setPixelColor(55, green);}
-            if(t1_ > 0,88){neo.setPixelColor(54, green);}
-            if(t1_ > 0,84){neo.setPixelColor(53, green);}
-            if(t1_ > 0,80){neo.setPixelColor(52, green);}
-            if(t1_ > 0,76){neo.setPixelColor(51, green);}
-            if(t1_ > 0,72){neo.setPixelColor(50, green);}
-            if(t1_ > 0,68){neo.setPixelColor(49, green);}
-            if(t1_ > 0,64){neo.setPixelColor(48, yellow);}
-            if(t1_ > 0,60){neo.setPixelColor(47, yellow);}
-            if(t1_ > 0,56){neo.setPixelColor(46, yellow);}
-            if(t1_ > 0,52){neo.setPixelColor(45, yellow);}
-            if(t1_ > 0,48){neo.setPixelColor(44, yellow);}
-            if(t1_ > 0,44){neo.setPixelColor(43, yellow);}
-            if(t1_ > 0,40){neo.setPixelColor(42, yellow);}
-            if(t1_ > 0,36){neo.setPixelColor(41, yellow);}
-            if(t1_ > 0,32){neo.setPixelColor(40, yellow);}
-            if(t1_ > 0,28){neo.setPixelColor(39, red);}
-            if(t1_ > 0,24){neo.setPixelColor(38, red);}
-            if(t1_ > 0,20){neo.setPixelColor(37, red);}
-            if(t1_ > 0,16){neo.setPixelColor(36, red);}
-            if(t1_ > 0,12){neo.setPixelColor(35, red);}
-            if(t1_ > 0,07){neo.setPixelColor(34, red);}
-            if(t1_ > 0,04){neo.setPixelColor(33, red);}
-            if(t1_ > 0,00){neo.setPixelColor(32, red);}
+            if(t1_ > 0.92){neo.setPixelColor(55, green);}
+            if(t1_ > 0.88){neo.setPixelColor(54, green);}
+            if(t1_ > 0.84){neo.setPixelColor(53, green);}
+            if(t1_ > 0.80){neo.setPixelColor(52, green);}
+            if(t1_ > 0.76){neo.setPixelColor(51, green);}
+            if(t1_ > 0.72){neo.setPixelColor(50, green);}
+            if(t1_ > 0.68){neo.setPixelColor(49, green);}
+            if(t1_ > 0.64){neo.setPixelColor(48, green);}
+            if(t1_ > 0.60){neo.setPixelColor(47, yellow);}
+            if(t1_ > 0.56){neo.setPixelColor(46, yellow);}
+            if(t1_ > 0.52){neo.setPixelColor(45, yellow);}
+            if(t1_ > 0.48){neo.setPixelColor(44, yellow);}
+            if(t1_ > 0.44){neo.setPixelColor(43, yellow);}
+            if(t1_ > 0.40){neo.setPixelColor(42, yellow);}
+            if(t1_ > 0.36){neo.setPixelColor(41, yellow);}
+            if(t1_ > 0.32){neo.setPixelColor(40, yellow);}
+            if(t1_ > 0.28){neo.setPixelColor(39, red);}
+            if(t1_ > 0.24){neo.setPixelColor(38, red);}
+            if(t1_ > 0.20){neo.setPixelColor(37, red);}
+            if(t1_ > 0.16){neo.setPixelColor(36, red);}
+            if(t1_ > 0.12){neo.setPixelColor(35, red);}
+            if(t1_ > 0.079){neo.setPixelColor(34, red);}
+            if(t1_ > 0.04){neo.setPixelColor(33, red);}
+            if(t1_ > 0.001){neo.setPixelColor(32, red);}
             break;
             
         case 2:
-            if(t2_ > 0,96){neo.setPixelColor(56, green);}
-            if(t2_ > 0,92){neo.setPixelColor(55, green);}
-            if(t2_ > 0,88){neo.setPixelColor(54, green);}
-            if(t2_ > 0,84){neo.setPixelColor(53, green);}
-            if(t2_ > 0,80){neo.setPixelColor(52, green);}
-            if(t2_ > 0,76){neo.setPixelColor(51, green);}
-            if(t2_ > 0,72){neo.setPixelColor(50, green);}
-            if(t2_ > 0,68){neo.setPixelColor(49, green);}
-            if(t2_ > 0,64){neo.setPixelColor(48, yellow);}
-            if(t2_ > 0,60){neo.setPixelColor(47, yellow);}
-            if(t2_ > 0,56){neo.setPixelColor(46, yellow);}
-            if(t2_ > 0,52){neo.setPixelColor(45, yellow);}
-            if(t2_ > 0,48){neo.setPixelColor(44, yellow);}
-            if(t2_ > 0,44){neo.setPixelColor(43, yellow);}
-            if(t2_ > 0,40){neo.setPixelColor(42, yellow);}
-            if(t2_ > 0,36){neo.setPixelColor(41, yellow);}
-            if(t2_ > 0,32){neo.setPixelColor(40, yellow);}
-            if(t2_ > 0,28){neo.setPixelColor(39, red);}
-            if(t2_ > 0,24){neo.setPixelColor(38, red);}
-            if(t2_ > 0,20){neo.setPixelColor(37, red);}
-            if(t2_ > 0,16){neo.setPixelColor(36, red);}
-            if(t2_ > 0,12){neo.setPixelColor(35, red);}
-            if(t2_ > 0,07){neo.setPixelColor(34, red);}
-            if(t2_ > 0,04){neo.setPixelColor(33, red);}
-            if(t2_ >= 0,00){neo.setPixelColor(32, red);}
+            if(t2_ > 0.92){neo.setPixelColor(55, green);}
+            if(t2_ > 0.88){neo.setPixelColor(54, green);}
+            if(t2_ > 0.84){neo.setPixelColor(53, green);}
+            if(t2_ > 0.80){neo.setPixelColor(52, green);}
+            if(t2_ > 0.76){neo.setPixelColor(51, green);}
+            if(t2_ > 0.72){neo.setPixelColor(50, green);}
+            if(t2_ > 0.68){neo.setPixelColor(49, green);}
+            if(t2_ > 0.64){neo.setPixelColor(48, green);}
+            if(t2_ > 0.60){neo.setPixelColor(47, yellow);}
+            if(t2_ > 0.56){neo.setPixelColor(46, yellow);}
+            if(t2_ > 0.52){neo.setPixelColor(45, yellow);}
+            if(t2_ > 0.48){neo.setPixelColor(44, yellow);}
+            if(t2_ > 0.44){neo.setPixelColor(43, yellow);}
+            if(t2_ > 0.40){neo.setPixelColor(42, yellow);}
+            if(t2_ > 0.36){neo.setPixelColor(41, yellow);}
+            if(t2_ > 0.32){neo.setPixelColor(40, yellow);}
+            if(t2_ > 0.28){neo.setPixelColor(39, red);}
+            if(t2_ > 0.24){neo.setPixelColor(38, red);}
+            if(t2_ > 0.20){neo.setPixelColor(37, red);}
+            if(t2_ > 0.16){neo.setPixelColor(36, red);}
+            if(t2_ > 0.12){neo.setPixelColor(35, red);}
+            if(t2_ > 0.079){neo.setPixelColor(34, red);}
+            if(t2_ > 0.04){neo.setPixelColor(33, red);}
+            if(t2_ > 0.001){neo.setPixelColor(32, red);}
             break;
             
         case 3:
-            if(t3_ > 0,96){neo.setPixelColor(56, green);}
-            if(t3_ > 0,92){neo.setPixelColor(55, green);}
-            if(t3_ > 0,88){neo.setPixelColor(54, green);}
-            if(t3_ > 0,84){neo.setPixelColor(53, green);}
-            if(t3_ > 0,80){neo.setPixelColor(52, green);}
-            if(t3_ > 0,76){neo.setPixelColor(51, green);}
-            if(t3_ > 0,72){neo.setPixelColor(50, green);}
-            if(t3_ > 0,68){neo.setPixelColor(49, green);}
-            if(t3_ > 0,64){neo.setPixelColor(48, yellow);}
-            if(t3_ > 0,60){neo.setPixelColor(47, yellow);}
-            if(t3_ > 0,56){neo.setPixelColor(46, yellow);}
-            if(t3_ > 0,52){neo.setPixelColor(45, yellow);}
-            if(t3_ > 0,48){neo.setPixelColor(44, yellow);}
-            if(t3_ > 0,44){neo.setPixelColor(43, yellow);}
-            if(t3_ > 0,40){neo.setPixelColor(42, yellow);}
-            if(t3_ > 0,36){neo.setPixelColor(41, yellow);}
-            if(t3_ > 0,32){neo.setPixelColor(40, yellow);}
-            if(t3_ > 0,28){neo.setPixelColor(39, red);}
-            if(t3_ > 0,24){neo.setPixelColor(38, red);}
-            if(t3_ > 0,20){neo.setPixelColor(37, red);}
-            if(t3_ > 0,16){neo.setPixelColor(36, red);}
-            if(t3_ > 0,12){neo.setPixelColor(35, red);}
-            if(t3_ > 0,07){neo.setPixelColor(34, red);}
-            if(t3_ > 0,04){neo.setPixelColor(33, red);}
-            if(t3_ >= 0,00){neo.setPixelColor(32, red);}
+            if(t3_ > 0.92){neo.setPixelColor(55, green);}
+            if(t3_ > 0.88){neo.setPixelColor(54, green);}
+            if(t3_ > 0.84){neo.setPixelColor(53, green);}
+            if(t3_ > 0.80){neo.setPixelColor(52, green);}
+            if(t3_ > 0.76){neo.setPixelColor(51, green);}
+            if(t3_ > 0.72){neo.setPixelColor(50, green);}
+            if(t3_ > 0.68){neo.setPixelColor(49, green);}
+            if(t3_ > 0.64){neo.setPixelColor(48, green);}
+            if(t3_ > 0.60){neo.setPixelColor(47, yellow);}
+            if(t3_ > 0.56){neo.setPixelColor(46, yellow);}
+            if(t3_ > 0.52){neo.setPixelColor(45, yellow);}
+            if(t3_ > 0.48){neo.setPixelColor(44, yellow);}
+            if(t3_ > 0.44){neo.setPixelColor(43, yellow);}
+            if(t3_ > 0.40){neo.setPixelColor(42, yellow);}
+            if(t3_ > 0.36){neo.setPixelColor(41, yellow);}
+            if(t3_ > 0.32){neo.setPixelColor(40, yellow);}
+            if(t3_ > 0.28){neo.setPixelColor(39, red);}
+            if(t3_ > 0.24){neo.setPixelColor(38, red);}
+            if(t3_ > 0.20){neo.setPixelColor(37, red);}
+            if(t3_ > 0.16){neo.setPixelColor(36, red);}
+            if(t3_ > 0.12){neo.setPixelColor(35, red);}
+            if(t3_ > 0.079){neo.setPixelColor(34, red);}
+            if(t3_ > 0.04){neo.setPixelColor(33, red);}
+            if(t3_ > 0.001){neo.setPixelColor(32, red);}
             break;
             
         case 4:
-            if(t4_ > 0,96){neo.setPixelColor(56, green);}
-            if(t4_ > 0,92){neo.setPixelColor(55, green);}
-            if(t4_ > 0,88){neo.setPixelColor(54, green);}
-            if(t4_ > 0,84){neo.setPixelColor(53, green);}
-            if(t4_ > 0,80){neo.setPixelColor(52, green);}
-            if(t4_ > 0,76){neo.setPixelColor(51, green);}
-            if(t4_ > 0,72){neo.setPixelColor(50, green);}
-            if(t4_ > 0,68){neo.setPixelColor(49, green);}
-            if(t4_ > 0,64){neo.setPixelColor(48, yellow);}
-            if(t4_ > 0,60){neo.setPixelColor(47, yellow);}
-            if(t4_ > 0,56){neo.setPixelColor(46, yellow);}
-            if(t4_ > 0,52){neo.setPixelColor(45, yellow);}
-            if(t4_ > 0,48){neo.setPixelColor(44, yellow);}
-            if(t4_ > 0,44){neo.setPixelColor(43, yellow);}
-            if(t4_ > 0,40){neo.setPixelColor(42, yellow);}
-            if(t4_ > 0,36){neo.setPixelColor(41, yellow);}
-            if(t4_ > 0,32){neo.setPixelColor(40, yellow);}
-            if(t4_ > 0,28){neo.setPixelColor(39, red);}
-            if(t4_ > 0,24){neo.setPixelColor(38, red);}
-            if(t4_ > 0,20){neo.setPixelColor(37, red);}
-            if(t4_ > 0,16){neo.setPixelColor(36, red);}
-            if(t4_ > 0,12){neo.setPixelColor(35, red);}
-            if(t4_ > 0,07){neo.setPixelColor(34, red);}
-            if(t4_ > 0,04){neo.setPixelColor(33, red);}
-            if(t4_ >= 0,00){neo.setPixelColor(32, red);}
+            if(t4_ > 0.92){neo.setPixelColor(55, green);}
+            if(t4_ > 0.88){neo.setPixelColor(54, green);}
+            if(t4_ > 0.84){neo.setPixelColor(53, green);}
+            if(t4_ > 0.80){neo.setPixelColor(52, green);}
+            if(t4_ > 0.76){neo.setPixelColor(51, green);}
+            if(t4_ > 0.72){neo.setPixelColor(50, green);}
+            if(t4_ > 0.68){neo.setPixelColor(49, green);}
+            if(t4_ > 0.64){neo.setPixelColor(48, green);}
+            if(t4_ > 0.60){neo.setPixelColor(47, yellow);}
+            if(t4_ > 0.56){neo.setPixelColor(46, yellow);}
+            if(t4_ > 0.52){neo.setPixelColor(45, yellow);}
+            if(t4_ > 0.48){neo.setPixelColor(44, yellow);}
+            if(t4_ > 0.44){neo.setPixelColor(43, yellow);}
+            if(t4_ > 0.40){neo.setPixelColor(42, yellow);}
+            if(t4_ > 0.36){neo.setPixelColor(41, yellow);}
+            if(t4_ > 0.32){neo.setPixelColor(40, yellow);}
+            if(t4_ > 0.28){neo.setPixelColor(39, red);}
+            if(t4_ > 0.24){neo.setPixelColor(38, red);}
+            if(t4_ > 0.20){neo.setPixelColor(37, red);}
+            if(t4_ > 0.16){neo.setPixelColor(36, red);}
+            if(t4_ > 0.12){neo.setPixelColor(35, red);}
+            if(t4_ > 0.079){neo.setPixelColor(34, red);}
+            if(t4_ > 0.04){neo.setPixelColor(33, red);}
+            if(t4_ > 0.001){neo.setPixelColor(32, red);}
             break;
             
         case 5:
-            if(t5_ >= 0,96){neo.setPixelColor(56, green);}
-            if(t5_ >= 0,92){neo.setPixelColor(55, green);}
-            if(t5_ >= 0,88){neo.setPixelColor(54, green);}
-            if(t5_ >= 0,84){neo.setPixelColor(53, green);}
-            if(t5_ >= 0,80){neo.setPixelColor(52, green);}
-            if(t5_ >= 0,76){neo.setPixelColor(51, green);}
-            if(t5_ >= 0,72){neo.setPixelColor(50, green);}
-            if(t5_ >= 0,68){neo.setPixelColor(49, green);}
-            if(t5_ >= 0,64){neo.setPixelColor(48, yellow);}
-            if(t5_ >= 0,60){neo.setPixelColor(47, yellow);}
-            if(t5_ >= 0,56){neo.setPixelColor(46, yellow);}
-            if(t5_ >= 0,52){neo.setPixelColor(45, yellow);}
-            if(t5_ >= 0,48){neo.setPixelColor(44, yellow);}
-            if(t5_ >= 0,44){neo.setPixelColor(43, yellow);}
-            if(t5_ >= 0,40){neo.setPixelColor(42, yellow);}
-            if(t5_ >= 0,36){neo.setPixelColor(41, yellow);}
-            if(t5_ >= 0,32){neo.setPixelColor(40, yellow);}
-            if(t5_ >= 0,28){neo.setPixelColor(39, red);}
-            if(t5_ >= 0,24){neo.setPixelColor(38, red);}
-            if(t5_ >= 0,20){neo.setPixelColor(37, red);}
-            if(t5_ >= 0,16){neo.setPixelColor(36, red);}
-            if(t5_ >= 0,12){neo.setPixelColor(35, red);}
-            if(t5_ >= 0,07){neo.setPixelColor(34, red);}
-            if(t5_ >= 0,04){neo.setPixelColor(33, red);}
-            if(t5_ >= 0,00){neo.setPixelColor(32, red);}
+            if(t5_ > 0.92){neo.setPixelColor(55, green);}
+            if(t5_ > 0.88){neo.setPixelColor(54, green);}
+            if(t5_ > 0.84){neo.setPixelColor(53, green);}
+            if(t5_ > 0.80){neo.setPixelColor(52, green);}
+            if(t5_ > 0.76){neo.setPixelColor(51, green);}
+            if(t5_ > 0.72){neo.setPixelColor(50, green);}
+            if(t5_ > 0.68){neo.setPixelColor(49, green);}
+            if(t5_ > 0.64){neo.setPixelColor(48, green);}
+            if(t5_ > 0.60){neo.setPixelColor(47, yellow);}
+            if(t5_ > 0.56){neo.setPixelColor(46, yellow);}
+            if(t5_ > 0.52){neo.setPixelColor(45, yellow);}
+            if(t5_ > 0.48){neo.setPixelColor(44, yellow);}
+            if(t5_ > 0.44){neo.setPixelColor(43, yellow);}
+            if(t5_ > 0.40){neo.setPixelColor(42, yellow);}
+            if(t5_ > 0.36){neo.setPixelColor(41, yellow);}
+            if(t5_ > 0.32){neo.setPixelColor(40, yellow);}
+            if(t5_ > 0.28){neo.setPixelColor(39, red);}
+            if(t5_ > 0.24){neo.setPixelColor(38, red);}
+            if(t5_ > 0.20){neo.setPixelColor(37, red);}
+            if(t5_ > 0.16){neo.setPixelColor(36, red);}
+            if(t5_ > 0.12){neo.setPixelColor(35, red);}
+            if(t5_ > 0.079){neo.setPixelColor(34, red);}
+            if(t5_ > 0.04){neo.setPixelColor(33, red);}
+            if(t5_ > 0.001){neo.setPixelColor(32, red);}
             break;
         
         default:
