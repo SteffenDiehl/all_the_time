@@ -70,8 +70,8 @@ int rotary_move = 0;
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "HUAWEI P20 Pro";
-const char* password = "AndreasSeisAurach ";
+const char* ssid = "Seis";
+const char* password = "Grandgadfly265 ";
 
 void setup() {
   pinMode(Button_30s, INPUT);
@@ -106,15 +106,9 @@ void loop() {
   //Wifi
   if(Wi_Fi && !Wi_Fi_act){//wenn verbunden Wi_Fi_act = 1 setzen
     WiFi.begin(ssid, password);
-    display.clearDisplay();
-    display.setCursor(0, 10);
-    display.setTextSize(2);
-    display.println("connecting");
-  while (WiFi.status() != WL_CONNECTED) {
-    display.printf(".");
-    delay(1000);
-  }
-
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(1000);
+    }
     Wi_Fi_act = 1;
     synchronizeRTC();
   }
@@ -127,7 +121,7 @@ void loop() {
   }
 
   //Webserver
-  if(Web_Server && !Web_Server_act){
+  if(Web_Server && !Web_Server_act && Wi_Fi_act){
     web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer);
     Web_Server_act = 1;
   }
@@ -649,9 +643,9 @@ void loop() {
   }
   
   neopixel_leiste(Wi_Fi, Wi_Fi_act, Web_Server, Web_Server_act, timer_1, timer_2, timer_3, timer_4, timer_5, timer);
-  neopixel_rotary_press(rotary_click);
   neopixel_time(timer_1, timer_2, timer_3, timer_4, timer_5, timer, timer_out, timer_anz);
   neopixel_rotary_rotate();
+  if(rotary_click){neopixel_rotary_press();}
 
   if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= (last_action + 1000)){//reset rotary_click
     rotary_click = 0;
