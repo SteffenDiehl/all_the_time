@@ -647,7 +647,7 @@ void loop() {
   neopixel_rotary_rotate();
   if(rotary_click){neopixel_rotary_press();}
 
-  if(digitalRead(Rotary_IN3 == HIGH) && rotary_click == 1 && actual_Millis >= (last_action + 1000)){//reset rotary_click
+  if(digitalRead(Rotary_IN3) == HIGH && rotary_click == 1 && actual_Millis >= (last_action + 500)){//reset rotary_click
     rotary_click = 0;
   }
 
