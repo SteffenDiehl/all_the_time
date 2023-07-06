@@ -45,7 +45,7 @@ void brighness_decrease(){//dunkler
     neo.setBrightness(brightness);
 }
 
-void neopixel_time_blink(unsigned long mil){
+void neopixel_time_blink(unsigned long mil){//LED 32-55
     if(mil >= (blink + 500)){
         if(blink_ == 0){
             for(int i=32; i<56; i++){
@@ -60,7 +60,7 @@ void neopixel_time_blink(unsigned long mil){
     }
 }
 
-void neopixel_time(unsigned long t1, unsigned long t2, unsigned long t3, unsigned long t4, unsigned long t5, unsigned long *t, int t_out, int t_anz){// led 33-56
+void neopixel_time(unsigned long t1, unsigned long t2, unsigned long t3, unsigned long t4, unsigned long t5, unsigned long *t, int t_out, int t_anz){// led 32-55
     float t1_ = float(t[0])/float(t1);
     float t2_ = float(t[1])/float(t2);
     float t3_ = float(t[2])/float(t3);
@@ -230,18 +230,10 @@ void neopixel_rotary_rotate(){//led 8-31
     }
 }
 
-void neopixel_rotary_press(int p){//led 8-31
+void neopixel_rotary_press(){//led 8-31
     if(neopixel_active){
-        if(p){
-            for(int i=8; i<31; i++){
-                neo.setPixelColor(i, white);
-            }
-        }
-
-        if(!p){
-            for(int i=8; i<31; i++){
-                neo.setPixelColor(i, off);
-            }
+        for(int i=8; i<32; i++){
+            neo.setPixelColor(i, white);
         }
     }
 }
