@@ -263,6 +263,7 @@ void loop() {
 
   if(digitalRead(Button_30s) && digitalRead(Button_15min) && ledoff_click == 0){//neopixel on/off
     ledoff();
+    ledoff_click = 1;
     switch (act_timer)
     {
     case 0:
@@ -301,6 +302,7 @@ void loop() {
   }
   else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness-
     brighness_decrease();
+    ledoff_click = 1;
     switch (act_timer)
     {
     case 0:
@@ -339,6 +341,7 @@ void loop() {
   }
   else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness+
     brightness_increase();
+    ledoff_click = 1;
     switch (act_timer)
     {
     case 0:
@@ -635,6 +638,9 @@ void loop() {
     menue = 21;
     digitalWrite(summer, HIGH);
     neopixel_time_blink(actual_Millis);
+  }
+  else{
+    digitalWrite(summer, LOW);
   }
 
   if((last_action+60000) <= actual_Millis && menue != 0 && timer_out == 0){//Bildschirmschoner
