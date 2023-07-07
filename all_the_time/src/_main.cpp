@@ -70,8 +70,8 @@ int rotary_move = 0;
 // Setup a RotaryEncoder with 2 steps per latch for the 2 signal input pins:
 RotaryEncoder encoder(Rotary_IN1, Rotary_IN2, RotaryEncoder::LatchMode::TWO03);
 
-const char* ssid = "Seis";
-const char* password = "Grandgadfly265 ";
+const char* ssid = "HUAWEI P20 Pro";
+const char* password = "AndreasSeisAurach";
 
 void setup() {
   pinMode(Button_30s, INPUT);

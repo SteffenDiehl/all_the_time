@@ -46,7 +46,7 @@ void brighness_decrease(){//dunkler
 }
 
 void neopixel_time_blink(unsigned long mil){//LED 32-55
-    if(mil >= (blink + 500)){
+    if(mil >= (blink + 500) && neopixel_active){
         if(blink_ == 0){
             for(int i=32; i<56; i++){
                 neo.setPixelColor(i, white);
