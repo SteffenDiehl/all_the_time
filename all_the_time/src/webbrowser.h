@@ -245,7 +245,7 @@ String processor(const String& var){
     return readFile(SPIFFS, "/festerTimer9.txt");
   }
     else if(var == "festerTimerName10"){
-    return Pointerfeste_Timer[9];
+    return readFile(SPIFFS, "/festerTimerName10.txt");
   }
     else if(var == "festerTimer10"){
     return readFile(SPIFFS, "/festerTimer10.txt");
