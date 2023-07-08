@@ -153,40 +153,6 @@ void notFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Not found");
 }
 
-String readFile(fs::FS &fs, const char * path){
-  // Serial.print(path);
-  // Serial.printf("Reading file: %s\r\n", path);
-  File file = fs.open(path, "r");
-  if(!file || file.isDirectory()){
-    // Serial.println("- empty file or failed to open file");
-    return String();
-  }
-  // Serial.println("- read from file:");
-  String fileContent;
-  while(file.available()){
-    fileContent+=String((char)file.read());
-  }
-  file.close();
-  // Serial.println(fileContent);
-  return fileContent;
-}
-
-void writeFile(fs::FS &fs, const char * path, const char * message){
-  Serial.printf("Writing file: %s\r\n", path);
-  File file = fs.open(path, "w");
-  if(!file){
-    Serial.println("- failed to open file for writing");
-    return;
-  }
-  if(file.print(message)){
-    Serial.println(message);
-    Serial.println("- file written");
-  } else {
-    Serial.println("- write failed");
-  }
-  file.close();
-}
-
 // Replaces placeholder with stored values
 String processor(const String& var){
   //Serial.println(var);
@@ -221,31 +187,31 @@ String processor(const String& var){
     return String(_feste_Timer[4]);
   }
     else if(var == "festerTimerName6"){
-    return readFile(SPIFFS, "/festerTimerName6.txt");
+    return Pointerfeste_Timer_Name[5];
   }
     else if(var == "festerTimer6"){
     return String(Pointerfeste_Timer[5]/1000);
   }
     else if(var == "festerTimerName7"){
-    return readFile(SPIFFS, "/festerTimerName7.txt");
+    return Pointerfeste_Timer_Name[6];
   }
     else if(var == "festerTimer7"){
     return String(Pointerfeste_Timer[6]/1000);
   }
     else if(var == "festerTimerName8"){
-    return readFile(SPIFFS, "/festerTimerName8.txt");
+    return Pointerfeste_Timer_Name[7];
   }
     else if(var == "festerTimer8"){
     return String(Pointerfeste_Timer[7]/1000);
   }
     else if(var == "festerTimerName9"){
-    return readFile(SPIFFS, "/festerTimerName9.txt");
+    return Pointerfeste_Timer_Name[8];
   }
     else if(var == "festerTimer9"){
     return String(Pointerfeste_Timer[8]/1000);
   }
     else if(var == "festerTimerName10"){
-    return (readFile(SPIFFS, "/festerTimerName10.txt"));
+    return Pointerfeste_Timer_Name[9];
   }
     else if(var == "festerTimer10"){
     return String(Pointerfeste_Timer[9]/1000);
@@ -334,65 +300,53 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
     unsigned long changetimer;
     String inputMessage;
     // GET festerTimerName value on <ESP_IP>/get?festerTimerName=<inputMessage>
-    if (request->hasParam(PARAM_festerTimerName6)) {
+    if (request->hasParam(PARAM_festerTimerName6) != "") {
       inputMessage = request->getParam(PARAM_festerTimerName6)->value();
-      writeFile(SPIFFS, "/festerTimerName6.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[5] = inputMessage;
     }
     // GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
-    if (request->hasParam(PARAM_festerTimer6)) {
+    if (request->hasParam(PARAM_festerTimer6) != "") {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
       changetimer = (inputMessage.toInt())*1000;
-      writeFile(SPIFFS, "/festerTimer6.txt", String(changetimer).c_str());
       Pointerfeste_Timer[5] = changetimer;
     }
-    if (request->hasParam(PARAM_festerTimerName7)) {
+    if (request->hasParam(PARAM_festerTimerName7) != "") {
       inputMessage = request->getParam(PARAM_festerTimerName7)->value();
-      writeFile(SPIFFS, "/festerTimerName7.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[6] = inputMessage;
     }
-    if (request->hasParam(PARAM_festerTimer7)) {
+    if (request->hasParam(PARAM_festerTimer7) != "") {
       inputMessage = request->getParam(PARAM_festerTimer7)->value();
       changetimer = (inputMessage.toInt())*1000;
-      writeFile(SPIFFS, "/festerTimer7.txt", String(changetimer).c_str());
       Pointerfeste_Timer[6] = changetimer;
     }
-    if (request->hasParam(PARAM_festerTimerName8)) {
+    if (request->hasParam(PARAM_festerTimerName8) != "") {
       inputMessage = request->getParam(PARAM_festerTimerName8)->value();
-      writeFile(SPIFFS, "/festerTimerName8.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[7] = inputMessage;
     }
-    if (request->hasParam(PARAM_festerTimer8)) {
+    if (request->hasParam(PARAM_festerTimer8) != "") {
       inputMessage = request->getParam(PARAM_festerTimer8)->value();
       changetimer = (inputMessage.toInt())*1000;
-      writeFile(SPIFFS, "/festerTimer8.txt", String(changetimer).c_str());
       Pointerfeste_Timer[7] = changetimer;
     }
-    if (request->hasParam(PARAM_festerTimerName9)) {
+    if (request->hasParam(PARAM_festerTimerName9) != "") {
       inputMessage = request->getParam(PARAM_festerTimerName9)->value();
-      writeFile(SPIFFS, "/festerTimerName9.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[8] = inputMessage;
     }
-    if (request->hasParam(PARAM_festerTimer9)) {
+    if (request->hasParam(PARAM_festerTimer9) != "") {
       inputMessage = request->getParam(PARAM_festerTimer9)->value();
       changetimer = (inputMessage.toInt())*1000;
-      writeFile(SPIFFS, "/festerTimer9.txt", String(changetimer).c_str());
       Pointerfeste_Timer[8] = changetimer;
     }
-    if (request->hasParam(PARAM_festerTimerName10)) {
+    if (request->hasParam(PARAM_festerTimerName10) != "") {
       inputMessage = request->getParam(PARAM_festerTimerName10)->value();
-      writeFile(SPIFFS, "/festerTimerName10.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[9] = inputMessage;
     }
-    if (request->hasParam(PARAM_festerTimer10)) {
+    if (request->hasParam(PARAM_festerTimer10) != "") {
       inputMessage = request->getParam(PARAM_festerTimer10)->value();
       changetimer = (inputMessage.toInt())*1000;
-      writeFile(SPIFFS, "/festerTimer10.txt", String(changetimer).c_str());
       Pointerfeste_Timer[9] = changetimer;
     }
-    else {
-      inputMessage = "No message sent";
-    }
+
     request->send(200, "text/text", inputMessage);
   });
   server.on("/start", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -406,7 +360,6 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
       }
       filename = "timer" + String((*pointer_act_timer)+1) +"value";
       const char* file = filename.c_str();
-      writeFile(SPIFFS, file, inputMessage.c_str());
       changetimer = inputMessage.toInt();
       pointer_timer[*pointer_act_timer] = changetimer;
       (*pointer_act_timer) ++;
