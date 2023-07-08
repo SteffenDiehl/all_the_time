@@ -33,6 +33,7 @@ const char* PARAM_timer3value = "timer3value";
 const char* PARAM_timer4value = "timer4value";
 const char* PARAM_timer5value = "timer5value";
 
+
 String _feste_Timer_Name[10] = {"Nudeln 7min", "Kartoffeln 14min", "Steak medium", "Mittag 1h", "Mittag 30min", "-", "-", "-", "-", "-"};
 unsigned long _feste_Timer[10] = {420000, 840000, 90000, 3600000, 1800000, 0, 0, 0, 0, 0};
 const char* festeFileName[10] = {"/festerTimerName1", "/festerTimerName2", "/festerTimerName3", "/festerTimerName4", "/festerTimerName5", "/festerTimerName6", "/festerTimerName7", "/festerTimerName8", "/festerTimerName9", "/festerTimerName10"};
@@ -46,6 +47,7 @@ unsigned long *pointer_timer_3 = nullptr;
 unsigned long *pointer_timer_4 = nullptr;
 unsigned long *pointer_timer_5 = nullptr;
 unsigned long *pointer_timer = nullptr;
+int *pointer_act_timer = nullptr;
 String Date;
 String Time;
 
@@ -59,10 +61,6 @@ const char index_html[] PROGMEM = R"rawliteral(
     <script>
     function submitMessage() {
       alert("Saved value to ESP SPIFFS");
-      setTimeout(function(){ document.location.reload(false); }, 500);   
-    }
-    function submitaddMessage() {
-      alert("%timer3value%");
       setTimeout(function(){ document.location.reload(false); }, 500);   
     }
     function startMessage() {
@@ -100,12 +98,8 @@ const char index_html[] PROGMEM = R"rawliteral(
       Timer4: %timer4value% seconds / %timer4left% seconds
     </form>
     <br>
-    <form acton="/start5" target= "hidden-form">
+    <form target= "hidden-form">
       Timer5: %timer5value% seconds / %timer5left% seconds
-    </form>
-    <br>
-      <form acton="/startnew" target= "hidden-form">
-      <input type="submit" value="Start a new Timer" onclick="startMessage()">
     </form>
     <br>
 
@@ -129,15 +123,8 @@ const char index_html[] PROGMEM = R"rawliteral(
     <br>
     <br>
 
-  <form action="/add" target="hidden-form">
-    <label>Timer:</label>
-    <select name="timerSelect">
-    <option value="/timer1value.txt">Timer 1</option>
-    <option value="/timer2value.txt">Timer 2</option>
-    <option value="/timer3value.txt">Timer 3</option>
-    <option value="/timer4value.txt">Timer 4</option>
-    <option value="/timer5value.txt">Timer 5</option>
-    </select>
+  <form action="/start" target="hidden-form">
+    Timer %currentTimer%:
     <label>festeTimerName:</label>
     <select name="festeTimerNameSelect">
     <option value="%festerTimer1%">%festerTimerName1%</option>
@@ -151,7 +138,7 @@ const char index_html[] PROGMEM = R"rawliteral(
     <option value="%festerTimer9%">%festerTimerName9%</option>
     <option value="%festerTimer10%">%festerTimerName10%</option>
     </select>
-    <input type="submit" value="Submitadd" onclick="submitaddMessage()">
+    <input type="submit" value="Start a new Timer" onclick="startMessage()">
   </form>
 
   
@@ -297,6 +284,9 @@ String processor(const String& var){
     else if(var== "timer5left") {
       return String(pointer_timer[4]);
   }
+  else if(var== "currentTimer") {
+      return String((*pointer_act_timer)+1);
+  }
   return String();
 }
 
@@ -348,7 +338,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer6)) {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
       writeFile(SPIFFS, "/festerTimer6.txt", inputMessage.c_str());
-      changetimer = (inputMessage.toInt()/1000);
+      changetimer = (inputMessage.toInt()*1000);
       Pointerfeste_Timer[5] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName7)) {
@@ -359,7 +349,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer7)) {
       inputMessage = request->getParam(PARAM_festerTimer7)->value();
       writeFile(SPIFFS, "/festerTimer7.txt", inputMessage.c_str());
-      changetimer = (inputMessage.toInt()/1000);
+      changetimer = (inputMessage.toInt()*1000);
       Pointerfeste_Timer[6] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName8)) {
@@ -370,7 +360,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer8)) {
       inputMessage = request->getParam(PARAM_festerTimer8)->value();
       writeFile(SPIFFS, "/festerTimer8.txt", inputMessage.c_str());
-      changetimer = (inputMessage.toInt()/1000);
+      changetimer = (inputMessage.toInt()*1000);
       Pointerfeste_Timer[7] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName9)) {
@@ -381,7 +371,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer9)) {
       inputMessage = request->getParam(PARAM_festerTimer9)->value();
       writeFile(SPIFFS, "/festerTimer9.txt", inputMessage.c_str());
-      changetimer = (inputMessage.toInt()/1000);
+      changetimer = (inputMessage.toInt()*1000);
       Pointerfeste_Timer[8] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName10)) {
@@ -392,7 +382,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer10)) {
       inputMessage = request->getParam(PARAM_festerTimer10)->value();
       writeFile(SPIFFS, "/festerTimer10.txt", inputMessage.c_str());
-      changetimer = (inputMessage.toInt()/1000);
+      changetimer = (inputMessage.toInt()*1000);
       Pointerfeste_Timer[9] = changetimer;
     }
     else {
@@ -400,18 +390,37 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     }
     request->send(200, "text/text", inputMessage);
   });
-  server.on("/add", HTTP_GET, [](AsyncWebServerRequest *request){
+  server.on("/start", HTTP_GET, [](AsyncWebServerRequest *request){
     String inputMessage;
     String filename;
       if (request->hasParam(PARAM_festeTimerNameSelect)) {
       inputMessage = request->getParam(PARAM_festeTimerNameSelect)->value();
       // Serial.println("inputMessage:" + inputMessage);
       }
-      if (request->hasParam(PARAM_timerSelect)) {
-      filename = request->getParam(PARAM_timerSelect)->value();
-      //  
+      filename = "timer" + String((*pointer_act_timer)+1) +"value";
       const char* file = filename.c_str();
       writeFile(SPIFFS, file, inputMessage.c_str());
+      pointer_timer[*pointer_act_timer] = inputMessage;
+      (*pointer_act_timer) ++;
+      switch (*pointer_act_timer)
+      {
+      case 1:
+        *pointer_timer_1 = inputMessage;
+        break;
+      case 2:
+        *pointer_timer_2 = inputMessage;
+        break;
+      case 1:
+        *pointer_timer_3 = inputMessage;
+        break;
+      case 1:
+        *pointer_timer_4 = inputMessage;
+        break;
+      case 1:
+        *pointer_timer_5 = inputMessage;
+        break;
+      default:
+        break;
       }
     });
   server.on("/startnew",HTTP_GET, [](AsyncWebServerRequest *request){
@@ -425,7 +434,8 @@ void web_browser_end(){
   server.end();
 }
 
-void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s) {
+void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s, int *anz) {
   Date =  String(_D) + "." + String(_M) + "." + String(_Y);
   Time = String(_h) + ":" + String(_m) + ":" + String(_s);
+  pointer_act_timer = anz;
 }
