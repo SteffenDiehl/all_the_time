@@ -48,6 +48,8 @@ unsigned long *pointer_timer_4 = nullptr;
 unsigned long *pointer_timer_5 = nullptr;
 unsigned long *pointer_timer = nullptr;
 int *pointer_act_timer = nullptr;
+int *pointer_menu = nullptr;
+int *pointer_pos = nullptr;
 String Date;
 String Time;
 
@@ -290,7 +292,7 @@ String processor(const String& var){
   return String();
 }
 
-void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr) {
+void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr, int *ptm, int *ppos) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
@@ -304,6 +306,8 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
   pointer_timer_5 =tmr5;
   pointer_timer =ts;
   pointer_act_timer = anz;
+  pointer_menu = ptm;
+  pointer_pos = ppos;
   Serial.begin(115200);
   // Initialize SPIFFS
   #ifdef ESP32
@@ -405,22 +409,28 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
       changetimer = inputMessage.toInt();
       pointer_timer[*pointer_act_timer] = changetimer;
       (*pointer_act_timer) ++;
+      *pointer_pos = 1;
       switch (*pointer_act_timer)
       {
       case 1:
         *pointer_timer_1 = changetimer;
+        *pointer_menu = 2;
         break;
       case 2:
         *pointer_timer_2 = changetimer;
+        *pointer_menu = 3;
         break;
       case 3:
         *pointer_timer_3 = changetimer;
+        *pointer_menu = 4;
         break;
       case 4:
         *pointer_timer_4 = changetimer;
+        *pointer_menu = 5;
         break;
       case 5:
         *pointer_timer_5 = changetimer;
+        *pointer_menu = 6;
         break;
       default:
         break;
