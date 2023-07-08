@@ -524,7 +524,6 @@ void loop() {
     rotary_click = 1;
     act_timer--;
     timer_out--;
-    timer_anz = 0;
     switch (act_timer)
     {
     case 0:

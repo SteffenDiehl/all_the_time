@@ -60,7 +60,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML>
 <html><body style="background-color: lightblue;">
   <head>
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="10">
     <script>
     function submitMessage() {
       alert("Saved value to ESP SPIFFS");
