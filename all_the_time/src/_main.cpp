@@ -122,7 +122,7 @@ void loop() {
 
   //Webserver
   if(Web_Server && !Web_Server_act && Wi_Fi_act){//Ein schalten
-    web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer, &act_timer, &menue, &position);
+    web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer, &act_timer, &menue, &position, &timer_anz);
     Web_Server_act = 1;
   }
   else if(!Web_Server && Web_Server_act){//Aus schalten
