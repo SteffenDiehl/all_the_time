@@ -245,7 +245,7 @@ String processor(const String& var){
     return readFile(SPIFFS, "/festerTimer9.txt");
   }
     else if(var == "festerTimerName10"){
-    return readFile(SPIFFS, "/festerTimerName10.txt");
+    return Pointerfeste_Timer[9];
   }
     else if(var == "festerTimer10"){
     return readFile(SPIFFS, "/festerTimer10.txt");
@@ -292,7 +292,7 @@ String processor(const String& var){
   return String();
 }
 
-void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr, int *ptm = nullptr, int *ppos = nullptr) {
+void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr, int *ptm = nullptr, int *ppos = nullptr) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
