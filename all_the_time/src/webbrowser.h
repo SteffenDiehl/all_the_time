@@ -339,7 +339,7 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
       writeFile(SPIFFS, "/festerTimerName6.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[5] = inputMessage;
     }
-    GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
+    // GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
     if (request->hasParam(PARAM_festerTimer6)) {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
       changetimer = (inputMessage.toInt())*1000;
