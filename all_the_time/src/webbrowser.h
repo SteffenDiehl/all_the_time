@@ -282,21 +282,21 @@ String processor(const String& var){
     else if(var == "currentDate"){
     return Date;
   }
-  //   else if(var== "timer1left") {
-  //     return String(*pointer_timer);
-  // }
-  //   else if(var== "timer2left") {
-  //     return String(*(pointer_timer+1));
-  // }
-  //   else if(var== "timer3left") {
-  //     return String(*(pointer_timer+2));
-  // }
-  //   else if(var== "timer4left") {
-  //     return String(*(pointer_timer+3));
-  // }
-  //   else if(var== "timer5left") {
-  //     return String(*(pointer_timer+4));
-  // }
+    else if(var== "timer1left") {
+      return String(pointer_timer[0]);
+  }
+    else if(var== "timer2left") {
+      return String(pointer_timer[1]);
+  }
+    else if(var== "timer3left") {
+      return String(pointer_timer[2]);
+  }
+    else if(var== "timer4left") {
+      return String(pointer_timer[3]);
+  }
+    else if(var== "timer5left") {
+      return String(pointer_timer[4]);
+  }
   return String();
 }
 
@@ -342,58 +342,58 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimerName6)) {
       inputMessage = request->getParam(PARAM_festerTimerName6)->value();
       writeFile(SPIFFS, "/festerTimerName6.txt", inputMessage.c_str());
-      // *(Pointerfeste_Timer_Name + 5) = inputMessage;
+      Pointerfeste_Timer_Name[5] = inputMessage;
     }
     // GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
     if (request->hasParam(PARAM_festerTimer6)) {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
       writeFile(SPIFFS, "/festerTimer6.txt", inputMessage.c_str());
       changetimer =inputMessage.toInt();
-      // *(Pointerfeste_Timer + 5) = changetimer;
+      Pointerfeste_Timer[5] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName7)) {
       inputMessage = request->getParam(PARAM_festerTimerName7)->value();
       writeFile(SPIFFS, "/festerTimerName7.txt", inputMessage.c_str());
-      // *(Pointerfeste_Timer_Name + 6) = inputMessage;
+      Pointerfeste_Timer_Name[6] = inputMessage;
     }
     if (request->hasParam(PARAM_festerTimer7)) {
       inputMessage = request->getParam(PARAM_festerTimer7)->value();
       writeFile(SPIFFS, "/festerTimer7.txt", inputMessage.c_str());
       changetimer =inputMessage.toInt();
-      // *(Pointerfeste_Timer + 6) = changetimer;
+      Pointerfeste_Timer[6] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName8)) {
       inputMessage = request->getParam(PARAM_festerTimerName8)->value();
       writeFile(SPIFFS, "/festerTimerName8.txt", inputMessage.c_str());
-      // *(Pointerfeste_Timer_Name + 7) = inputMessage;
+      Pointerfeste_Timer_Name[7] = inputMessage;
     }
     if (request->hasParam(PARAM_festerTimer8)) {
       inputMessage = request->getParam(PARAM_festerTimer8)->value();
       writeFile(SPIFFS, "/festerTimer8.txt", inputMessage.c_str());
       changetimer =inputMessage.toInt();
-      // *(Pointerfeste_Timer + 7) = changetimer;
+      Pointerfeste_Timer[7] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName9)) {
       inputMessage = request->getParam(PARAM_festerTimerName9)->value();
       writeFile(SPIFFS, "/festerTimerName9.txt", inputMessage.c_str());
-      // *(Pointerfeste_Timer_Name + 8) = inputMessage;
+      Pointerfeste_Timer_Name[8] = inputMessage;
     }
     if (request->hasParam(PARAM_festerTimer9)) {
       inputMessage = request->getParam(PARAM_festerTimer9)->value();
       writeFile(SPIFFS, "/festerTimer9.txt", inputMessage.c_str());
       changetimer =inputMessage.toInt();
-      // *(Pointerfeste_Timer + 8) = changetimer;
+      Pointerfeste_Timer[8] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName10)) {
       inputMessage = request->getParam(PARAM_festerTimerName10)->value();
       writeFile(SPIFFS, "/festerTimerName10.txt", inputMessage.c_str());
-      // *(Pointerfeste_Timer_Name + 9) = inputMessage;
+      Pointerfeste_Timer_Name[9] = inputMessage;
     }
     if (request->hasParam(PARAM_festerTimer10)) {
       inputMessage = request->getParam(PARAM_festerTimer10)->value();
       writeFile(SPIFFS, "/festerTimer10.txt", inputMessage.c_str());
       changetimer =inputMessage.toInt();
-      // *(Pointerfeste_Timer + 8) = changetimer;
+      Pointerfeste_Timer[9] = changetimer;
     }
     else {
       inputMessage = "No message sent";
