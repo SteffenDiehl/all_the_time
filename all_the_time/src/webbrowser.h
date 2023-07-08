@@ -268,7 +268,7 @@ String processor(const String& var){
     return String((*pointer_timer_2)/1000);
   }
     else if(var == "timer3value"){
-    return String((*pointer_timer_3)/1000));
+    return String((*pointer_timer_3)/1000);
   }
     else if(var == "timer4value"){
     return String((*pointer_timer_4)/1000);
