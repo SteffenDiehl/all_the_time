@@ -50,6 +50,7 @@ unsigned long *pointer_timer = nullptr;
 int *pointer_act_timer = nullptr;
 int *pointer_menu = nullptr;
 int *pointer_pos = nullptr;
+int *pointer_anzeige = nullptr;
 String Date;
 String Time;
 
@@ -59,7 +60,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML>
 <html><body style="background-color: lightblue;">
   <head>
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="5">
     <script>
     function submitMessage() {
       alert("Saved value to ESP SPIFFS");
@@ -258,7 +259,7 @@ String processor(const String& var){
   return String();
 }
 
-void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr, int *ptm = nullptr, int *ppos = nullptr) {
+void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr, int *ptm = nullptr, int *ppos = nullptr, int *panzeige) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
@@ -274,6 +275,7 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
   pointer_act_timer = anz;
   pointer_menu = ptm;
   pointer_pos = ppos;
+  pointer_anzeige = panzeige;
   Serial.begin(115200);
   // Initialize SPIFFS
   #ifdef ESP32
@@ -383,6 +385,7 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
       changetimer = inputMessage.toInt();
       pointer_timer[*pointer_act_timer] = changetimer;
       (*pointer_act_timer) ++;
+      *pointer_anzeige = *pointer_act_timer;
       *pointer_pos = 1;
       switch (*pointer_act_timer)
       {
