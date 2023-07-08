@@ -217,19 +217,19 @@ String processor(const String& var){
     return String(Pointerfeste_Timer[9]);
   }
     else if(var == "timer1value"){
-    return String((*pointer_timer_1));
+    return String((*pointer_timer_1)/1000);
   }
     else if(var == "timer2value"){
-    return String((*pointer_timer_2));
+    return String((*pointer_timer_2)/1000);
   }
     else if(var == "timer3value"){
-    return String((*pointer_timer_3));
+    return String((*pointer_timer_3)/1000);
   }
     else if(var == "timer4value"){
-    return String((*pointer_timer_4));
+    return String((*pointer_timer_4)/1000);
   }
     else if(var == "timer5value"){
-    return String((*pointer_timer_5));
+    return String((*pointer_timer_5)/1000);
   }
     else if(var == "currentTime"){
     return Time;
