@@ -101,10 +101,10 @@ void loop() {
   if(actual_Millis > rtc_last_sync + 604800000 && Wi_Fi_act){
     synchronizeRTC();
   }
-  ac_time(&year, &month, &day, &hour, &minute, &second);
+  ac_time(&year, &month, &day, &hour, &minute, &second);//RTC time abfrage
 
   //Wifi
-  if(Wi_Fi && !Wi_Fi_act){//wenn verbunden Wi_Fi_act = 1 setzen
+  if(Wi_Fi && !Wi_Fi_act){//Ein schalten
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
       delay(1000);
@@ -112,7 +112,7 @@ void loop() {
     Wi_Fi_act = 1;
     synchronizeRTC();
   }
-  else if(!Wi_Fi && Wi_Fi_act){
+  else if(!Wi_Fi && Wi_Fi_act){//Aus schalten
     WiFi.disconnect();
     Wi_Fi_act = 0;
 
@@ -121,16 +121,16 @@ void loop() {
   }
 
   //Webserver
-  if(Web_Server && !Web_Server_act && Wi_Fi_act){
+  if(Web_Server && !Web_Server_act && Wi_Fi_act){//Ein schalten
     web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer);
     Web_Server_act = 1;
   }
-  else if(!Web_Server && Web_Server_act){
+  else if(!Web_Server && Web_Server_act){//Aus schalten
     web_browser_end();
     Web_Server_act = 0;
   }
 
-  if(Web_Server_act){
+  if(Web_Server_act){//Time abgleich 
     web_browser(year, month, day, hour, minute, second);
   }
 
