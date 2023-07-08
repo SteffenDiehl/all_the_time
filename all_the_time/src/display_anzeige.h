@@ -1097,5 +1097,4 @@ void display_Anzeige(int *m, int *p, int *p_max, int *t, unsigned long *t1, unsi
             break;
         }
   display.display();
-  
 }
