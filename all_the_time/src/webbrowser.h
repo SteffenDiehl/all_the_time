@@ -300,7 +300,7 @@ String processor(const String& var){
   return String();
 }
 
-void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long *ts) {
+void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
