@@ -831,6 +831,7 @@ void Rotary_Click(int *m, int *p, int *b, int *Wi_Fi, int *Web_Server, int *act_
                 {
                 case 0:
                     *t1 = 0;
+                    t[0] = 0;
                     *m = 1;
                     *p = 1;
                     break;
