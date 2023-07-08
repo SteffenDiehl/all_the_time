@@ -224,31 +224,31 @@ String processor(const String& var){
     return readFile(SPIFFS, "/festerTimerName6.txt");
   }
     else if(var == "festerTimer6"){
-    return readFile(SPIFFS, "/festerTimer6.txt");
+    return String(Pointerfeste_Timer[5]/1000);
   }
     else if(var == "festerTimerName7"){
     return readFile(SPIFFS, "/festerTimerName7.txt");
   }
     else if(var == "festerTimer7"){
-    return readFile(SPIFFS, "/festerTimer7.txt");
+    return String(Pointerfeste_Timer[6]/1000);
   }
     else if(var == "festerTimerName8"){
     return readFile(SPIFFS, "/festerTimerName8.txt");
   }
     else if(var == "festerTimer8"){
-    return readFile(SPIFFS, "/festerTimer8.txt");
+    return String(Pointerfeste_Timer[7]/1000);
   }
     else if(var == "festerTimerName9"){
     return readFile(SPIFFS, "/festerTimerName9.txt");
   }
     else if(var == "festerTimer9"){
-    return readFile(SPIFFS, "/festerTimer9.txt");
+    return String(Pointerfeste_Timer[8]/1000);
   }
     else if(var == "festerTimerName10"){
-    return readFile(SPIFFS, "/festerTimerName10.txt");
+    return (readFile(SPIFFS, "/festerTimerName10.txt"));
   }
     else if(var == "festerTimer10"){
-    return readFile(SPIFFS, "/festerTimer10.txt");
+    return String(Pointerfeste_Timer[9]/1000);
   }
     else if(var == "timer1value"){
     return String((*pointer_timer_1)/1000);
