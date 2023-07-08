@@ -290,7 +290,7 @@ String processor(const String& var){
   return String();
 }
 
-void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}) {
+void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned long *tmr1 = nullptr, unsigned long *tmr2 = nullptr, unsigned long *tmr3 = nullptr, unsigned long *tmr4 = nullptr, unsigned long *tmr5 = nullptr, unsigned long ts[5] = {}, int *anz = nullptr) {
   for(int i = 0; i<10; i++){
     _feste_Timer[i] = ft[i];
     _feste_Timer_Name[i] = ftn[i];
@@ -303,6 +303,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
   pointer_timer_4 =tmr4;
   pointer_timer_5 =tmr5;
   pointer_timer =ts;
+  pointer_act_timer = anz;
   Serial.begin(115200);
   // Initialize SPIFFS
   #ifdef ESP32
@@ -393,6 +394,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
   server.on("/start", HTTP_GET, [](AsyncWebServerRequest *request){
     String inputMessage;
     String filename;
+    int changetimer;
       if (request->hasParam(PARAM_festeTimerNameSelect)) {
       inputMessage = request->getParam(PARAM_festeTimerNameSelect)->value();
       // Serial.println("inputMessage:" + inputMessage);
@@ -400,24 +402,25 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
       filename = "timer" + String((*pointer_act_timer)+1) +"value";
       const char* file = filename.c_str();
       writeFile(SPIFFS, file, inputMessage.c_str());
-      pointer_timer[*pointer_act_timer] = inputMessage;
+      changetimer = inputMessage.toInt();
+      pointer_timer[*pointer_act_timer] = changetimer;
       (*pointer_act_timer) ++;
       switch (*pointer_act_timer)
       {
       case 1:
-        *pointer_timer_1 = inputMessage;
+        *pointer_timer_1 = changetimer;
         break;
       case 2:
-        *pointer_timer_2 = inputMessage;
+        *pointer_timer_2 = changetimer;
         break;
-      case 1:
-        *pointer_timer_3 = inputMessage;
+      case 3:
+        *pointer_timer_3 = changetimer;
         break;
-      case 1:
-        *pointer_timer_4 = inputMessage;
+      case 4:
+        *pointer_timer_4 = changetimer;
         break;
-      case 1:
-        *pointer_timer_5 = inputMessage;
+      case 5:
+        *pointer_timer_5 = changetimer;
         break;
       default:
         break;
@@ -434,8 +437,7 @@ void web_browser_end(){
   server.end();
 }
 
-void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s, int *anz) {
+void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s) {
   Date =  String(_D) + "." + String(_M) + "." + String(_Y);
   Time = String(_h) + ":" + String(_m) + ":" + String(_s);
-  pointer_act_timer = anz;
 }
