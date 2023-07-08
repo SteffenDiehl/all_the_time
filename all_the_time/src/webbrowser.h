@@ -339,11 +339,11 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
       writeFile(SPIFFS, "/festerTimerName6.txt", inputMessage.c_str());
       Pointerfeste_Timer_Name[5] = inputMessage;
     }
-    // GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
+    GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
     if (request->hasParam(PARAM_festerTimer6)) {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
-      writeFile(SPIFFS, "/festerTimer6.txt", inputMessage.c_str());
       changetimer = (inputMessage.toInt())*1000;
+      writeFile(SPIFFS, "/festerTimer6.txt", String(changetimer).c_str());
       Pointerfeste_Timer[5] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName7)) {
@@ -353,8 +353,8 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
     }
     if (request->hasParam(PARAM_festerTimer7)) {
       inputMessage = request->getParam(PARAM_festerTimer7)->value();
-      writeFile(SPIFFS, "/festerTimer7.txt", inputMessage.c_str());
       changetimer = (inputMessage.toInt())*1000;
+      writeFile(SPIFFS, "/festerTimer7.txt", String(changetimer).c_str());
       Pointerfeste_Timer[6] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName8)) {
@@ -364,8 +364,8 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
     }
     if (request->hasParam(PARAM_festerTimer8)) {
       inputMessage = request->getParam(PARAM_festerTimer8)->value();
-      writeFile(SPIFFS, "/festerTimer8.txt", inputMessage.c_str());
       changetimer = (inputMessage.toInt())*1000;
+      writeFile(SPIFFS, "/festerTimer8.txt", String(changetimer).c_str());
       Pointerfeste_Timer[7] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName9)) {
@@ -375,8 +375,8 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
     }
     if (request->hasParam(PARAM_festerTimer9)) {
       inputMessage = request->getParam(PARAM_festerTimer9)->value();
-      writeFile(SPIFFS, "/festerTimer9.txt", inputMessage.c_str());
       changetimer = (inputMessage.toInt())*1000;
+      writeFile(SPIFFS, "/festerTimer9.txt", String(changetimer).c_str());
       Pointerfeste_Timer[8] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName10)) {
@@ -386,8 +386,8 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
     }
     if (request->hasParam(PARAM_festerTimer10)) {
       inputMessage = request->getParam(PARAM_festerTimer10)->value();
-      writeFile(SPIFFS, "/festerTimer10.txt", inputMessage.c_str());
       changetimer = (inputMessage.toInt())*1000;
+      writeFile(SPIFFS, "/festerTimer10.txt", String(changetimer).c_str());
       Pointerfeste_Timer[9] = changetimer;
     }
     else {
