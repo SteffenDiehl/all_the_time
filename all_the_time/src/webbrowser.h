@@ -300,51 +300,71 @@ void web_browser_begin(unsigned long *ft = nullptr, String *ftn = nullptr, unsig
     unsigned long changetimer;
     String inputMessage;
     // GET festerTimerName value on <ESP_IP>/get?festerTimerName=<inputMessage>
-    if (request->hasParam(PARAM_festerTimerName6) != "") {
+    if (request->hasParam(PARAM_festerTimerName6)) {
       inputMessage = request->getParam(PARAM_festerTimerName6)->value();
-      Pointerfeste_Timer_Name[5] = inputMessage;
+      if(inputMessage != ""){
+        Pointerfeste_Timer_Name[5] = inputMessage;
+      }
     }
     // GET inputInt value on <ESP_IP>/get?inputInt=<inputMessage>
-    if (request->hasParam(PARAM_festerTimer6) != "") {
+    if (request->hasParam(PARAM_festerTimer6)) {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
-      changetimer = (inputMessage.toInt())*1000;
-      Pointerfeste_Timer[5] = changetimer;
+      if(inputMessage != ""){
+        changetimer = (inputMessage.toInt())*1000;
+        Pointerfeste_Timer[5] = changetimer;
+      }
     }
-    if (request->hasParam(PARAM_festerTimerName7) != "") {
+    if (request->hasParam(PARAM_festerTimerName7)) {
       inputMessage = request->getParam(PARAM_festerTimerName7)->value();
-      Pointerfeste_Timer_Name[6] = inputMessage;
+      if(inputMessage != ""){
+        Pointerfeste_Timer_Name[6] = inputMessage;
+      }
     }
-    if (request->hasParam(PARAM_festerTimer7) != "") {
+    if (request->hasParam(PARAM_festerTimer7)) {
       inputMessage = request->getParam(PARAM_festerTimer7)->value();
-      changetimer = (inputMessage.toInt())*1000;
-      Pointerfeste_Timer[6] = changetimer;
+      if(inputMessage != ""){
+        changetimer = (inputMessage.toInt())*1000;
+        Pointerfeste_Timer[6] = changetimer;
+      }
     }
-    if (request->hasParam(PARAM_festerTimerName8) != "") {
+    if (request->hasParam(PARAM_festerTimerName8)) {
       inputMessage = request->getParam(PARAM_festerTimerName8)->value();
-      Pointerfeste_Timer_Name[7] = inputMessage;
+      if(inputMessage != ""){
+        Pointerfeste_Timer_Name[7] = inputMessage;
+      }
     }
-    if (request->hasParam(PARAM_festerTimer8) != "") {
+    if (request->hasParam(PARAM_festerTimer8)) {
       inputMessage = request->getParam(PARAM_festerTimer8)->value();
-      changetimer = (inputMessage.toInt())*1000;
-      Pointerfeste_Timer[7] = changetimer;
+      if(inputMessage != ""){
+        changetimer = (inputMessage.toInt())*1000;
+        Pointerfeste_Timer[7] = changetimer;
+      }
     }
-    if (request->hasParam(PARAM_festerTimerName9) != "") {
+    if (request->hasParam(PARAM_festerTimerName9)) {
       inputMessage = request->getParam(PARAM_festerTimerName9)->value();
-      Pointerfeste_Timer_Name[8] = inputMessage;
+      if(inputMessage != ""){
+        Pointerfeste_Timer_Name[8] = inputMessage;
+      }
     }
-    if (request->hasParam(PARAM_festerTimer9) != "") {
+    if (request->hasParam(PARAM_festerTimer9)) {
       inputMessage = request->getParam(PARAM_festerTimer9)->value();
-      changetimer = (inputMessage.toInt())*1000;
-      Pointerfeste_Timer[8] = changetimer;
+      if(inputMessage != ""){
+        changetimer = (inputMessage.toInt())*1000;
+        Pointerfeste_Timer[8] = changetimer;
+      }
     }
-    if (request->hasParam(PARAM_festerTimerName10) != "") {
+    if (request->hasParam(PARAM_festerTimerName10)) {
       inputMessage = request->getParam(PARAM_festerTimerName10)->value();
-      Pointerfeste_Timer_Name[9] = inputMessage;
+      if(inputMessage != ""){
+        Pointerfeste_Timer_Name[9] = inputMessage;
+      }
     }
-    if (request->hasParam(PARAM_festerTimer10) != "") {
+    if (request->hasParam(PARAM_festerTimer10)) {
       inputMessage = request->getParam(PARAM_festerTimer10)->value();
-      changetimer = (inputMessage.toInt())*1000;
-      Pointerfeste_Timer[9] = changetimer;
+      if(inputMessage != ""){
+        changetimer = (inputMessage.toInt())*1000;
+        Pointerfeste_Timer[9] = changetimer;
+      }
     }
 
     request->send(200, "text/text", inputMessage);
