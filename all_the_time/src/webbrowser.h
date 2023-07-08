@@ -331,8 +331,4 @@ void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s, unsigned long *
     ft[i] = _feste_Timer[i];
     ftn[i] = _feste_Timer_Name[i];
   }
-  if (millis() == handle+30000){
-    server.handleClient();
-    handle = millis();
-  }
 }
