@@ -59,7 +59,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML>
 <html><body style="background-color: lightblue;">
   <head>
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="10">
     <script>
     function submitMessage() {
       alert("Saved value to ESP SPIFFS");
@@ -272,19 +272,19 @@ String processor(const String& var){
     return Date;
   }
     else if(var== "timer1left") {
-      return String(pointer_timer[0]);
+      return String(pointer_timer[0]/1000);
   }
     else if(var== "timer2left") {
-      return String(pointer_timer[1]);
+      return String(pointer_timer[1]/1000);
   }
     else if(var== "timer3left") {
-      return String(pointer_timer[2]);
+      return String(pointer_timer[2]/1000);
   }
     else if(var== "timer4left") {
-      return String(pointer_timer[3]);
+      return String(pointer_timer[3]/1000);
   }
     else if(var== "timer5left") {
-      return String(pointer_timer[4]);
+      return String(pointer_timer[4]/1000);
   }
   else if(var== "currentTimer") {
       return String((*pointer_act_timer)+1);
@@ -399,6 +399,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     String inputMessage;
     String filename;
     int changetimer;
+    if((*pointer_act_timer)<5){
       if (request->hasParam(PARAM_festeTimerNameSelect)) {
       inputMessage = request->getParam(PARAM_festeTimerNameSelect)->value();
       // Serial.println("inputMessage:" + inputMessage);
@@ -435,6 +436,8 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
       default:
         break;
       }
+    }
+      
     });
   server.on("/startnew",HTTP_GET, [](AsyncWebServerRequest *request){
     Serial.println("new timer started");
