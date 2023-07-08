@@ -28,7 +28,6 @@ unsigned long _timer_5 = 0;
 unsigned long *pointer_timer = nullptr;
 unsigned long _timer[5];
 int _timer_pause[5] = {0, 0, 0, 0, 0};
-unsigned long handle = 0;
 
 int Y = 2023;
 int M = 07;
@@ -313,7 +312,6 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
   server.on("/addValues", handleAddValues);
 
   server.begin();
-  server.handleClient();
 }
 
 void web_browser_end(){
@@ -331,8 +329,7 @@ void web_browser(int _Y, int _M, int _D, int _h, int _m, int _s, unsigned long *
     ft[i] = _feste_Timer[i];
     ftn[i] = _feste_Timer_Name[i];
   }
-  if (millis() == handle+30000){
-    server.handleClient();
-    handle = millis();
-  }
+
+
+  server.handleClient();
 }
