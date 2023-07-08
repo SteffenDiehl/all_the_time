@@ -55,6 +55,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML>
 <html><body style="background-color: lightblue;">
   <head>
+    <meta http-equiv="refresh" content="5">
     <script>
     function submitMessage() {
       alert("Saved value to ESP SPIFFS");
@@ -65,7 +66,7 @@ const char index_html[] PROGMEM = R"rawliteral(
       setTimeout(function(){ document.location.reload(false); }, 500);   
     }
     function startMessage() {
-      alert("Timer started");
+      alert("new Timer started");
       setTimeout(function(){ document.location.reload(false); }, 500);   
     }
     </script>
@@ -83,29 +84,28 @@ const char index_html[] PROGMEM = R"rawliteral(
     <th>Actions</th>
     <br>
     <br>
-    <form acton="/start1" target= "hidden-form">
+    <form target= "hidden-form">
       Timer1: %timer1value% seconds / %timer1left% seconds
-      <input type="submit" value="start" onclick="startMessage()">
     </form>
     <br>
-    <form acton="/start2" target= "hidden-form">
+    <form target= "hidden-form">
       Timer2: %timer2value% seconds / %timer2left% seconds
-      <input type="submit" value="start" onclick="startMessage()">
     </form>
     <br>
-    <form acton="/start3" target= "hidden-form">
+    <form target= "hidden-form">
       Timer3: %timer3value% seconds / %timer3left% seconds
-      <input type="submit" value="start" onclick="startMessage()">
     </form>
     <br>
-    <form acton="/start4" target= "hidden-form">
+    <form target= "hidden-form">
       Timer4: %timer4value% seconds / %timer4left% seconds
-      <input type="submit" value="start" onclick="startMessage()">
     </form>
     <br>
     <form acton="/start5" target= "hidden-form">
       Timer5: %timer5value% seconds / %timer5left% seconds
-      <input type="submit" value="start" onclick="startMessage()">
+    </form>
+    <br>
+      <form acton="/startnew" target= "hidden-form">
+      <input type="submit" value="Start a new Timer" onclick="startMessage()">
     </form>
     <br>
 
@@ -262,19 +262,19 @@ String processor(const String& var){
     return readFile(SPIFFS, "/festerTimer10.txt");
   }
     else if(var == "timer1value"){
-    return readFile(SPIFFS, "/timer1value.txt");
+    return String((*pointer_timer_1)/1000);
   }
     else if(var == "timer2value"){
-    return readFile(SPIFFS, "/timer2value.txt");
+    return String((*pointer_timer_2)/1000);
   }
     else if(var == "timer3value"){
-    return readFile(SPIFFS, "/timer3value.txt");
+    return String((*pointer_timer_3)/1000));
   }
     else if(var == "timer4value"){
-    return readFile(SPIFFS, "/timer4value.txt");
+    return String((*pointer_timer_4)/1000);
   }
     else if(var == "timer5value"){
-    return readFile(SPIFFS, "/timer5value.txt");
+    return String((*pointer_timer_5)/1000);
   }
     else if(var == "currentTime"){
     return Time;
@@ -348,7 +348,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer6)) {
       inputMessage = request->getParam(PARAM_festerTimer6)->value();
       writeFile(SPIFFS, "/festerTimer6.txt", inputMessage.c_str());
-      changetimer =inputMessage.toInt();
+      changetimer = (inputMessage.toInt()/1000);
       Pointerfeste_Timer[5] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName7)) {
@@ -359,7 +359,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer7)) {
       inputMessage = request->getParam(PARAM_festerTimer7)->value();
       writeFile(SPIFFS, "/festerTimer7.txt", inputMessage.c_str());
-      changetimer =inputMessage.toInt();
+      changetimer = (inputMessage.toInt()/1000);
       Pointerfeste_Timer[6] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName8)) {
@@ -370,7 +370,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer8)) {
       inputMessage = request->getParam(PARAM_festerTimer8)->value();
       writeFile(SPIFFS, "/festerTimer8.txt", inputMessage.c_str());
-      changetimer =inputMessage.toInt();
+      changetimer = (inputMessage.toInt()/1000);
       Pointerfeste_Timer[7] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName9)) {
@@ -381,7 +381,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer9)) {
       inputMessage = request->getParam(PARAM_festerTimer9)->value();
       writeFile(SPIFFS, "/festerTimer9.txt", inputMessage.c_str());
-      changetimer =inputMessage.toInt();
+      changetimer = (inputMessage.toInt()/1000);
       Pointerfeste_Timer[8] = changetimer;
     }
     if (request->hasParam(PARAM_festerTimerName10)) {
@@ -392,7 +392,7 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
     if (request->hasParam(PARAM_festerTimer10)) {
       inputMessage = request->getParam(PARAM_festerTimer10)->value();
       writeFile(SPIFFS, "/festerTimer10.txt", inputMessage.c_str());
-      changetimer =inputMessage.toInt();
+      changetimer = (inputMessage.toInt()/1000);
       Pointerfeste_Timer[9] = changetimer;
     }
     else {
@@ -414,20 +414,8 @@ void web_browser_begin(unsigned long ft[10] = {}, String ftn[10] = {}, unsigned 
       writeFile(SPIFFS, file, inputMessage.c_str());
       }
     });
-  server.on("/start1",HTTP_GET, [](AsyncWebServerRequest *request){
-    Serial.println("timer started");
-  });
-  server.on("/start2",HTTP_GET, [](AsyncWebServerRequest *request){
-    Serial.println("timer started");
-  });
-  server.on("/start3",HTTP_GET, [](AsyncWebServerRequest *request){
-    Serial.println("timer started");
-  });
-  server.on("/start4",HTTP_GET, [](AsyncWebServerRequest *request){
-    Serial.println("timer started");
-  });
-  server.on("/start5",HTTP_GET, [](AsyncWebServerRequest *request){
-    Serial.println("timer started");
+  server.on("/startnew",HTTP_GET, [](AsyncWebServerRequest *request){
+    Serial.println("new timer started");
   });
   server.onNotFound(notFound);
   server.begin();
