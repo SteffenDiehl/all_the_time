@@ -107,19 +107,19 @@ const char index_html[] PROGMEM = R"rawliteral(
 
     <form action="/get" target="hidden-form">
       festerTimerName6 (current value %festerTimerName6%): <input type="text" name="festerTimerName6">
-      festerTimer6 (current value %festerTimer6%): <input type="number " name="festerTimer6">
+      festerTimer6 (current value %festerTimer6% ms): <input type="number " name="festerTimer6">
       <br>
       festerTimerName7 (current value %festerTimerName7%): <input type="text" name="festerTimerName7">
-      festerTimer7 (current value %festerTimer7%): <input type="number " name="festerTimer7">
+      festerTimer7 (current value %festerTimer7% ms): <input type="number " name="festerTimer7">
       <br>
       festerTimerName8 (current value %festerTimerName8%): <input type="text" name="festerTimerName8">
-      festerTimer8 (current value %festerTimer8%): <input type="number " name="festerTimer8">
+      festerTimer8 (current value %festerTimer8% ms): <input type="number " name="festerTimer8">
       <br>
       festerTimerName9 (current value %festerTimerName9%): <input type="text" name="festerTimerName9">
-      festerTimer9 (current value %festerTimer9%): <input type="number " name="festerTimer9">
+      festerTimer9 (current value %festerTimer9% ms): <input type="number " name="festerTimer9">
       <br>
       festerTimerName10 (current value %festerTimerName10%): <input type="text" name="festerTimerName10">
-      festerTimer10 (current value %festerTimer10%): <input type="number " name="festerTimer10">
+      festerTimer10 (current value %festerTimer10% ms): <input type="number " name="festerTimer10">
       <input type="submit" value="Submit" onclick="submitMessage()">
     </form>
     <br>
@@ -190,46 +190,46 @@ String processor(const String& var){
     return Pointerfeste_Timer_Name[5];
   }
     else if(var == "festerTimer6"){
-    return String(Pointerfeste_Timer[5]/1000);
+    return String(Pointerfeste_Timer[5]);
   }
     else if(var == "festerTimerName7"){
     return Pointerfeste_Timer_Name[6];
   }
     else if(var == "festerTimer7"){
-    return String(Pointerfeste_Timer[6]/1000);
+    return String(Pointerfeste_Timer[6]);
   }
     else if(var == "festerTimerName8"){
     return Pointerfeste_Timer_Name[7];
   }
     else if(var == "festerTimer8"){
-    return String(Pointerfeste_Timer[7]/1000);
+    return String(Pointerfeste_Timer[7]);
   }
     else if(var == "festerTimerName9"){
     return Pointerfeste_Timer_Name[8];
   }
     else if(var == "festerTimer9"){
-    return String(Pointerfeste_Timer[8]/1000);
+    return String(Pointerfeste_Timer[8]);
   }
     else if(var == "festerTimerName10"){
     return Pointerfeste_Timer_Name[9];
   }
     else if(var == "festerTimer10"){
-    return String(Pointerfeste_Timer[9]/1000);
+    return String(Pointerfeste_Timer[9]);
   }
     else if(var == "timer1value"){
-    return String((*pointer_timer_1)/1000);
+    return String((*pointer_timer_1));
   }
     else if(var == "timer2value"){
-    return String((*pointer_timer_2)/1000);
+    return String((*pointer_timer_2));
   }
     else if(var == "timer3value"){
-    return String((*pointer_timer_3)/1000);
+    return String((*pointer_timer_3));
   }
     else if(var == "timer4value"){
-    return String((*pointer_timer_4)/1000);
+    return String((*pointer_timer_4));
   }
     else if(var == "timer5value"){
-    return String((*pointer_timer_5)/1000);
+    return String((*pointer_timer_5));
   }
     else if(var == "currentTime"){
     return Time;
