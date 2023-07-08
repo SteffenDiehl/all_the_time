@@ -122,7 +122,7 @@ void loop() {
 
   //Webserver
   if(Web_Server && !Web_Server_act && Wi_Fi_act){//Ein schalten
-    web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer);
+    web_browser_begin(feste_Timer, feste_Timer_Name, &timer_1, &timer_2, &timer_3, &timer_4, &timer_5, timer, &act_timer);
     Web_Server_act = 1;
   }
   else if(!Web_Server && Web_Server_act){//Aus schalten
@@ -131,7 +131,7 @@ void loop() {
   }
 
   if(Web_Server_act){//Time abgleich 
-    web_browser(year, month, day, hour, minute, second, &act_timer);
+    web_browser(year, month, day, hour, minute, second);
   }
 
   
