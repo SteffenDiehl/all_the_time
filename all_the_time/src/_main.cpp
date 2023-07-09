@@ -63,7 +63,7 @@ int rotary_move = 0;
 //neopixel
 #define neopixel_pin 5
 #define neopixel_anz 56
-#define summer 2
+#define summer 23
 
 // Setup a RotaryEncoder with 4 steps per latch for the 2 signal input pins:
 // RotaryEncoder encoder(PIN_IN1, PIN_IN2, RotaryEncoder::LatchMode::FOUR3);
@@ -300,9 +300,8 @@ void loop() {
       break;
     }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_1min) && ledoff_click == 0){//brightness-
+  else if(digitalRead(Button_30s) && digitalRead(Button_1min)){//brightness-
     brighness_decrease();
-    ledoff_click = 1;
     switch (act_timer)
     {
     case 0:
@@ -339,9 +338,8 @@ void loop() {
       break;
     }
   }
-  else if(digitalRead(Button_30s) && digitalRead(Button_5min) && ledoff_click == 0){//brightness+
+  else if(digitalRead(Button_30s) && digitalRead(Button_5min)){//brightness+
     brightness_increase();
-    ledoff_click = 1;
     switch (act_timer)
     {
     case 0:
